@@ -879,30 +879,65 @@
                 "summary": "Registered Nurse with 15+ years across emergency care, pediatrics, case management, telehealth, and high-volume remote triage. Over that time I have drifted from “just doing the work” into designing the systems around it – building Epic SmartPhrases/SmartLists, workflow guides, and peer resources that make documentation faster and more consistent. I’m now focused on roles where that mix of clinical experience and systems thinking matters most: utilization review, clinical documentation, and nursing informatics / clinical technology implementation.",
                 "skills": {
                     "clinical_documentation_systems": [
-                        "Utilization review and care coordination",
-                        "Clinical documentation improvement (CDI)",
-                        "EHR workflow optimization using Epic and Salesforce",
-                        "Remote triage, quality review, and audit support"
+                        "Utilization review, care coordination, and clinical workflow analysis",
+                        "Clinical documentation improvement (CDI) support and smartphrase/smartlist design",
+                        "EHR workflow optimization using Epic, Salesforce, Talkdesk, and MS Teams integrations",
+                        "Remote triage quality review, audit support, and process standardization"
                     ],
-                    "tech_automation": [
-                        "Developed documentation macros and workflow automations; one alone reduced charting time by roughly one hour per week per clinician across a 30 member team",
-                        "Basic Python scripting and data automation (Coursera: Programming for Everybody)",
-                        "Proficient with Microsoft Office, Google Workspace, and digital collaboration tools",
-                        "Strong understanding of healthcare data, privacy, and HIPAA compliance"
+                    "hardware_firmware_systems": [
+                        "Embedded automation prototyping using RP2040 microcontrollers and sensor integration",
+                        "Firmware development for input handling, state management, and fail-safe logic",
+                        "Breadboard and low-voltage circuit prototyping for early-stage product development",
+                        "USB HID automation, BLE connectivity, and triggered workstation control behaviors",
+                        "Human–computer interface design for safety-critical workstation control systems"
+                    ],
+                    "web_interface_systems": [
+                        "Front-end development using HTML, CSS, and JavaScript for interactive single-page applications",
+                        "UI/UX design for EMR-style interfaces, modals, onboarding flows, and user-state management",
+                        "Responsive layout troubleshooting across desktop and mobile experiences",
+                        "LocalStorage-based session logic for onboarding and user preferences",
+                        "Accessibility-conscious interface patterns and content structure"
+                    ],
+                    "ecommerce_systems": [
+                        "Multi-platform ecommerce ecosystem design using Shopify, Printify, Etsy, and Vela",
+                        "SEO frameworks, product-variant mapping, and reusable listing templates",
+                        "Meta Ads audience targeting, catalog syncing, and cross-platform integration",
+                        "Workflow automation using n8n, Docker, and local LLM tools (Ollama, LM Studio)",
+                        "Visual asset systems for product photography, mockups, and consistent brand identity"
+                    ],
+                    "automation_llm_systems": [
+                        "Prompt engineering and system design for multi-agent LLM workflows",
+                        "JSON-based configuration systems for automated content, code, and UI generation",
+                        "Local LLM orchestration for image generation, automation pipelines, and creative iteration",
+                        "AI-assisted troubleshooting, documentation, and UX refinement across hardware and software projects"
+                    ],
+                    "biological_environmental_systems": [
+                        "Closed-loop hydroponic and aquaponic system design with feedback-driven nutrient and flow control",
+                        "Ecological modeling for self-regulating regenerative agriculture environments",
+                        "Experimental systems design focused on resilience and adaptability under real-world constraints",
+                        "Research on Bidens alba heat tolerance and Brassica adaptability",
+                        "Integration of biological, mechanical, and digital systems into unified experimental platforms"
                     ],
                     "leadership_collaboration": [
-                        "Peer mentorship and morale building in distributed teams",
-                        "Contributor to workflow and training documentation",
-                        "Interdisciplinary communication and cross team coordination",
-                        "Recognized for initiative, reliability, and technical support"
+                        "Peer mentorship and morale building in distributed and clinical teams",
+                        "Contributor to workflow documentation, training resources, and EHR tip sheets",
+                        "Interdisciplinary communication across clinical, technical, and creative collaborators",
+                        "Recognized for initiative, reliability, and systems-focused technical support"
                     ],
                     "creative_systems_thinking": [
-                        "Visual storytelling and educational content using Photoshop, Lightroom, and Canva",
-                        "Video editing with DaVinci Resolve for instructional and promotional media",
-                        "Background in community systems design and sustainability projects",
-                        "Integrates clinical, technical, and creative thinking to drive engagement and clarity"
+                        "Systems-level problem-solving across biological, digital, and mechanical domains",
+                        "Ecosystem modeling and feedback-loop analysis applied to engineering and agriculture",
+                        "Human–machine interaction and workflow refinement from a clinical perspective",
+                        "Integrating clinical, technical, and creative disciplines to enhance clarity and engagement"
+                    ],
+                    "visual_media_production": [
+                        "Product and lifestyle photography using Sony a7C, macro systems, and manual-focus lenses",
+                        "Video capture and editing for educational and promotional content using DaVinci Resolve",
+                        "Graphic and layout design using Lightroom, Photoshop, and Canva",
+                        "Iterative visual design for ecommerce branding and technical storytelling"
                     ]
                 },
+
                 "experience": [
                     {
                         "role": "Remote Triage Nurse",
@@ -1205,58 +1240,122 @@
             `;
         }
 
-        // Render Meds Tab - Shows Clinical Documentation Systems
-        function renderMeds(data) {
-            const skills = resolveReference('@resume.skills.clinical_documentation_systems') || data.resume.skills.clinical_documentation_systems;
-            
-            return `
-                <h2>Medications (Core Clinical Systems)</h2>
-                <div class="skills-section">
-                    <div class="collapsible-header" data-target="meds-clinical">
-                        <h3>Clinical Documentation Systems</h3>
-                        <span class="collapsible-icon">▶</span>
-                    </div>
-                    <div class="collapsible-content" id="meds-clinical">
-                        <ul>
-                            ${skills.map(skill => `<li>${skill}</li>`).join('')}
-                        </ul>
-                    </div>
-                </div>
-            `;
-        }
+        // Meds Tab - Shows Core Clinical & Technical Systems
+function renderMeds(data) {
+    const clinicalSkills = resolveReference('@resume.skills.clinical_documentation_systems') || data.resume.skills.clinical_documentation_systems;
+    const hardwareSkills = resolveReference('@resume.skills.hardware_firmware_systems') || data.resume.skills.hardware_firmware_systems;
+    const webSkills = resolveReference('@resume.skills.web_interface_systems') || data.resume.skills.web_interface_systems;
+    const ecommerceSkills = resolveReference('@resume.skills.ecommerce_systems') || data.resume.skills.ecommerce_systems;
+    const automationSkills = resolveReference('@resume.skills.automation_llm_systems') || data.resume.skills.automation_llm_systems;
+    const bioSkills = resolveReference('@resume.skills.biological_environmental_systems') || data.resume.skills.biological_environmental_systems;
 
-        // Render Labs Tab - Shows Leadership + Creative Skills
-        function renderLabs(data) {
-            const leadershipSkills = resolveReference('@resume.skills.leadership_collaboration') || data.resume.skills.leadership_collaboration;
-            const creativeSkills = resolveReference('@resume.skills.creative_systems_thinking') || data.resume.skills.creative_systems_thinking;
-            
-            return `
-                <h2>Lab Results (Collaborative & Creative Competencies)</h2>
-                <div class="skills-section">
-                    <div class="collapsible-header" data-target="labs-leadership">
-                        <h3>Leadership & Collaboration</h3>
-                        <span class="collapsible-icon">▶</span>
-                    </div>
-                    <div class="collapsible-content" id="labs-leadership">
-                        <ul>
-                            ${leadershipSkills.map(skill => `<li>${skill}</li>`).join('')}
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="skills-section">
-                    <div class="collapsible-header" data-target="labs-creative">
-                        <h3>Creative & Systems Thinking</h3>
-                        <span class="collapsible-icon">▶</span>
-                    </div>
-                    <div class="collapsible-content" id="labs-creative">
-                        <ul>
-                            ${creativeSkills.map(skill => `<li>${skill}</li>`).join('')}
-                        </ul>
-                    </div>
-                </div>
-            `;
-        }
+    return `
+        <h2>Medications (Core Clinical Systems)</h2>
+
+        <div class="skills-section">
+            <div class="collapsible-header" data-target="meds-clinical">
+                <h3>Clinical Documentation Systems</h3>
+                <span class="collapsible-icon">▶</span>
+            </div>
+            <div class="collapsible-content" id="meds-clinical">
+                <ul>${clinicalSkills.map(skill => `<li>${skill}</li>`).join('')}</ul>
+            </div>
+        </div>
+
+        <div class="skills-section">
+            <div class="collapsible-header" data-target="meds-hardware">
+                <h3>Hardware & Firmware Systems</h3>
+                <span class="collapsible-icon">▶</span>
+            </div>
+            <div class="collapsible-content" id="meds-hardware">
+                <ul>${hardwareSkills.map(skill => `<li>${skill}</li>`).join('')}</ul>
+            </div>
+        </div>
+
+        <div class="skills-section">
+            <div class="collapsible-header" data-target="meds-web">
+                <h3>Web & Interface Systems</h3>
+                <span class="collapsible-icon">▶</span>
+            </div>
+            <div class="collapsible-content" id="meds-web">
+                <ul>${webSkills.map(skill => `<li>${skill}</li>`).join('')}</ul>
+            </div>
+        </div>
+
+        <div class="skills-section">
+            <div class="collapsible-header" data-target="meds-ecommerce">
+                <h3>E-commerce & Digital Operations Systems</h3>
+                <span class="collapsible-icon">▶</span>
+            </div>
+            <div class="collapsible-content" id="meds-ecommerce">
+                <ul>${ecommerceSkills.map(skill => `<li>${skill}</li>`).join('')}</ul>
+            </div>
+        </div>
+
+        <div class="skills-section">
+            <div class="collapsible-header" data-target="meds-automation">
+                <h3>Automation & LLM-Driven Systems</h3>
+                <span class="collapsible-icon">▶</span>
+            </div>
+            <div class="collapsible-content" id="meds-automation">
+                <ul>${automationSkills.map(skill => `<li>${skill}</li>`).join('')}</ul>
+            </div>
+        </div>
+
+        <div class="skills-section">
+            <div class="collapsible-header" data-target="meds-bio">
+                <h3>Biological & Environmental Systems Engineering</h3>
+                <span class="collapsible-icon">▶</span>
+            </div>
+            <div class="collapsible-content" id="meds-bio">
+                <ul>${bioSkills.map(skill => `<li>${skill}</li>`).join('')}</ul>
+            </div>
+        </div>
+    `;
+}
+
+
+        // Labs Tab - Shows Collaborative & Creative Competencies
+function renderLabs(data) {
+    const leadershipSkills = resolveReference('@resume.skills.leadership_collaboration') || data.resume.skills.leadership_collaboration;
+    const creativeSkills = resolveReference('@resume.skills.creative_systems_thinking') || data.resume.skills.creative_systems_thinking;
+    const mediaSkills = resolveReference('@resume.skills.visual_media_production') || data.resume.skills.visual_media_production;
+
+    return `
+        <h2>Lab Results (Collaborative & Creative Competencies)</h2>
+
+        <div class="skills-section">
+            <div class="collapsible-header" data-target="labs-leadership">
+                <h3>Leadership & Collaboration</h3>
+                <span class="collapsible-icon">▶</span>
+            </div>
+            <div class="collapsible-content" id="labs-leadership">
+                <ul>${leadershipSkills.map(skill => `<li>${skill}</li>`).join('')}</ul>
+            </div>
+        </div>
+
+        <div class="skills-section">
+            <div class="collapsible-header" data-target="labs-creative">
+                <h3>Creative & Systems Thinking</h3>
+                <span class="collapsible-icon">▶</span>
+            </div>
+            <div class="collapsible-content" id="labs-creative">
+                <ul>${creativeSkills.map(skill => `<li>${skill}</li>`).join('')}</ul>
+            </div>
+        </div>
+
+        <div class="skills-section">
+            <div class="collapsible-header" data-target="labs-media">
+                <h3>Visual & Media Production Systems</h3>
+                <span class="collapsible-icon">▶</span>
+            </div>
+            <div class="collapsible-content" id="labs-media">
+                <ul>${mediaSkills.map(skill => `<li>${skill}</li>`).join('')}</ul>
+            </div>
+        </div>
+    `;
+}
+
 
         // Render Notes Tab - Blog area with external content
         function renderNotes(data) {
@@ -1299,7 +1398,8 @@
                     <div class="collapsible-content" id="resume-doc">
                         <div class="doc-meta">Full professional resume in PDF format</div>
                         <div class="doc-actions">
-                            <a href="${resume_pdf}" target="_blank" rel="noopener" class="doc-link">View Resume PDF</a>
+                            <a href="${resume_pdf}" target="_blank" rel="noopener" class="doc-link">Download Resume PDF</a>
+                            ${resume_pdf ? `<a href="${resume_pdf}" target="_blank" rel="noopener" class="doc-link">View Resume PDF</a>` : ''}
                         </div>
                     </div>
                 </div>
