@@ -81,6 +81,7 @@
             align-items: center;
             z-index: 10000;
             transition: opacity 0.5s ease-out;
+            animation: screenFlicker 2.2s ease-in-out;
         }
 
         .boot-screen.hidden {
@@ -119,7 +120,23 @@
             stroke-dashoffset: 300;
             animation: drawHeartbeat 2.2s ease-out forwards;
         }
+        .heartbeat-glow {
+            stroke: var(--accent-primary);
+            stroke-width: 4;
+            fill: none;
+            opacity: 0.4;
+            filter: blur(2px);
+            stroke-linecap: round;
+            stroke-dasharray: 300;
+            stroke-dashoffset: 300;
+            animation: drawHeartbeat 2.2s ease-out forwards, heartbeatGlowFade 2.2s ease-out forwards;
+        }
 
+        @keyframes heartbeatGlowFade {
+            0%   { opacity: 0.4; }
+            70%  { opacity: 0.4; }
+            100% { opacity: 0; }
+        }
 
         .boot-status {
             color: var(--text-dark);
@@ -135,6 +152,19 @@
         @keyframes drawHeartbeat {
             to { stroke-dashoffset: 0; }
         }
+        @keyframes screenFlicker {
+            0%   { opacity: 1; }
+            8%   { opacity: 0.97; }
+            15%  { opacity: 1; }
+            23%  { opacity: 0.96; }
+            32%  { opacity: 1; }
+            45%  { opacity: 0.98; }
+            60%  { opacity: 1; }
+            72%  { opacity: 0.97; }
+            85%  { opacity: 1; }
+            100% { opacity: 1; }
+        }
+
 
         /* Welcome Modal */
         .welcome-modal {
@@ -790,8 +820,17 @@
     <div class="boot-screen" id="bootScreen">
         <div class="boot-logo">E-MyR</div>
         <div class="boot-subtitle">Electronic Medical Record System</div>
-        <svg class="boot-heartbeat" viewBox="0 0 300 60" xmlns="http://www.w3.org/2000/svg"> 
-            <path class="heartbeat-line" d="M10 30 H80 L90 25 L100 30 H130 L140 35 L150 10 L160 45 L170 30 H200 L215 20 L230 30 H290" /> 
+        <svg class="boot-heartbeat" viewBox="0 0 300 60" xmlns="http://www.w3.org/2000/svg">
+            <!-- Main heartbeat line -->
+            <path
+                class="heartbeat-line"
+                d="M10 30 H80 L90 25 L100 30 H130 L140 35 L150 10 L160 45 L170 30 H200 L215 20 L230 30 H290"
+            />
+            <!-- Glow trace on top of the same path -->
+            <path
+                class="heartbeat-glow"
+                d="M10 30 H80 L90 25 L100 30 H130 L140 35 L150 10 L160 45 L170 30 H200 L215 20 L230 30 H290"
+            />
         </svg>
         <div class="boot-status">Initializing system...</div>
     </div>
@@ -844,6 +883,8 @@
             <button id="restartIntroBtn" class="dock-btn">🔄 Restart Intro</button>
             <a id="contactBtn" class="dock-btn" href="mailto:">✉️ Contact</a>
         </div>
+            <audio id="bootStaticAudio" src="assets/audio/boot-static.mp3" preload="auto"></audio>
+            <audio id="ekgBeepAudio" src="assets/audio/ekg-beep.mp3" preload="auto"></audio>
     </div>
 
     <script>
@@ -1083,15 +1124,42 @@
                 if (this.skipIntro) return;
                 this.showWelcome();
             }
-
+    
             async bootAnimation() {
-                return new Promise(resolve => {
-                    setTimeout(() => {
-                        if (this.bootScreen) this.bootScreen.classList.add('hidden');
-                        resolve();
-                    }, 2200);
+                const staticAudio = document.getElementById('bootStaticAudio');
+                const beepAudio = document.getElementById('ekgBeepAudio');
+
+    // Keep volumes conservative
+            if (staticAudio) staticAudio.volume = 0.25;
+            if (beepAudio) beepAudio.volume = 0.35;
+
+    // Try to play static right as the boot screen appears
+            if (staticAudio) {
+                staticAudio.currentTime = 0;
+                staticAudio.play().catch(() => {
+            // Autoplay may be blocked; fail silently
                 });
             }
+
+    // Schedule the EKG beep near the R wave
+    // R wave is roughly mid-path in your SVG, so ~1.4–1.5s of a 2.2s animation feels right.
+            if (beepAudio) {
+                setTimeout(() => {
+                    beepAudio.currentTime = 0;
+                    beepAudio.play().catch(() => {
+                // Autoplay may be blocked; browsers that need a click just won't play it
+                    });
+                }, 1500); // tweak this value if you want the beep earlier or later
+            }
+
+            return new Promise(resolve => {
+                setTimeout(() => {
+                    if (this.bootScreen) this.bootScreen.classList.add('hidden');
+                    resolve();
+                }, 2200); // matches drawHeartbeat + screenFlicker duration
+            });
+        }
+
 
             showWelcome() {
                 if (!this.welcomeModal) return;
@@ -1638,3 +1706,4 @@ function renderLabs(data) {
     </script>
 </body>
 </html>
+
