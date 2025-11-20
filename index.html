@@ -1236,7 +1236,7 @@
                     },
                     {
                         "id": "cert_systems_thinking",
-                        "title": "Systems Thinking Basics",
+                        "title": "pp_Systems_Thinking_Basics",
                         "issuer": "Coursera / Starweaver Instructor Team",
                         "completed": "Nov 18, 2025",
                         "verify_url": "https://coursera.org/verify/IL7X19XU9VH9",
@@ -1640,12 +1640,12 @@
             const { education, certificates, resume_pdf } = data.resume;
             
             return `
-                <h2>Documents</h2>
+                <h2>Education & Professional Training</h2>
                 
                 <h3>Resume</h3>
                 <div class="document-item">
                     <div class="collapsible-header" data-target="resume-doc">
-                        <div class="doc-title">Complete Resume (PDF)</div>
+                        <div class="doc-title">Complete Resume</div>
                         <span class="collapsible-icon">▶</span>
                     </div>
                     <div class="collapsible-content" id="resume-doc">
@@ -1657,44 +1657,61 @@
                     </div>
                 </div>
                 
-                <h3>Education</h3>
-                ${education.map((edu, index) => `
-                    <div class="document-item">
-                        <div class="collapsible-header" data-target="edu-${index}">
-                            <div class="doc-title">${edu.degree}</div>
-                            <span class="collapsible-icon">▶</span>
-                        </div>
-                        <div class="collapsible-content" id="edu-${index}">
-                            <div class="doc-meta">${edu.institution} - ${edu.year}</div>
-                            ${edu.certificate_file ? `
-                                <div class="doc-actions">
-                                    <a href="${edu.certificate_file}" target="_blank" rel="noopener" class="doc-link">View Diploma PDF</a>
-                                </div>
-                            ` : ''}
-                        </div>
-                    </div>
-                `).join('')}
+                <h3>Education & Professional Training</h3>
                 
-                <h3>Certifications & Licenses</h3>
-                ${certificates.map((cert, index) => `
-                    <div class="document-item">
-                        <div class="collapsible-header" data-target="cert-${index}">
-                            <div class="doc-title">${cert.title.replace(/–/g, '-')}</div>
-                            <span class="collapsible-icon">▶</span>
+                <!-- ADN Degree with nested RN License -->
+                <div class="document-item">
+                    <div class="collapsible-header" data-target="degree-adn">
+                        <div class="doc-title">Associate Degree in Nursing (ADN)</div>
+                        <span class="collapsible-icon">▶</span>
+                    </div>
+                    <div class="collapsible-content" id="degree-adn">
+                        <div class="doc-meta">Chamberlain University - 2012</div>
+                        <div class="doc-actions">
+                            <a href="assets/pp_NURSING_ADN.pdf" target="_blank" rel="noopener" class="doc-link">View Diploma PDF</a>
                         </div>
-                        <div class="collapsible-content" id="cert-${index}">
-                            <div class="doc-meta">
-                                ${cert.issuer ? `${cert.issuer} - ` : ''}
-                                ${cert.completed || cert.details || ''}
-                            </div>
-                            ${cert.verify_instructions ? `<p>${cert.verify_instructions}</p>` : ''}
+                        
+                        <!-- Nested RN License -->
+                        <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(0, 150, 136, 0.2);">
+                            <div class="doc-title" style="font-size: 1rem; margin-bottom: 10px;">Registered Nurse - Compact Multistate License</div>
+                            <div class="doc-meta">FL RN9613731, Unencumbered, Expires 07/31/2026</div>
+                            <p style="margin-top: 10px;">Verification available via Nursys QuickConfirm search portal.</p>
                             <div class="doc-actions">
-                                ${cert.pdf_path ? `<a href="${cert.pdf_path}" target="_blank" rel="noopener" class="doc-link">View Certificate PDF</a>` : ''}
-                                ${cert.verify_url ? `<a href="${cert.verify_url}" target="_blank" rel="noopener" class="doc-link">Verify Online</a>` : ''}
+                                <a href="https://www.nursys.com" target="_blank" rel="noopener" class="doc-link">Verify Online</a>
                             </div>
                         </div>
                     </div>
-                `).join('')}
+                </div>
+                
+                <!-- Python Certificate -->
+                <div class="document-item">
+                    <div class="collapsible-header" data-target="cert-python">
+                        <div class="doc-title">Programming for Everybody (Python)</div>
+                        <span class="collapsible-icon">▶</span>
+                    </div>
+                    <div class="collapsible-content" id="cert-python">
+                        <div class="doc-meta">University of Michigan / Coursera - Oct 2025</div>
+                        <div class="doc-actions">
+                            <a href="assets/pp_Python_Programming_For_Everyone.pdf" target="_blank" rel="noopener" class="doc-link">View Certificate PDF</a>
+                            <a href="https://www.coursera.org/account/accomplishments/verify/YNCNEVGXEJDG" target="_blank" rel="noopener" class="doc-link">Verify Online</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Systems Thinking Certificate -->
+                <div class="document-item">
+                    <div class="collapsible-header" data-target="cert-systems">
+                        <div class="doc-title">Systems Thinking Basics</div>
+                        <span class="collapsible-icon">▶</span>
+                    </div>
+                    <div class="collapsible-content" id="cert-systems">
+                        <div class="doc-meta">Coursera / Starweaver Instructor Team - Nov 18, 2025</div>
+                        <div class="doc-actions">
+                            <a href="assets/pp_Systems_Thinking_Basics.pdf" target="_blank" rel="noopener" class="doc-link">View Certificate PDF</a>
+                            <a href="https://coursera.org/verify/IL7X19XU9VH9" target="_blank" rel="noopener" class="doc-link">Verify Online</a>
+                        </div>
+                    </div>
+                </div>
             `;
         }
 
