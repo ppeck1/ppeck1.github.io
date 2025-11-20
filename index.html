@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paul Peck, RN — E-MyR Interactive Resume</title>
+    <title>Paul Peck, RN – E-MyR Interactive Resume</title>
     
     <!-- SEO & Social Meta Tags -->
     <meta name="description" content="Interactive EMR-style resume of Paul Peck, RN - blending clinical expertise with informatics and design.">
@@ -79,7 +79,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            z-index: 10000;
+            z-index: 99999;
             transition: opacity 0.5s ease-out;
         }
 
@@ -106,7 +106,7 @@
         .boot-heartbeat {
             width: 300px;
             height: 60px;
-            margin: 0 auto 30px;      /* center horizontally, 30px below subtitle */
+            margin: 0 auto 30px;
             display: block;
         }
 
@@ -115,7 +115,7 @@
             stroke-width: 2;
             fill: none;
             stroke-linecap: round;
-            stroke-dasharray: 300;     /* approximate path length */
+            stroke-dasharray: 300;
             stroke-dashoffset: 300;
             animation: drawHeartbeat 2.2s ease-out forwards;
         }
@@ -159,11 +159,11 @@
                 transform: scale(1);
             }
             10% {
-                filter: brightness(2);   /* bright flash */
-                transform: scale(1.02);  /* tiny punch out */
+                filter: brightness(2);
+                transform: scale(1.02);
             }
             25% {
-                filter: brightness(0.2); /* brief dark dip */
+                filter: brightness(0.2);
             }
             45% {
                 filter: brightness(1.2);
@@ -175,23 +175,9 @@
             }
         }
 
-        /* Applied only when we want the pop */
         .boot-screen.static-pop {
             animation: staticPop 0.3s ease-out;
         }
-                @keyframes screenFlicker {
-                    0%   { opacity: 1; }
-                    8%   { opacity: 0.97; }
-                    15%  { opacity: 1; }
-                    23%  { opacity: 0.96; }
-                    32%  { opacity: 1; }
-                    45%  { opacity: 0.98; }
-                    60%  { opacity: 1; }
-                    72%  { opacity: 0.97; }
-                    85%  { opacity: 1; }
-                    100% { opacity: 1; }
-        }
-
 
         /* Welcome Modal */
         .welcome-modal {
@@ -799,11 +785,11 @@
             }
 
             .nav-tab {
-                flex: 0 0 auto;      /* don’t shrink to fit */
-                min-width: 120px;    /* enough for “Demographics” */
+                flex: 0 0 auto;
+                min-width: 120px;
                 font-size: 0.9rem;
                 padding: 12px 15px;
-                white-space: nowrap; /* prevent wrapping */
+                white-space: nowrap;
             }
 
             .dock {
@@ -877,7 +863,7 @@
 
     <div class="app-container">
         <header class="app-header">
-            <h1 class="app-title">E-MyR — Electronic Medical Record</h1>
+            <h1 class="app-title">E-MyR – Electronic Medical Record</h1>
             <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">
                 <span id="themeIcon">🌙</span>
                 <span id="themeText">Dark</span>
@@ -908,17 +894,17 @@
             <button id="homeBtn" class="dock-btn">🏠 Home</button>
             <a id="resumeBtn" class="dock-btn" href="#" target="_blank" rel="noopener">📄 Download Resume</a>
             <button id="restartIntroBtn" class="dock-btn">🔄 Restart Intro</button>
-            <a id="contactBtn" class="dock-btn" href="mailto:">✉️ Contact</a>
+            <a id="contactBtn" class="dock-btn" href="/cdn-cgi/l/email-protection#7f">✉️ Contact</a>
         </div>
-            <audio id="bootStaticAudio" src="assets/audio/boot-static.mp3" preload="auto"></audio>
-            <audio id="ekgBeepAudio" src="assets/audio/ekg-beep.mp3" preload="auto"></audio>
+        <audio id="bootStaticAudio" src="assets/audio/boot-static.mp3" preload="auto"></audio>
+        <audio id="ekgBeepAudio" src="assets/audio/ekg-beep.mp3" preload="auto"></audio>
     </div>
 
-    <script>
-        // Resume Data (embedded JSON)
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Resume Data (embedded JSON) - Updated with work experience from ppeck_work_experience_website.json
         const resumeData = {
             "version": "1.2",
-            "project": "ppeck.me — Interactive Resume",
+            "project": "ppeck.me – Interactive Resume",
             "identity": {
                 "name": "Paul Peck, RN",
                 "title": "Clinical Informatics & Documentation Specialist",
@@ -944,7 +930,138 @@
                 }
             },
             "resume": {
-                "summary": "Registered Nurse with 15+ years across emergency care, pediatrics, case management, telehealth, and high-volume remote triage. Over that time I have drifted from “just doing the work” into designing the systems around it – building Epic SmartPhrases/SmartLists, workflow guides, and peer resources that make documentation faster and more consistent. I’m now focused on roles where that mix of clinical experience and systems thinking matters most: utilization review, clinical documentation, and nursing informatics / clinical technology implementation.",
+                "summary": "Registered Nurse with 15+ years across emergency care, pediatrics, case management, telehealth, and high-volume remote triage. Over that time I have drifted from 'just doing the work' into designing the systems around it - building Epic SmartPhrases/SmartLists, workflow guides, and peer resources that make documentation faster and more consistent. I'm now focused on roles where that mix of clinical experience and systems thinking matters most: utilization review, clinical documentation, and nursing informatics / clinical technology implementation.",
+                "work_experience_sections": [
+                    {
+                        "id": "embedded_systems",
+                        "title": "Embedded Systems, Automation, and Real-World System Design",
+                        "date_range": "2012-Present, evolving across domains",
+                        "overview": [
+                            "Most recently, developed and prototyped embedded hardware and automation systems integrating microcontrollers, sensor inputs, fail-safe logic, state management, and triggered actions.",
+                            "Designed resilience-focused behavior models for reliable operation under disruption, including controlled hardware-software communication such as USB HID and BLE, real-time rendering, tamper-handling, and safe default behaviors.",
+                            "Earlier phases of this work focused on applied systems thinking across clinical, environmental, and biological contexts. These experiences naturally evolved into the technical integrations used in embedded and automation projects today.",
+                            "Engineered biological system prototypes including hydroponics, aquaponics, nutrient-flow control, and regenerative agriculture environments. Applied feedback-loop and control-system concepts that later informed the embedded systems approach.",
+                            "Completed applied research on climate-resilient horticulture involving Bidens alba heat tolerance and Brassica trait development.",
+                            "Built a complete e-commerce ecosystem from the ground up, including product development, branding, UX optimization, automated content pipelines using n8n, Docker, and local LLMs, as well as Shopify and Etsy integrations, marketing systems, and AI-assisted creative workflows.",
+                            "Supported all creative output with original photography, macro videography, illustration, and multimedia production."
+                        ],
+                        "subsections": [
+                            {
+                                "heading": "Embedded Hardware and Automation",
+                                "bullets": [
+                                    "Microcontrollers including RP2040, CircuitPython, and Arduino platforms.",
+                                    "Sensor integration, input handling, and hardware state management.",
+                                    "Fail-safe logic design focused on safe defaults and predictable failure behavior.",
+                                    "Triggered actions driven by real-time sensor and state data."
+                                ]
+                            },
+                            {
+                                "heading": "Behavior Models and Communication",
+                                "bullets": [
+                                    "USB HID communication for presence and control signals.",
+                                    "BLE communication for wireless interaction and device presence.",
+                                    "Real-time display rendering supporting responsive visual feedback.",
+                                    "Tamper-handling and graceful degradation under disruption."
+                                ]
+                            },
+                            {
+                                "heading": "Biological and Environmental Systems Engineering",
+                                "bullets": [
+                                    "Hydroponic and aquaponic system design and prototyping.",
+                                    "Nutrient-flow control and monitoring for stable closed-loop systems.",
+                                    "Regenerative agriculture experiments and climate-resilient horticulture research.",
+                                    "Applied studies involving Bidens alba and Brassica cultivars."
+                                ]
+                            },
+                            {
+                                "heading": "E-Commerce Systems and Creative Workflows",
+                                "bullets": [
+                                    "End-to-end Shopify and Etsy storefront design and integration.",
+                                    "Automated publishing and marketing pipelines using n8n, Docker, and local LLM tools.",
+                                    "Branding, UX optimization, and iterative design for customer experience.",
+                                    "Original photography, macro videography, and digital illustration to support product and brand visuals."
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "id": "clinical_workflow",
+                        "title": "Clinical Workflow Engineering and Digital Systems Optimization",
+                        "date_range": "2015-Present",
+                        "overview": [
+                            "Optimized digital documentation workflows across multiple clinical environments with a focus on accuracy, throughput, and reducing cognitive load for front-line users.",
+                            "Designed SmartPhrase and SmartList libraries that support remote care teams and telehealth environments.",
+                            "Applied quantitative insights from Epic and Salesforce data to improve triage precision, streamline communication, and reduce delays in care transitions.",
+                            "Collaborated with clinical, therapy, and administrative teams to reduce friction points in discharge planning, improve care coordination, and strengthen safe, repeatable workflows in complex rehabilitation and remote-care settings.",
+                            "Applied informatics principles to enhance documentation quality, reinforce interdisciplinary handoffs, and reduce variability in care processes.",
+                            "These roles formed the bridge into systems engineering by providing firsthand experience with bottleneck analysis, structured process design, and high-impact workflow improvements."
+                        ],
+                        "subsections": [
+                            {
+                                "heading": "Documentation Systems and Triage Optimization",
+                                "bullets": [
+                                    "Design and maintenance of SmartPhrase and SmartList libraries used by remote nursing and provider teams.",
+                                    "Epic- and Salesforce-based data review to refine triage pathways and outreach workflows.",
+                                    "Reduction of duplicate documentation and improved clarity for downstream clinicians."
+                                ]
+                            },
+                            {
+                                "heading": "Care Coordination and Process Redesign",
+                                "bullets": [
+                                    "Improved discharge planning workflows in rehabilitation and post-acute settings.",
+                                    "Strengthened communication channels between nursing, therapy, physicians, and administrative staff.",
+                                    "Standardized handoff structures to reduce error risk during transitions of care."
+                                ]
+                            },
+                            {
+                                "heading": "Systems Foundations and Workflow Analysis",
+                                "bullets": [
+                                    "Bottleneck analysis of high-volume documentation and call workflows.",
+                                    "Process mapping and redesign to remove friction and reduce avoidable delays.",
+                                    "Use of informatics concepts to align clinical documentation with operational goals."
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "id": "emergency_systems",
+                        "title": "Emergency Systems, High-Acuity Operations, and Rapid Decision Environments",
+                        "date_range": "2008-2017",
+                        "overview": [
+                            "Developed expertise in rapid problem-solving, system triage, and time-critical decision environments across emergency medicine, trauma centers, and EMS response systems.",
+                            "Managed complex, high-acuity workflows requiring real-time prioritization, protocol-driven intervention, and tightly coordinated team operations.",
+                            "Strengthened EMR documentation accuracy, protocol adherence, and interdepartmental communication in chaotic environments.",
+                            "Led clinical rotations for paramedic students, teaching triage algorithms, documentation standards, and workflow-relevant clinical reasoning.",
+                            "This background built the foundation for later systems work, where latency, clarity, and structured processes directly determine outcomes."
+                        ],
+                        "subsections": [
+                            {
+                                "heading": "High-Acuity Clinical Systems",
+                                "bullets": [
+                                    "Real-time prioritization of patients based on acuity and available resources.",
+                                    "Protocol-driven interventions in trauma and emergency environments.",
+                                    "Cross-team coordination among nursing, physicians, EMS, and ancillary staff."
+                                ]
+                            },
+                            {
+                                "heading": "EMR Accuracy and Documentation",
+                                "bullets": [
+                                    "High-fidelity charting in time-sensitive settings.",
+                                    "Protocol adherence and accurate documentation for legal and clinical continuity.",
+                                    "Communication workflows designed to function under chaotic conditions."
+                                ]
+                            },
+                            {
+                                "heading": "Training and Instruction",
+                                "bullets": [
+                                    "Education of paramedic students on triage logic and documentation standards.",
+                                    "Development of individualized learning plans to improve performance and confidence.",
+                                    "Instruction emphasizing workflow-relevant clinical reasoning rather than rote tasks alone."
+                                ]
+                            }
+                        ]
+                    }
+                ],
                 "skills": {
                     "clinical_documentation_systems": [
                         "Utilization review, care coordination, and clinical workflow analysis",
@@ -957,7 +1074,7 @@
                         "Firmware development for input handling, state management, and fail-safe logic",
                         "Breadboard and low-voltage circuit prototyping for early-stage product development",
                         "USB HID automation, BLE connectivity, and triggered workstation control behaviors",
-                        "Human–computer interface design for safety-critical workstation control systems"
+                        "Human-computer interface design for safety-critical workstation control systems"
                     ],
                     "web_interface_systems": [
                         "Front-end development using HTML, CSS, and JavaScript for interactive single-page applications",
@@ -995,7 +1112,7 @@
                     "creative_systems_thinking": [
                         "Systems-level problem-solving across biological, digital, and mechanical domains",
                         "Ecosystem modeling and feedback-loop analysis applied to engineering and agriculture",
-                        "Human–machine interaction and workflow refinement from a clinical perspective",
+                        "Human-machine interaction and workflow refinement from a clinical perspective",
                         "Integrating clinical, technical, and creative disciplines to enhance clarity and engagement"
                     ],
                     "visual_media_production": [
@@ -1005,13 +1122,12 @@
                         "Iterative visual design for ecommerce branding and technical storytelling"
                     ]
                 },
-
                 "experience": [
                     {
                         "role": "Remote Triage Nurse",
                         "organization": "Signallamp Health",
                         "location": "Remote",
-                        "dates": "Jun 2023 — Present",
+                        "dates": "Jun 2023 - Present",
                         "bullets": [
                             "Provide remote triage support and care coordination through Epic and Salesforce across multiple clinical practices",
                             "Consistently exceed daily productivity standards, managing 80 to 100 encounters per shift while maintaining accuracy and empathy",
@@ -1021,10 +1137,10 @@
                         ]
                     },
                     {
-                        "role": "RN Case Manager — Inpatient Rehabilitation",
+                        "role": "RN Case Manager - Inpatient Rehabilitation",
                         "organization": "Orlando Rehab Hospital (Nobis Health)",
                         "location": "Orlando, FL",
-                        "dates": "Oct 2024 — Jun 2025",
+                        "dates": "Oct 2024 - Jun 2025",
                         "bullets": [
                             "Coordinated complex discharge plans and interdisciplinary communication for patients in a post acute rehabilitation setting",
                             "Conducted utilization reviews and facilitated payer communication to ensure timely authorizations and continuity of care",
@@ -1033,10 +1149,10 @@
                         ]
                     },
                     {
-                        "role": "RN Case Manager — Inpatient Rehabilitation",
+                        "role": "RN Case Manager - Inpatient Rehabilitation",
                         "organization": "Encompass Health",
                         "location": "Orlando, FL",
-                        "dates": "Feb 2023 — Oct 2024",
+                        "dates": "Feb 2023 - Oct 2024",
                         "bullets": [
                             "Managed daily caseloads of 15 to 20 medically complex rehab patients, coordinating with physicians, therapists, insurers, and families to ensure safe and successful discharges",
                             "Acted as liaison between patients and payers to secure pre certifications and continued stay approvals",
@@ -1048,7 +1164,7 @@
                         "role": "IV Infusion Nurse",
                         "organization": "Vitalounge",
                         "location": "Orlando, FL",
-                        "dates": "Oct 2022 — Feb 2023",
+                        "dates": "Oct 2022 - Feb 2023",
                         "bullets": [
                             "Administered IV vitamin and hydration infusions in a wellness setting, ensuring safe and comfortable patient experiences",
                             "Monitored for adverse reactions, maintained IV access, and accurately documented services and outcomes",
@@ -1059,7 +1175,7 @@
                         "role": "Stay at Home Parent / Homeschool Educator",
                         "organization": "Family",
                         "location": "Orlando, FL",
-                        "dates": "Dec 2017 — Feb 2023",
+                        "dates": "Dec 2017 - Feb 2023",
                         "bullets": [
                             "Managed full time home education and developmental planning for two children with individualized curriculum design",
                             "Balanced time management, communication, and household operations in a dynamic, high responsibility role",
@@ -1070,7 +1186,7 @@
                         "role": "Telephonic RN Case Manager",
                         "organization": "Quantum Health",
                         "location": "Columbus, OH",
-                        "dates": "2016 — 2017",
+                        "dates": "2016 - 2017",
                         "bullets": [
                             "Delivered telephonic case management and benefits education for employer based health plan members",
                             "Collaborated with multidisciplinary teams to coordinate care and ensure compliance with payer policies",
@@ -1078,10 +1194,10 @@
                         ]
                     },
                     {
-                        "role": "Travel Nurse — Emergency Department",
+                        "role": "Travel Nurse - Emergency Department",
                         "organization": "Single Facility Assignment",
                         "location": "Contract",
-                        "dates": "2015 — 2017",
+                        "dates": "2015 - 2017",
                         "bullets": [
                             "Provided emergency and trauma care in a high volume ER under repeated extended contracts",
                             "Actively sought by leadership to renew and extend contracts and repeatedly invited to join as a full time staff nurse",
@@ -1089,10 +1205,10 @@
                         ]
                     },
                     {
-                        "role": "Staff Nurse — Emergency Department",
+                        "role": "Staff Nurse - Emergency Department",
                         "organization": "Nationwide Children's Hospital",
                         "location": "Columbus, OH",
-                        "dates": "2012 — 2016",
+                        "dates": "2012 - 2016",
                         "bullets": [
                             "Delivered comprehensive pediatric emergency care, including triage, stabilization, and family education",
                             "Served as a unit leader often assigned as trauma nurse, intake desk lead, or float to assist high acuity areas",
@@ -1120,7 +1236,7 @@
                     },
                     {
                         "id": "cert_systems_thinking",
-                        "title": "pp_Systems_Thinking_Basics",
+                        "title": "Systems Thinking Basics",
                         "issuer": "Coursera / Starweaver Instructor Team",
                         "completed": "Nov 18, 2025",
                         "verify_url": "https://coursera.org/verify/IL7X19XU9VH9",
@@ -1128,7 +1244,7 @@
                     },
                     {
                         "id": "license_rn_fl",
-                        "title": "Registered Nurse — Compact Multistate License",
+                        "title": "Registered Nurse - Compact Multistate License",
                         "details": "FL RN9613731, Unencumbered, Expires 07/31/2026",
                         "verify_instructions": "Verification available via Nursys QuickConfirm search portal.",
                         "verify_url": "https://www.nursys.com",
@@ -1138,7 +1254,7 @@
             }
         };
 
-        // IntroSequence class
+        // IntroSequence class with updated boot animation timing
         class IntroSequence {
             constructor() {
                 this.bootScreen = document.getElementById('bootScreen');
@@ -1153,48 +1269,51 @@
             }
     
             async bootAnimation() {
-            const staticAudio = document.getElementById('bootStaticAudio');
-            const beepAudio = document.getElementById('ekgBeepAudio');
+                const STATIC_POP_DELAY = 400; // ms - tweak to 300/500 if needed
+                const staticAudio = document.getElementById('bootStaticAudio');
+                const beepAudio = document.getElementById('ekgBeepAudio');
 
-            // Keep volumes conservative
-            if (staticAudio) staticAudio.volume = 0.25;
-            if (beepAudio) beepAudio.volume = 0.35;
+                // Conservative volumes
+                if (staticAudio) staticAudio.volume = 0.25;
+                if (beepAudio) beepAudio.volume = 0.35;
 
-            // Play static right as the boot screen appears + trigger visual pop
-            if (staticAudio) {
-                staticAudio.currentTime = 0;
+                // Delayed static pop so fade-in completes first
+                if (staticAudio) {
+                    setTimeout(() => {
+                        staticAudio.currentTime = 0;
 
-                // trigger visual static pop at the same time
-                if (this.bootScreen) {
-                    this.bootScreen.classList.add('static-pop');
+                        // Trigger visual static pop at the same time
+                        if (this.bootScreen) {
+                            this.bootScreen.classList.add('static-pop');
+                        }
+
+                        staticAudio.play().catch(() => {
+                            // Autoplay may be blocked; fail silently
+                        });
+                    }, STATIC_POP_DELAY);
                 }
 
-                staticAudio.play().catch(() => {
-                    // Autoplay may be blocked; fail silently
+                // Schedule the EKG beep near the R wave of the heartbeat SVG
+                // R wave is roughly mid-path in a 2.2s animation, ~1.4-1.5s feels right.
+                if (beepAudio) {
+                    setTimeout(() => {
+                        beepAudio.currentTime = 0;
+                        beepAudio.play().catch(() => {
+                            // Autoplay may be blocked; browsers that need a click just won't play it
+                        });
+                    }, 1500);
+                }
+
+                // Hide boot screen after heartbeat + staticPop complete (~2.2s total)
+                return new Promise(resolve => {
+                    setTimeout(() => {
+                        if (this.bootScreen) {
+                            this.bootScreen.classList.add('hidden');
+                        }
+                        resolve();
+                    }, 2200);
                 });
             }
-
-            // Schedule the EKG beep near the R wave
-            // R wave is roughly mid-path in your SVG, so ~1.4–1.5s of a 2.2s animation feels right.
-            if (beepAudio) {
-                setTimeout(() => {
-                    beepAudio.currentTime = 0;
-                    beepAudio.play().catch(() => {
-                        // Autoplay may be blocked; browsers that need a click just won't play it
-                    });
-                }, 1500); // tweak this value if you want the beep earlier or later
-            }
-
-            return new Promise(resolve => {
-                setTimeout(() => {
-                    if (this.bootScreen) {
-                        this.bootScreen.classList.add('hidden');
-                    }
-                    resolve();
-                }, 2200); // matches drawHeartbeat + staticPop duration
-            });
-}
-
 
             showWelcome() {
                 if (!this.welcomeModal) return;
@@ -1314,29 +1433,28 @@
             `;
         }
 
-        // Render History Tab
+        // Render History Tab - Updated to use new thematic structure
         function renderHistory(data) {
-            const { summary, experience } = data.resume;
-            
+            const { summary, work_experience_sections } = data.resume;
+
             return `
                 <h2>Clinical History</h2>
                 <p>${summary}</p>
                 <h3>Work Experience</h3>
-                ${experience.map((job, index) => `
+                ${work_experience_sections.map((section, sectionIndex) => `
                     <div class="experience-item">
-                        <div class="collapsible-header" data-target="exp-${index}">
-                            <div class="doc-title">${job.role} — ${job.organization}</div>
+                        <div class="collapsible-header" data-target="section-${sectionIndex}">
+                            <div class="doc-title">${section.title}</div>
                             <span class="collapsible-icon">▶</span>
                         </div>
-                        <div class="collapsible-content" id="exp-${index}">
+                        <div class="collapsible-content" id="section-${sectionIndex}">
                             <div class="job-header">
-                                <div class="job-title">${job.role}</div>
-                                <div class="job-org">${job.organization} — ${job.location}</div>
-                                <div class="job-dates">${job.dates}</div>
+                                <div class="job-title">${section.title}</div>
+                                <div class="job-dates">${section.date_range}</div>
                             </div>
-                            <ul class="job-bullets">
-                                ${job.bullets.map(bullet => `<li>${bullet}</li>`).join('')}
-                            </ul>
+                            <div style="margin-bottom: 20px;">
+                                ${section.overview.map(para => `<p>${para}</p>`).join('')}
+                            </div>
                         </div>
                     </div>
                 `).join('')}
@@ -1344,121 +1462,153 @@
         }
 
         // Meds Tab - Shows Core Clinical & Technical Systems
-function renderMeds(data) {
-    const clinicalSkills = resolveReference('@resume.skills.clinical_documentation_systems') || data.resume.skills.clinical_documentation_systems;
-    const hardwareSkills = resolveReference('@resume.skills.hardware_firmware_systems') || data.resume.skills.hardware_firmware_systems;
-    const webSkills = resolveReference('@resume.skills.web_interface_systems') || data.resume.skills.web_interface_systems;
-    const ecommerceSkills = resolveReference('@resume.skills.ecommerce_systems') || data.resume.skills.ecommerce_systems;
-    const automationSkills = resolveReference('@resume.skills.automation_llm_systems') || data.resume.skills.automation_llm_systems;
-    const bioSkills = resolveReference('@resume.skills.biological_environmental_systems') || data.resume.skills.biological_environmental_systems;
+        function renderMeds(data) {
+            const clinicalSkills = resolveReference('@resume.skills.clinical_documentation_systems') || data.resume.skills.clinical_documentation_systems;
+            const hardwareSkills = resolveReference('@resume.skills.hardware_firmware_systems') || data.resume.skills.hardware_firmware_systems;
+            const webSkills = resolveReference('@resume.skills.web_interface_systems') || data.resume.skills.web_interface_systems;
+            const ecommerceSkills = resolveReference('@resume.skills.ecommerce_systems') || data.resume.skills.ecommerce_systems;
+            const automationSkills = resolveReference('@resume.skills.automation_llm_systems') || data.resume.skills.automation_llm_systems;
+            const bioSkills = resolveReference('@resume.skills.biological_environmental_systems') || data.resume.skills.biological_environmental_systems;
 
-    return `
-        <h2>Medications (Core Clinical Systems)</h2>
+            return `
+                <h2>Medications (Core Clinical Systems)</h2>
 
-        <div class="skills-section">
-            <div class="collapsible-header" data-target="meds-clinical">
-                <h3>Clinical Documentation Systems</h3>
-                <span class="collapsible-icon">▶</span>
-            </div>
-            <div class="collapsible-content" id="meds-clinical">
-                <ul>${clinicalSkills.map(skill => `<li>${skill}</li>`).join('')}</ul>
-            </div>
-        </div>
+                <!-- TLDR skills card -->
+                <div class="skills-section">
+                    <div class="collapsible-header" data-target="meds-skills-tldr">
+                        <h3>Skills Applied Across All Domains</h3>
+                        <span class="collapsible-icon">▶</span>
+                    </div>
+                    <div class="collapsible-content" id="meds-skills-tldr">
+                        <h4>Systems and Engineering</h4>
+                        <ul>
+                            <li>Embedded systems and automation using RP2040-class microcontrollers and sensor input.</li>
+                            <li>Fail-safe logic, state management, and hardware–software interaction for real-world devices.</li>
+                        </ul>
 
-        <div class="skills-section">
-            <div class="collapsible-header" data-target="meds-hardware">
-                <h3>Hardware & Firmware Systems</h3>
-                <span class="collapsible-icon">▶</span>
-            </div>
-            <div class="collapsible-content" id="meds-hardware">
-                <ul>${hardwareSkills.map(skill => `<li>${skill}</li>`).join('')}</ul>
-            </div>
-        </div>
+                        <h4>Software and Tooling</h4>
+                        <ul>
+                            <li>Python, REST-style APIs, and JavaScript front ends for EMR-style and dashboard interfaces.</li>
+                            <li>Docker, n8n, and local LLM tools for automation, prototyping, and content generation.</li>
+                        </ul>
 
-        <div class="skills-section">
-            <div class="collapsible-header" data-target="meds-web">
-                <h3>Web & Interface Systems</h3>
-                <span class="collapsible-icon">▶</span>
-            </div>
-            <div class="collapsible-content" id="meds-web">
-                <ul>${webSkills.map(skill => `<li>${skill}</li>`).join('')}</ul>
-            </div>
-        </div>
+                        <h4>Data and Process Optimization</h4>
+                        <ul>
+                            <li>Workflow analysis, documentation system design, and triage pathway refinement.</li>
+                            <li>Using Epic and Salesforce data to reduce friction and improve care coordination.</li>
+                        </ul>
 
-        <div class="skills-section">
-            <div class="collapsible-header" data-target="meds-ecommerce">
-                <h3>E-commerce & Digital Operations Systems</h3>
-                <span class="collapsible-icon">▶</span>
-            </div>
-            <div class="collapsible-content" id="meds-ecommerce">
-                <ul>${ecommerceSkills.map(skill => `<li>${skill}</li>`).join('')}</ul>
-            </div>
-        </div>
+                        <h4>Biological, Environmental, and Creative Systems</h4>
+                        <ul>
+                            <li>Hydroponic and aquaponic systems used as applied experimentation platforms.</li>
+                            <li>Photography, visual design, and ecommerce storytelling to communicate complex systems.</li>
+                        </ul>
+                    </div>
+                </div>
 
-        <div class="skills-section">
-            <div class="collapsible-header" data-target="meds-automation">
-                <h3>Automation & LLM-Driven Systems</h3>
-                <span class="collapsible-icon">▶</span>
-            </div>
-            <div class="collapsible-content" id="meds-automation">
-                <ul>${automationSkills.map(skill => `<li>${skill}</li>`).join('')}</ul>
-            </div>
-        </div>
+                <!-- Existing detailed skills sections, unchanged in structure -->
+                <div class="skills-section">
+                    <div class="collapsible-header" data-target="meds-clinical">
+                        <h3>Clinical Documentation Systems</h3>
+                        <span class="collapsible-icon">▶</span>
+                    </div>
+                    <div class="collapsible-content" id="meds-clinical">
+                        <ul>${clinicalSkills.map(skill => `<li>${skill}</li>`).join('')}</ul>
+                    </div>
+                </div>
 
-        <div class="skills-section">
-            <div class="collapsible-header" data-target="meds-bio">
-                <h3>Biological & Environmental Systems Engineering</h3>
-                <span class="collapsible-icon">▶</span>
-            </div>
-            <div class="collapsible-content" id="meds-bio">
-                <ul>${bioSkills.map(skill => `<li>${skill}</li>`).join('')}</ul>
-            </div>
-        </div>
-    `;
-}
+                <div class="skills-section">
+                    <div class="collapsible-header" data-target="meds-hardware">
+                        <h3>Hardware & Firmware Systems</h3>
+                        <span class="collapsible-icon">▶</span>
+                    </div>
+                    <div class="collapsible-content" id="meds-hardware">
+                        <ul>${hardwareSkills.map(skill => `<li>${skill}</li>`).join('')}</ul>
+                    </div>
+                </div>
 
+                <div class="skills-section">
+                    <div class="collapsible-header" data-target="meds-web">
+                        <h3>Web & Interface Systems</h3>
+                        <span class="collapsible-icon">▶</span>
+                    </div>
+                    <div class="collapsible-content" id="meds-web">
+                        <ul>${webSkills.map(skill => `<li>${skill}</li>`).join('')}</ul>
+                    </div>
+                </div>
+
+                <div class="skills-section">
+                    <div class="collapsible-header" data-target="meds-ecommerce">
+                        <h3>Ecommerce & Content Systems</h3>
+                        <span class="collapsible-icon">▶</span>
+                    </div>
+                    <div class="collapsible-content" id="meds-ecommerce">
+                        <ul>${ecommerceSkills.map(skill => `<li>${skill}</li>`).join('')}</ul>
+                    </div>
+                </div>
+
+                <div class="skills-section">
+                    <div class="collapsible-header" data-target="meds-automation">
+                        <h3>Automation & LLM-Driven Systems</h3>
+                        <span class="collapsible-icon">▶</span>
+                    </div>
+                    <div class="collapsible-content" id="meds-automation">
+                        <ul>${automationSkills.map(skill => `<li>${skill}</li>`).join('')}</ul>
+                    </div>
+                </div>
+
+                <div class="skills-section">
+                    <div class="collapsible-header" data-target="meds-bio">
+                        <h3>Biological & Environmental Systems Engineering</h3>
+                        <span class="collapsible-icon">▶</span>
+                    </div>
+                    <div class="collapsible-content" id="meds-bio">
+                        <ul>${bioSkills.map(skill => `<li>${skill}</li>`).join('')}</ul>
+                    </div>
+                </div>
+            `;
+        }
 
         // Labs Tab - Shows Collaborative & Creative Competencies
-function renderLabs(data) {
-    const leadershipSkills = resolveReference('@resume.skills.leadership_collaboration') || data.resume.skills.leadership_collaboration;
-    const creativeSkills = resolveReference('@resume.skills.creative_systems_thinking') || data.resume.skills.creative_systems_thinking;
-    const mediaSkills = resolveReference('@resume.skills.visual_media_production') || data.resume.skills.visual_media_production;
+        function renderLabs(data) {
+            const leadershipSkills = resolveReference('@resume.skills.leadership_collaboration') || data.resume.skills.leadership_collaboration;
+            const creativeSkills = resolveReference('@resume.skills.creative_systems_thinking') || data.resume.skills.creative_systems_thinking;
+            const mediaSkills = resolveReference('@resume.skills.visual_media_production') || data.resume.skills.visual_media_production;
 
-    return `
-        <h2>Lab Results (Collaborative & Creative Competencies)</h2>
+            return `
+                <h2>Lab Results (Collaborative & Creative Competencies)</h2>
 
-        <div class="skills-section">
-            <div class="collapsible-header" data-target="labs-leadership">
-                <h3>Leadership & Collaboration</h3>
-                <span class="collapsible-icon">▶</span>
-            </div>
-            <div class="collapsible-content" id="labs-leadership">
-                <ul>${leadershipSkills.map(skill => `<li>${skill}</li>`).join('')}</ul>
-            </div>
-        </div>
+                <div class="skills-section">
+                    <div class="collapsible-header" data-target="labs-leadership">
+                        <h3>Leadership & Collaboration</h3>
+                        <span class="collapsible-icon">▶</span>
+                    </div>
+                    <div class="collapsible-content" id="labs-leadership">
+                        <ul>${leadershipSkills.map(skill => `<li>${skill}</li>`).join('')}</ul>
+                    </div>
+                </div>
 
-        <div class="skills-section">
-            <div class="collapsible-header" data-target="labs-creative">
-                <h3>Creative & Systems Thinking</h3>
-                <span class="collapsible-icon">▶</span>
-            </div>
-            <div class="collapsible-content" id="labs-creative">
-                <ul>${creativeSkills.map(skill => `<li>${skill}</li>`).join('')}</ul>
-            </div>
-        </div>
+                <div class="skills-section">
+                    <div class="collapsible-header" data-target="labs-creative">
+                        <h3>Creative & Systems Thinking</h3>
+                        <span class="collapsible-icon">▶</span>
+                    </div>
+                    <div class="collapsible-content" id="labs-creative">
+                        <ul>${creativeSkills.map(skill => `<li>${skill}</li>`).join('')}</ul>
+                    </div>
+                </div>
 
-        <div class="skills-section">
-            <div class="collapsible-header" data-target="labs-media">
-                <h3>Visual & Media Production Systems</h3>
-                <span class="collapsible-icon">▶</span>
-            </div>
-            <div class="collapsible-content" id="labs-media">
-                <ul>${mediaSkills.map(skill => `<li>${skill}</li>`).join('')}</ul>
-            </div>
-        </div>
-    `;
-}
-
+                <div class="skills-section">
+                    <div class="collapsible-header" data-target="labs-media">
+                        <h3>Visual & Media Production Systems</h3>
+                        <span class="collapsible-icon">▶</span>
+                    </div>
+                    <div class="collapsible-content" id="labs-media">
+                        <ul>${mediaSkills.map(skill => `<li>${skill}</li>`).join('')}</ul>
+                    </div>
+                </div>
+            `;
+        }
 
         // Render Notes Tab - Blog area with external content
         function renderNotes(data) {
@@ -1529,7 +1679,7 @@ function renderLabs(data) {
                 ${certificates.map((cert, index) => `
                     <div class="document-item">
                         <div class="collapsible-header" data-target="cert-${index}">
-                            <div class="doc-title">${cert.title.replace(/—/g, '-')}</div>
+                            <div class="doc-title">${cert.title.replace(/–/g, '-')}</div>
                             <span class="collapsible-icon">▶</span>
                         </div>
                         <div class="collapsible-content" id="cert-${index}">
@@ -1741,4 +1891,3 @@ function renderLabs(data) {
     </script>
 </body>
 </html>
-
