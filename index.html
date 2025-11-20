@@ -81,7 +81,6 @@
             align-items: center;
             z-index: 10000;
             transition: opacity 0.5s ease-out;
-            animation: screenFlicker 2.2s ease-in-out;
         }
 
         .boot-screen.hidden {
@@ -152,17 +151,45 @@
         @keyframes drawHeartbeat {
             to { stroke-dashoffset: 0; }
         }
-        @keyframes screenFlicker {
-            0%   { opacity: 1; }
-            8%   { opacity: 0.97; }
-            15%  { opacity: 1; }
-            23%  { opacity: 0.96; }
-            32%  { opacity: 1; }
-            45%  { opacity: 0.98; }
-            60%  { opacity: 1; }
-            72%  { opacity: 0.97; }
-            85%  { opacity: 1; }
-            100% { opacity: 1; }
+
+        /* Single static pop on boot screen */
+        @keyframes staticPop {
+            0% {
+                filter: brightness(1);
+                transform: scale(1);
+            }
+            10% {
+                filter: brightness(2);   /* bright flash */
+                transform: scale(1.02);  /* tiny punch out */
+            }
+            25% {
+                filter: brightness(0.2); /* brief dark dip */
+            }
+            45% {
+                filter: brightness(1.2);
+                transform: scale(1.01);
+            }
+            100% {
+                filter: brightness(1);
+                transform: scale(1);
+            }
+        }
+
+        /* Applied only when we want the pop */
+        .boot-screen.static-pop {
+            animation: staticPop 0.3s ease-out;
+        }
+                @keyframes screenFlicker {
+                    0%   { opacity: 1; }
+                    8%   { opacity: 0.97; }
+                    15%  { opacity: 1; }
+                    23%  { opacity: 0.96; }
+                    32%  { opacity: 1; }
+                    45%  { opacity: 0.98; }
+                    60%  { opacity: 1; }
+                    72%  { opacity: 0.97; }
+                    85%  { opacity: 1; }
+                    100% { opacity: 1; }
         }
 
 
@@ -1134,12 +1161,15 @@
             if (beepAudio) beepAudio.volume = 0.35;
 
     // Try to play static right as the boot screen appears
-            if (staticAudio) {
-                staticAudio.currentTime = 0;
-                staticAudio.play().catch(() => {
-            // Autoplay may be blocked; fail silently
-                });
+        if (staticAudio) {
+            staticAudio.currentTime = 0;
+
+    // trigger visual static pop at the same time
+            if (this.bootScreen) {
+                this.bootScreen.classList.add('static-pop');
             }
+
+            staticAudio.play().catch(() => {
 
     // Schedule the EKG beep near the R wave
     // R wave is roughly mid-path in your SVG, so ~1.4–1.5s of a 2.2s animation feels right.
