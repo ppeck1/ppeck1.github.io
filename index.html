@@ -1153,42 +1153,47 @@
             }
     
             async bootAnimation() {
-                const staticAudio = document.getElementById('bootStaticAudio');
-                const beepAudio = document.getElementById('ekgBeepAudio');
+            const staticAudio = document.getElementById('bootStaticAudio');
+            const beepAudio = document.getElementById('ekgBeepAudio');
 
-    // Keep volumes conservative
+            // Keep volumes conservative
             if (staticAudio) staticAudio.volume = 0.25;
             if (beepAudio) beepAudio.volume = 0.35;
 
-    // Try to play static right as the boot screen appears
-        if (staticAudio) {
-            staticAudio.currentTime = 0;
+            // Play static right as the boot screen appears + trigger visual pop
+            if (staticAudio) {
+                staticAudio.currentTime = 0;
 
-    // trigger visual static pop at the same time
-            if (this.bootScreen) {
-                this.bootScreen.classList.add('static-pop');
+                // trigger visual static pop at the same time
+                if (this.bootScreen) {
+                    this.bootScreen.classList.add('static-pop');
+                }
+
+                staticAudio.play().catch(() => {
+                    // Autoplay may be blocked; fail silently
+                });
             }
 
-            staticAudio.play().catch(() => {
-
-    // Schedule the EKG beep near the R wave
-    // R wave is roughly mid-path in your SVG, so ~1.4–1.5s of a 2.2s animation feels right.
+            // Schedule the EKG beep near the R wave
+            // R wave is roughly mid-path in your SVG, so ~1.4–1.5s of a 2.2s animation feels right.
             if (beepAudio) {
                 setTimeout(() => {
                     beepAudio.currentTime = 0;
                     beepAudio.play().catch(() => {
-                // Autoplay may be blocked; browsers that need a click just won't play it
+                        // Autoplay may be blocked; browsers that need a click just won't play it
                     });
                 }, 1500); // tweak this value if you want the beep earlier or later
             }
 
             return new Promise(resolve => {
                 setTimeout(() => {
-                    if (this.bootScreen) this.bootScreen.classList.add('hidden');
+                    if (this.bootScreen) {
+                        this.bootScreen.classList.add('hidden');
+                    }
                     resolve();
-                }, 2200); // matches drawHeartbeat + screenFlicker duration
+                }, 2200); // matches drawHeartbeat + staticPop duration
             });
-        }
+}
 
 
             showWelcome() {
