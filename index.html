@@ -831,6 +831,7 @@
         <div class="dock">
             <button id="homeBtn" class="dock-btn">🏠 Home</button>
             <a id="resumeBtn" class="dock-btn" href="#" target="_blank" rel="noopener">📄 Download Resume</a>
+            <button id="restartIntroBtn" class="dock-btn">🔄 Restart Intro</button>
             <a id="contactBtn" class="dock-btn" href="mailto:">✉️ Contact</a>
         </div>
     </div>
@@ -846,10 +847,10 @@
                 "location": "Orlando, FL",
                 "public_email": "paultpeck@gmail.com",
                 "links": {
-                    "studio": "https://bigpeckturestudio.com",
-                    "shop": "https://sinternetcult.com",
-                    "linkedin": "https://www.linkedin.com/in/paul-peck-759737211/",
-                    "github": "https://github.com/ppeck1"
+                    "linkedin": "https://www.linkedin.com/in/paul-peck-rn/",
+                    "github": "https://github.com/ppeck1",
+                    "shop": "https://sinternetcult.com/",
+                    "studio": "https://bigpeckturestudio.com/"
                 }
             },
             "branding": {
@@ -1001,7 +1002,8 @@
                         "title": "Programming for Everybody (Python)",
                         "issuer": "University of Michigan / Coursera",
                         "completed": "Oct 2025",
-                        "pdf_path": "assets/cert_python_for_everybody_umich_paul_peck.pdf"
+                        "pdf_path": "assets/cert_python_for_everybody_umich_paul_peck.pdf",
+                        "verify_url": "https://www.coursera.org/account/accomplishments/verify/YNCNEVGXEJDG"
                     },
                     {
                         "id": "cert_systems_thinking",
@@ -1115,17 +1117,20 @@
             const { name, location, public_email } = data.identity;
             const license = data.resume.certificates.find(c => c.id === 'license_rn_fl');
             
-            // Map URLs to friendly names, excluding ppeck.me
-            const linkMapping = {
-                'https://bigpeckturestudio.com': 'Photography',
-                'https://sinternetcult.com': 'E-Commerce Platform',
-                'linkedin.com': 'LinkedIn',
-                'github.com': 'GitHub'
-            };
+            // Define link order and mapping
+            const linkOrder = [
+                { key: 'linkedin', label: 'LinkedIn' },
+                { key: 'github', label: 'GitHub' },
+                { key: 'shop', label: 'E-Commerce Platform' },
+                { key: 'studio', label: 'Photography (in progress)' }
+            ];
             
-            const links = Object.values(data.identity.links).filter(link => {
-                return link && !link.includes('ppeck.me');
-            });
+            const orderedLinks = linkOrder
+                .map(({ key, label }) => {
+                    const url = data.identity.links[key];
+                    return url && !url.includes('ppeck.me') ? { url, label } : null;
+                })
+                .filter(link => link !== null);
             
             return `
                 <h2>Patient Demographics</h2>
@@ -1149,16 +1154,7 @@
                 </div>
                 <h3>Professional Links</h3>
                 <ul class="links-list">
-                    ${links.map(link => {
-                        let displayName = link;
-                        for (const [url, name] of Object.entries(linkMapping)) {
-                            if (link.includes(url)) {
-                                displayName = name;
-                                break;
-                            }
-                        }
-                        return `<li><a href="${link}" target="_blank" rel="noopener">${displayName}</a></li>`;
-                    }).join('')}
+                    ${orderedLinks.map(link => `<li><a href="${link.url}" target="_blank" rel="noopener">${link.label}</a></li>`).join('')}
                 </ul>
             `;
         }
@@ -1364,6 +1360,16 @@
 
             const contactBtn = document.getElementById('contactBtn');
             contactBtn.href = `mailto:${resumeData.identity.public_email}`;
+            
+            const restartIntroBtn = document.getElementById('restartIntroBtn');
+            if (restartIntroBtn) {
+                restartIntroBtn.addEventListener('click', () => {
+                    // Allow the intro to run again next load
+                    localStorage.removeItem('skipIntro');
+                    // Reload the page so IntroSequence.start() runs fresh
+                    window.location.reload();
+                });
+            }
             
             // Setup collapsible sections
             setupCollapsibles();
