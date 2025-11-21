@@ -81,19 +81,26 @@
             align-items: center;
             z-index: 99999;
             transition: opacity 0.5s ease-out;
+            animation: bootFadeIn 0.2s ease-out;
         }
 
         .boot-screen.hidden {
             opacity: 0;
             pointer-events: none;
+            display: none;
         }
 
-        .boot-logo {
+        
+        @keyframes bootFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+.boot-logo {
             font-size: 4rem;
             font-weight: 700;
             color: var(--accent-primary);
             margin-bottom: 10px;
-            animation: logoPulse 2.2s ease-in-out infinite;
         }
 
         .boot-subtitle {
@@ -141,11 +148,6 @@
             color: var(--text-dark);
             font-size: 0.9rem;
             opacity: 0.7;
-        }
-
-        @keyframes logoPulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
         }
 
         @keyframes drawHeartbeat {
@@ -308,23 +310,73 @@
             outline-offset: 2px;
         }
 
-        /* Navigation Tabs */
-        .nav-tabs {
+        /* Chart Tabs Navigation - With Mobile Scroll Affordance */
+        .chart-tabs-wrapper {
+            position: relative;
+            display: block;
+            overflow-x: auto;
+            overflow-y: hidden;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent-primary) transparent;
+        }
+
+        .chart-tabs-wrapper::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .chart-tabs-wrapper::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .chart-tabs-wrapper::-webkit-scrollbar-thumb {
+            background: var(--accent-primary);
+            border-radius: 4px;
+        }
+
+        .chart-tabs-wrapper::-webkit-scrollbar-thumb:hover {
+            background: #00796B;
+        }
+
+        /* Mobile scroll hint overlay */
+        @media (max-width: 768px) {
+            .chart-tabs-wrapper.show-scroll-hint::after {
+                content: 'Swipe →';
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                width: 80px;
+                background: linear-gradient(to right, transparent, var(--bg-light));
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 0.75rem;
+                font-weight: 600;
+                color: var(--accent-primary);
+                pointer-events: none;
+                z-index: 10;
+            }
+
+            .dark-theme .chart-tabs-wrapper.show-scroll-hint::after {
+                background: linear-gradient(to right, transparent, var(--bg-dark));
+            }
+        }
+
+        .chart-tabs {
             display: flex;
             background: var(--bg-light);
             border-bottom: 3px solid var(--accent-primary);
-            overflow-x: auto;
             gap: 4px;
             scroll-snap-type: x mandatory;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: none;
+            white-space: nowrap;
         }
 
-        .nav-tabs::-webkit-scrollbar {
+        .chart-tabs::-webkit-scrollbar {
             display: none;
         }
 
-        .dark-theme .nav-tabs {
+        .dark-theme .chart-tabs {
             background: var(--bg-dark);
         }
 
@@ -450,6 +502,13 @@
             border-radius: 4px;
         }
 
+        .license-note {
+            margin-top: 4px;
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+
+        
         .dark-theme .info-item {
             background: rgba(0, 150, 136, 0.1);
         }
@@ -730,7 +789,7 @@
             }
 
             .app-header,
-            .nav-tabs,
+            .chart-tabs-wrapper,
             .dock,
             .theme-toggle,
             .boot-screen,
@@ -779,7 +838,7 @@
                 margin-bottom: 80px;
             }
 
-           .nav-tabs {
+           .chart-tabs-wrapper {
                 overflow-x: auto;
                 -webkit-overflow-scrolling: touch;
             }
@@ -827,7 +886,93 @@
                 font-size: 1.1rem;
             }
         }
-    </style>
+    
+    .identity-card {
+        margin-bottom: 32px;
+        padding: 24px 28px;
+        background: #062224;
+        border-radius: 6px;
+        border: 1px solid #008b8b;
+        text-align: center;
+    }
+    .identity-title {
+        font-size: 1.6rem;
+        margin-bottom: 8px;
+        color: var(--accent-primary, #00b3aa);
+    }
+    .identity-subtitle {
+        font-size: 1.05rem;
+        margin-bottom: 10px;
+        color: var(--text-dark, #f5f5f5);
+    }
+    .identity-text {
+        font-size: 0.98rem;
+        margin-bottom: 16px;
+        color: var(--text-muted, #d0d0d0);
+    }
+    .identity-cta {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+    .identity-cta .doc-link {
+        min-width: 170px;
+    }
+    .history-resume-cta {
+        margin-top: 24px;
+        padding-top: 16px;
+        border-top: 1px solid rgba(255,255,255,0.06);
+        font-size: 0.95rem;
+        color: var(--text-muted, #cccccc);
+    }
+    .history-resume-buttons {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-top: 8px;
+    }
+    @media (max-width: 768px) {
+        .history-resume-buttons {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .identity-card {
+            padding: 18px 16px;
+        }
+        .identity-title {
+            font-size: 1.3rem;
+        }
+        .identity-cta {
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+    .tldr-bar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 18px;
+        font-size: 0.9rem;
+        align-items: center;
+    }
+    .tldr-label {
+        font-weight: 600;
+        color: var(--accent-primary, #00b3aa);
+        margin-right: 4px;
+    }
+    .tldr-pill {
+        padding: 4px 10px;
+        border-radius: 999px;
+        border: 1px solid rgba(0,179,170,0.4);
+        background: rgba(0,0,0,0.25);
+        color: var(--text-dark, #f5f5f5);
+    }
+    .tldr-meds,
+    .tldr-labs {
+        margin-top: 6px;
+    }
+</style>
 </head>
 <body>
     <div class="boot-screen" id="bootScreen">
@@ -870,14 +1015,16 @@
             </button>
         </header>
 
-        <nav class="nav-tabs" role="tablist">
-            <button class="nav-tab active" data-tab="demographics" role="tab" aria-selected="true">Demographics</button>
-            <button class="nav-tab" data-tab="history" role="tab" aria-selected="false">History</button>
-            <button class="nav-tab" data-tab="meds" role="tab" aria-selected="false">Meds</button>
-            <button class="nav-tab" data-tab="labs" role="tab" aria-selected="false">Labs</button>
-            <button class="nav-tab" data-tab="notes" role="tab" aria-selected="false">Notes</button>
-            <button class="nav-tab" data-tab="documents" role="tab" aria-selected="false">Documents</button>
-        </nav>
+        <div class="chart-tabs-wrapper" id="chartTabsWrapper">
+            <nav class="chart-tabs" role="tablist">
+                <button class="nav-tab active" data-tab="demographics" role="tab" aria-selected="true">Demographics</button>
+                <button class="nav-tab" data-tab="history" role="tab" aria-selected="false">History</button>
+                <button class="nav-tab" data-tab="meds" role="tab" aria-selected="false">Meds</button>
+                <button class="nav-tab" data-tab="labs" role="tab" aria-selected="false">Labs</button>
+                <button class="nav-tab" data-tab="notes" role="tab" aria-selected="false">Notes</button>
+                <button class="nav-tab" data-tab="documents" role="tab" aria-selected="false">Documents</button>
+            </nav>
+        </div>
 
         <main class="content-area">
             <div id="loading">Loading patient data...</div>
@@ -896,11 +1043,12 @@
             <button id="restartIntroBtn" class="dock-btn">🔄 Restart Intro</button>
             <a id="contactBtn" class="dock-btn" href="/cdn-cgi/l/email-protection#7f">✉️ Contact</a>
         </div>
-        <audio id="bootStaticAudio" src="assets/audio/boot-static.mp3" preload="auto"></audio>
-        <audio id="ekgBeepAudio" src="assets/audio/ekg-beep.mp3" preload="auto"></audio>
     </div>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <script>
+        // INTRO FEATURE FLAGS - Can be toggled to enable/disable intro effects
+
+
         // Resume Data (embedded JSON) - Updated with work experience from ppeck_work_experience_website.json
         const resumeData = {
             "version": "1.2",
@@ -1255,7 +1403,8 @@
         };
 
         // IntroSequence class with updated boot animation timing
-        class IntroSequence {
+        
+class IntroSequence {
             constructor() {
                 this.bootScreen = document.getElementById('bootScreen');
                 this.welcomeModal = document.getElementById('welcomeModal');
@@ -1267,45 +1416,10 @@
                 if (this.skipIntro) return;
                 this.showWelcome();
             }
-    
+
             async bootAnimation() {
-                const STATIC_POP_DELAY = 400; // ms - tweak to 300/500 if needed
-                const staticAudio = document.getElementById('bootStaticAudio');
-                const beepAudio = document.getElementById('ekgBeepAudio');
-
-                // Conservative volumes
-                if (staticAudio) staticAudio.volume = 0.25;
-                if (beepAudio) beepAudio.volume = 0.35;
-
-                // Delayed static pop so fade-in completes first
-                if (staticAudio) {
-                    setTimeout(() => {
-                        staticAudio.currentTime = 0;
-
-                        // Trigger visual static pop at the same time
-                        if (this.bootScreen) {
-                            this.bootScreen.classList.add('static-pop');
-                        }
-
-                        staticAudio.play().catch(() => {
-                            // Autoplay may be blocked; fail silently
-                        });
-                    }, STATIC_POP_DELAY);
-                }
-
-                // Schedule the EKG beep near the R wave of the heartbeat SVG
-                // R wave is roughly mid-path in a 2.2s animation, ~1.4-1.5s feels right.
-                if (beepAudio) {
-                    setTimeout(() => {
-                        beepAudio.currentTime = 0;
-                        beepAudio.play().catch(() => {
-                            // Autoplay may be blocked; browsers that need a click just won't play it
-                        });
-                    }, 1500);
-                }
-
-                // Hide boot screen after heartbeat + staticPop complete (~2.2s total)
-                return new Promise(resolve => {
+                // Audio removed; keep only timing that matches heartbeat + flicker
+                return new Promise((resolve) => {
                     setTimeout(() => {
                         if (this.bootScreen) {
                             this.bootScreen.classList.add('hidden');
@@ -1320,6 +1434,7 @@
                 this.welcomeModal.classList.remove('hidden');
                 const enterBtn = document.getElementById('enterChartBtn');
                 const skipCheckbox = document.getElementById('skipIntroCheckbox');
+
                 if (enterBtn) {
                     enterBtn.addEventListener('click', () => {
                         if (skipCheckbox && skipCheckbox.checked) {
@@ -1327,6 +1442,7 @@
                         }
                         this.welcomeModal.classList.add('hidden');
                     });
+
                     enterBtn.focus();
                 }
             }
@@ -1379,53 +1495,78 @@
         }
 
         // Render Demographics Tab
-        function renderDemographics(data) {
+        
+
+        // Helper to order professional links for Demographics tab
+        function getOrderedLinks(identity) {
+            const links = identity.links || {};
+            const order = ['linkedin', 'github', 'shop', 'studio'];
+            const labels = {
+                linkedin: 'LinkedIn',
+                github: 'GitHub',
+                shop: 'E-commerce experimentation platform',
+                studio: 'Big Peckture Studio – Photography - Work in Progress'
+            };
+            const ordered = [];
+
+            order.forEach((key) => {
+                if (links[key]) {
+                    ordered.push({ label: labels[key] || key, url: links[key] });
+                }
+            });
+
+            Object.keys(links).forEach((key) => {
+                if (!order.includes(key) && links[key]) {
+                    const label = key.charAt(0).toUpperCase() + key.slice(1);
+                    ordered.push({ label, url: links[key] });
+                }
+            });
+
+            return ordered;
+        }
+
+function renderDemographics(data) {
             const { name, location, public_email } = data.identity;
             const license = data.resume.certificates.find(c => c.id === 'license_rn_fl');
-            
-            // Define link order and mapping
-            const linkOrder = [
-                { key: 'linkedin', label: 'LinkedIn' },
-                { key: 'github', label: 'GitHub' },
-                { key: 'shop', label: 'E-Commerce Platform' },
-                { key: 'studio', label: 'Photography (in progress)' }
-            ];
-            
-            const orderedLinks = linkOrder
-                .map(({ key, label }) => {
-                    const url = data.identity.links[key];
-                    return url && !url.includes('ppeck.me') ? { url, label } : null;
-                })
-                .filter(link => link !== null);
-            
+            const resumePdf = data.resume.resume_pdf;
+            const orderedLinks = getOrderedLinks(data.identity);
+
             return `
+                <section class="identity-card">
+                    <h2 class="identity-title">Paul Peck · Steward · Clinical Technologist & Systems Thinker</h2>
+                    <p class="identity-subtitle">
+                        Clinical systems tinker bridging emergency care, workflow design, and embedded hardware.
+                    </p>
+                    <p class="identity-text">
+                        I design and prototype systems that reduce friction between clinicians, processes, and the technology we rely on every day, with a focus on remote-friendly clinical tech, implementation, and informatics roles.
+                    </p>
+                    <div class="identity-cta">
+                        <a href="${resumePdf}" class="doc-link identity-btn-view" target="_blank" rel="noopener noreferrer">View Resume PDF</a>
+                        <a href="${resumePdf}" class="doc-link identity-btn-download" download>Download Resume PDF</a>
+                    </div>
+                </section>
+
                 <h2>Patient Demographics</h2>
                 <div class="info-grid">
                     <div class="info-item">
-                        <div class="info-label">Name</div>
-                        <div class="info-value">${name}</div>
+                        <h3>Name</h3>
+                        <p>${name}</p>
                     </div>
                     <div class="info-item">
-                        <div class="info-label">Location</div>
-                        <div class="info-value">${location}</div>
+                        <h3>Location</h3>
+                        <p>${typeof location === 'string' ? location : (location.city + ', ' + location.state)}</p>
                     </div>
                     <div class="info-item">
-                        <div class="info-label">License</div>
-                        <div class="info-value">${license ? license.details : 'N/A'}</div>
+                        <h3>License</h3>
+                        <p>${license ? license.details : 'FL RN9613731, Unencumbered, Expires 07/31/2026'}</p>
+                        <p class="license-note">Multistate licensure privilege: authority to practice as a licensed nurse in other compact states under the Florida home-state license, provided each state is part of the Nurse Licensure Compact and the privilege is not otherwise restricted.</p>
                     </div>
                     <div class="info-item">
-                        <div class="info-label">Contact</div>
-                        <div class="info-value"><a href="mailto:${public_email}">${public_email}</a></div>
-                    </div>
-                    <div class="info-item professional-summary">
-                    <div class="info-label">Professional Summary</div>
-                    <div class="info-value">
-        Clinical systems &amp; hardware tinkerer bridging bedside chaos and usable tech.<br>
-        8+ years with Epic &amp; triage workflows · Building EMR-style tools and hardware seat sensors · Targeting clinical tech, implementation, and informatics roles.
+                        <h3>Contact</h3>
+                        <p><a href="mailto:${public_email}">${public_email}</a></p>
                     </div>
                 </div>
 
-                </div>
                 <h3>Professional Links</h3>
                 <ul class="links-list">
                     ${orderedLinks.map(link => `<li><a href="${link.url}" target="_blank" rel="noopener">${link.label}</a></li>`).join('')}
@@ -1434,15 +1575,20 @@
         }
 
         // Render History Tab - Updated to use new thematic structure
-        function renderHistory(data) {
-            const { summary, work_experience_sections } = data.resume;
+
+function renderHistory(data) {
+            const sections = data.resume.work_experience_sections;
 
             return `
-                <h2>Clinical History</h2>
-                <p>${summary}</p>
-                <h3>Work Experience</h3>
-                ${work_experience_sections.map((section, sectionIndex) => `
-                    <div class="experience-item">
+                <h2>Systems Experience</h2>
+                <div class="history-intro">
+                    <p>
+                        Instead of listing every job title, this section focuses on how I think about systems, safety,
+                        and the human side of clinical technology across roles and settings.
+                    </p>
+                </div>
+                ${sections.map((section, sectionIndex) => `
+                    <div class="history-section">
                         <div class="collapsible-header" data-target="section-${sectionIndex}">
                             <div class="doc-title">${section.title}</div>
                             <span class="collapsible-icon">▶</span>
@@ -1458,58 +1604,42 @@
                         </div>
                     </div>
                 `).join('')}
+
+                <div class="history-resume-cta">
+                    <p>Want the full chronological employment timeline?</p>
+                    <div class="history-resume-buttons">
+                        <a href="#documents" class="doc-link">View Resume PDF</a>
+                        <a href="${data.resume.resume_pdf}" class="doc-link" download>Download Resume PDF</a>
+                    </div>
+                </div>
             `;
         }
 
         // Meds Tab - Shows Core Clinical & Technical Systems
-        function renderMeds(data) {
-            const clinicalSkills = resolveReference('@resume.skills.clinical_documentation_systems') || data.resume.skills.clinical_documentation_systems;
-            const hardwareSkills = resolveReference('@resume.skills.hardware_firmware_systems') || data.resume.skills.hardware_firmware_systems;
-            const webSkills = resolveReference('@resume.skills.web_interface_systems') || data.resume.skills.web_interface_systems;
-            const ecommerceSkills = resolveReference('@resume.skills.ecommerce_systems') || data.resume.skills.ecommerce_systems;
-            const automationSkills = resolveReference('@resume.skills.automation_llm_systems') || data.resume.skills.automation_llm_systems;
-            const bioSkills = resolveReference('@resume.skills.biological_environmental_systems') || data.resume.skills.biological_environmental_systems;
+        
+
+function renderMeds(data) {
+            const meds = data.resume.skills;
+            const clinicalSkills = meds.clinical_documentation_systems;
+            const webSkills = meds.web_interface_systems;
+            const ecommerceSkills = meds.ecommerce_systems;
+            const automationSkills = meds.automation_llm_systems;
+            const bioSkills = meds.biological_environmental_systems;
 
             return `
-                <h2>Medications (Core Clinical Systems)</h2>
+                <h2>Medications & Clinical Systems</h2>
 
-                <!-- TLDR skills card -->
-                <div class="skills-section">
-                    <div class="collapsible-header" data-target="meds-skills-tldr">
-                        <h3>Skills Applied Across All Domains</h3>
-                        <span class="collapsible-icon">▶</span>
-                    </div>
-                    <div class="collapsible-content" id="meds-skills-tldr">
-                        <h4>Systems and Engineering</h4>
-                        <ul>
-                            <li>Embedded systems and automation using RP2040-class microcontrollers and sensor input.</li>
-                            <li>Fail-safe logic, state management, and hardware–software interaction for real-world devices.</li>
-                        </ul>
-
-                        <h4>Software and Tooling</h4>
-                        <ul>
-                            <li>Python, REST-style APIs, and JavaScript front ends for EMR-style and dashboard interfaces.</li>
-                            <li>Docker, n8n, and local LLM tools for automation, prototyping, and content generation.</li>
-                        </ul>
-
-                        <h4>Data and Process Optimization</h4>
-                        <ul>
-                            <li>Workflow analysis, documentation system design, and triage pathway refinement.</li>
-                            <li>Using Epic and Salesforce data to reduce friction and improve care coordination.</li>
-                        </ul>
-
-                        <h4>Biological, Environmental, and Creative Systems</h4>
-                        <ul>
-                            <li>Hydroponic and aquaponic systems used as applied experimentation platforms.</li>
-                            <li>Photography, visual design, and ecommerce storytelling to communicate complex systems.</li>
-                        </ul>
-                    </div>
+                <div class="tldr-bar tldr-meds">
+                    <span class="tldr-label">Core competencies:</span>
+                    <span class="tldr-pill">Systems design</span>
+                    <span class="tldr-pill">Workflow optimization</span>
+                    <span class="tldr-pill">Documentation engineering</span>
+                    <span class="tldr-pill">Embedded automation</span>
                 </div>
 
-                <!-- Existing detailed skills sections, unchanged in structure -->
                 <div class="skills-section">
                     <div class="collapsible-header" data-target="meds-clinical">
-                        <h3>Clinical Documentation Systems</h3>
+                        <h3>Clinical Systems & Triage Workflows</h3>
                         <span class="collapsible-icon">▶</span>
                     </div>
                     <div class="collapsible-content" id="meds-clinical">
@@ -1518,18 +1648,8 @@
                 </div>
 
                 <div class="skills-section">
-                    <div class="collapsible-header" data-target="meds-hardware">
-                        <h3>Hardware & Firmware Systems</h3>
-                        <span class="collapsible-icon">▶</span>
-                    </div>
-                    <div class="collapsible-content" id="meds-hardware">
-                        <ul>${hardwareSkills.map(skill => `<li>${skill}</li>`).join('')}</ul>
-                    </div>
-                </div>
-
-                <div class="skills-section">
                     <div class="collapsible-header" data-target="meds-web">
-                        <h3>Web & Interface Systems</h3>
+                        <h3>Web UI & Interaction Design</h3>
                         <span class="collapsible-icon">▶</span>
                     </div>
                     <div class="collapsible-content" id="meds-web">
@@ -1570,13 +1690,24 @@
         }
 
         // Labs Tab - Shows Collaborative & Creative Competencies
-        function renderLabs(data) {
-            const leadershipSkills = resolveReference('@resume.skills.leadership_collaboration') || data.resume.skills.leadership_collaboration;
-            const creativeSkills = resolveReference('@resume.skills.creative_systems_thinking') || data.resume.skills.creative_systems_thinking;
-            const mediaSkills = resolveReference('@resume.skills.visual_media_production') || data.resume.skills.visual_media_production;
+        
+
+function renderLabs(data) {
+            const labs = data.resume.skills;
+            const leadershipSkills = labs.leadership_collaboration;
+            const creativeSkills = labs.creative_systems_thinking;
+            const mediaSkills = labs.visual_media_production;
 
             return `
-                <h2>Lab Results (Collaborative & Creative Competencies)</h2>
+                <h2>Labs & Collaboration</h2>
+
+                <div class="tldr-bar tldr-labs">
+                    <span class="tldr-label">Technical stack:</span>
+                    <span class="tldr-pill">Firmware & microcontrollers</span>
+                    <span class="tldr-pill">Breadboard prototyping</span>
+                    <span class="tldr-pill">HID / BLE comms</span>
+                    <span class="tldr-pill">Front-end JS UI</span>
+                </div>
 
                 <div class="skills-section">
                     <div class="collapsible-header" data-target="labs-leadership">
@@ -1611,7 +1742,8 @@
         }
 
         // Render Notes Tab - Blog area with external content
-        function renderNotes(data) {
+        
+function renderNotes(data) {
             return `
                 <h2>Progress Notes (Learning Log)</h2>
                 <div class="document-item">
@@ -1645,7 +1777,7 @@
                 <h3>Resume</h3>
                 <div class="document-item">
                     <div class="collapsible-header" data-target="resume-doc">
-                        <div class="doc-title">Complete Resume</div>
+                        <div class="doc-title">Resume</div>
                         <span class="collapsible-icon">▶</span>
                     </div>
                     <div class="collapsible-content" id="resume-doc">
@@ -1690,7 +1822,7 @@
                         <span class="collapsible-icon">▶</span>
                     </div>
                     <div class="collapsible-content" id="cert-python">
-                        <div class="doc-meta">University of Michigan / Coursera - Oct 2025</div>
+                        <div class="doc-meta">University of Michigan | Coursera - Oct 2025</div>
                         <div class="doc-actions">
                             <a href="assets/pp_Python_Programming_For_Everyone.pdf" target="_blank" rel="noopener" class="doc-link">View Certificate PDF</a>
                             <a href="https://www.coursera.org/account/accomplishments/verify/YNCNEVGXEJDG" target="_blank" rel="noopener" class="doc-link">Verify Online</a>
@@ -1705,7 +1837,7 @@
                         <span class="collapsible-icon">▶</span>
                     </div>
                     <div class="collapsible-content" id="cert-systems">
-                        <div class="doc-meta">Coursera / Starweaver Instructor Team - Nov 18, 2025</div>
+                        <div class="doc-meta">Starweaver Instructor Team | Coursera - Nov 18, 2025</div>
                         <div class="doc-actions">
                             <a href="assets/pp_Systems_Thinking_Basics.pdf" target="_blank" rel="noopener" class="doc-link">View Certificate PDF</a>
                             <a href="https://coursera.org/verify/IL7X19XU9VH9" target="_blank" rel="noopener" class="doc-link">Verify Online</a>
@@ -1763,6 +1895,9 @@
             
             // Load blog post
             loadBlogPost();
+
+            // Initialize mobile tab scroll hint
+            initMobileTabScrollHint();
         }
 
         // Collapsible functionality
@@ -1806,6 +1941,33 @@
             
             // Update aria-expanded
             header.setAttribute('aria-expanded', !isExpanded);
+        }
+
+        // Mobile Tab Scroll Hint Functionality
+        function initMobileTabScrollHint() {
+            const wrapper = document.getElementById('chartTabsWrapper');
+            if (!wrapper) return;
+
+            // Only apply on mobile
+            if (window.innerWidth >= 768) return;
+
+            // Check if user has already seen the hint
+            if (sessionStorage.getItem('tabsScrollHintSeen') === 'true') return;
+
+            // Add the scroll hint class
+            wrapper.classList.add('show-scroll-hint');
+
+            // Listen for scroll event
+            const onScroll = () => {
+                if (wrapper.scrollLeft > 0) {
+                    // User has scrolled, remove hint
+                    wrapper.classList.remove('show-scroll-hint');
+                    sessionStorage.setItem('tabsScrollHintSeen', 'true');
+                    wrapper.removeEventListener('scroll', onScroll);
+                }
+            };
+
+            wrapper.addEventListener('scroll', onScroll);
         }
 
         // Tab navigation
@@ -1894,17 +2056,25 @@
         });
 
         // Initialize app when DOM is ready
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', () => {
-                const introSequence = new IntroSequence();
-                initApp();
-                introSequence.start();
-            });
-        } else {
+        function safeInit() {
             const introSequence = new IntroSequence();
-            initApp();
-            introSequence.start();
+
+            try {
+                initApp();
+            } catch (err) {
+                console.error('[E-MyR initApp error]', err);
+            } finally {
+                introSequence.start();
+            }
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', safeInit);
+        } else {
+            safeInit();
         }
     </script>
 </body>
 </html>
+
+
