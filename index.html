@@ -154,33 +154,6 @@
             to { stroke-dashoffset: 0; }
         }
 
-        /* Single static pop on boot screen */
-        @keyframes staticPop {
-            0% {
-                filter: brightness(1);
-                transform: scale(1);
-            }
-            10% {
-                filter: brightness(2);
-                transform: scale(1.02);
-            }
-            25% {
-                filter: brightness(0.2);
-            }
-            45% {
-                filter: brightness(1.2);
-                transform: scale(1.01);
-            }
-            100% {
-                filter: brightness(1);
-                transform: scale(1);
-            }
-        }
-
-        .boot-screen.static-pop {
-            animation: staticPop 0.3s ease-out;
-        }
-
         /* Welcome Modal */
         .welcome-modal {
             position: fixed;
@@ -435,6 +408,7 @@
         .tab-content {
             display: none;
             animation: fadeIn 0.3s ease-in;
+            margin-top: 24px;
         }
 
         .tab-content.active {
@@ -645,6 +619,21 @@
             margin-bottom: 1em;
         }
 
+        .back-to-top-btn {
+            margin-top: 16px;
+            padding: 8px 14px;
+            border-radius: 4px;
+            border: none;
+            background: var(--accent-primary);
+            color: #ffffff;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .back-to-top-btn:hover {
+            opacity: 0.9;
+        }
+
         /* Documents Section */
         .document-item {
             margin-bottom: 20px;
@@ -687,6 +676,7 @@
         }
 
         .doc-title {
+            color: var(--accent-secondary);
             font-weight: 600;
             font-size: 1.1rem;
         }
@@ -902,9 +892,9 @@
     .identity-card {
         margin-bottom: 32px;
         padding: 24px 28px;
-        background: #062224;
+        background-color: #E7F5F4;
         border-radius: 6px;
-        border: 1px solid #008b8b;
+        border: 1px solid var(--accent-primary);
         text-align: center;
     }
     .identity-title {
@@ -915,12 +905,12 @@
     .identity-subtitle {
         font-size: 1.05rem;
         margin-bottom: 10px;
-        color: var(--text-dark, #f5f5f5);
+        color: #1B1B1B;
     }
     .identity-text {
         font-size: 0.98rem;
         margin-bottom: 16px;
-        color: var(--text-muted, #d0d0d0);
+        color: #444444;
     }
     .identity-cta {
         display: flex;
@@ -970,19 +960,59 @@
     }
     .tldr-label {
         font-weight: 600;
-        color: var(--accent-primary, #00b3aa);
+        color: var(--accent-primary);
         margin-right: 4px;
     }
     .tldr-pill {
-        padding: 4px 10px;
+        padding: 4px 12px;
         border-radius: 999px;
-        border: 1px solid rgba(0,179,170,0.4);
-        background: rgba(0,0,0,0.25);
-        color: var(--text-dark, #f5f5f5);
+        border: 1px solid rgba(0, 150, 136, 0.35);
+        background: rgba(0, 150, 136, 0.08);
+        color: var(--text-light);
+        font-size: 0.85rem;
+        transition: background 0.2s ease, border-color 0.2s ease;
+    }
+    .dark-theme .tldr-pill {
+        border-color: rgba(0, 150, 136, 0.6);
+        background: rgba(0, 150, 136, 0.25);
+        color: var(--text-dark);
+    }
+    .dark-theme .tldr-label {
+        color: var(--accent-primary);
     }
     .tldr-meds,
     .tldr-labs {
         margin-top: 6px;
+    }
+    
+    /* History Section Card Styling */
+    .history-intro {
+        margin-bottom: 1.5rem;
+    }
+    
+    .history-section {
+        margin-bottom: 20px;
+        border: 1px solid rgba(0, 150, 136, 0.2);
+        border-radius: 4px;
+        overflow: hidden;
+    }
+    
+    .history-previous-employers h4 {
+        margin-top: 0;
+    }
+    
+    /* Identity Card Dark Theme Enhancement */
+    .dark-theme .identity-card {
+        background: #004044;
+        border-color: var(--accent-primary);
+    }
+    
+    .dark-theme .identity-subtitle {
+        color: var(--text-dark);
+    }
+    
+    .dark-theme .identity-text {
+        color: #cccccc;
     }
 </style>
 </head>
@@ -1051,7 +1081,7 @@
 
         <div class="dock">
             <button id="homeBtn" class="dock-btn">🏠 Home</button>
-            <a id="resumeBtn" class="dock-btn" href="#" target="_blank" rel="noopener">📄 Download Resume</a>
+            <a id="resumeBtn" class="dock-btn" href="#" download>📄 Download Resume</a>
             <button id="restartIntroBtn" class="dock-btn">🔄 Restart Intro</button>
             <a id="contactBtn" class="dock-btn" href="/cdn-cgi/l/email-protection#7f">✉️ Contact</a>
         </div>
@@ -1460,20 +1490,6 @@ class IntroSequence {
             }
         }
 
-        // Helper function to resolve @resume.* references
-        function resolveReference(path) {
-            const parts = path.replace('@resume.', '').split('.');
-            let value = resumeData.resume;
-            for (const part of parts) {
-                if (value && value[part] !== undefined) {
-                    value = value[part];
-                } else {
-                    return null;
-                }
-            }
-            return value;
-        }
-
         // Helper function to render plain text as HTML
         function renderPlainTextAsHtml(text) {
             const trimmed = text.trim();
@@ -1547,10 +1563,10 @@ function renderDemographics(data) {
                 <section class="identity-card">
                     <h2 class="identity-title">Paul Peck · Steward · Clinical Technologist & Systems Thinker</h2>
                     <p class="identity-subtitle">
-                        Clinical systems tinker bridging emergency care, workflow design, and embedded hardware.
+                        Clinical systems builder bridging emergency care, workflow design, and embedded hardware.
                     </p>
                     <p class="identity-text">
-                        I design and prototype systems that reduce friction between clinicians, processes, and the technology we rely on every day, with a focus on remote-friendly clinical tech, implementation, and informatics roles.
+                        I build systems that help clinicians think clearly: reducing cognitive load, tightening documentation pathways, and integrating embedded automation and hardware where it actually strengthens care. My work sits where bedside experience, systems thinking, and informatics overlap, with a focus on remote-friendly clinical tech, implementation, and workflow roles.
                     </p>
                     <div class="identity-cta">
                         <a href="${resumePdf}" class="doc-link identity-btn-view" target="_blank" rel="noopener noreferrer">View Resume PDF</a>
@@ -1571,7 +1587,7 @@ function renderDemographics(data) {
                     <div class="info-item">
                         <h3>License</h3>
                         <p>${license ? license.details : 'FL RN9613731, Unencumbered, Expires 07/31/2026'}</p>
-                        <p class="license-note">Multistate licensure privilege: authority to practice as a licensed nurse in other compact states under the Florida home-state license, provided each state is part of the Nurse Licensure Compact and the privilege is not otherwise restricted.</p>
+                        <p class="license-note">Active, unencumbered compact RN license (FL RN9613731) with multistate privilege to practice via the Nurse Licensure Compact.</p>
                     </div>
                     <div class="info-item">
                         <h3>Contact</h3>
@@ -1595,8 +1611,7 @@ function renderHistory(data) {
                 <h2>Systems Experience</h2>
                 <div class="history-intro">
                     <p>
-                    This is a systems-first view of my experience across clinical, operational, and technical environments.
-                    I focus on designing and supporting systems that are safe, predictable, and understandable. This helps people make better decisions because the environment itself has been shaped with intention and responsibility.
+                    This is a systems-first view of my work across clinical, operational, and technical environments. It groups the experiences that share the same underlying system: embedded hardware and automation, clinical workflow and documentation, emergency systems, and creative/ecommerce infrastructure.
                     </p>
                 </div>
                 ${sections.map((section, sectionIndex) => `
@@ -1613,14 +1628,55 @@ function renderHistory(data) {
                             <div style="margin-bottom: 20px;">
                                 ${section.overview.map(para => `<p>${para}</p>`).join('')}
                             </div>
+                            ${section.subsections ? section.subsections.map(subsection => `
+                                <div class="history-subsection">
+                                    <h4>${subsection.heading}</h4>
+                                    <ul>
+                                        ${subsection.bullets.map(bullet => `<li>${bullet}</li>`).join('')}
+                                    </ul>
+                                </div>
+                            `).join('') : ''}
                         </div>
                     </div>
                 `).join('')}
 
+                <div class="history-section history-previous-employers">
+                    <div class="collapsible-header" data-target="previous-employers">
+                        <div class="doc-title">Previous Employers & Projects</div>
+                        <span class="collapsible-icon">▶</span>
+                    </div>
+                    <div class="collapsible-content" id="previous-employers">
+                        <div class="history-subsection">
+                            <h4>Healthcare, Clinical, and EMS</h4>
+                            <ul>
+                                <li>Signallamp Health (now TelliHealth / AccuRPM)</li>
+                                <li>Nobis Rehabilitation Partners</li>
+                                <li>Encompass Health</li>
+                                <li>Vitalounge</li>
+                                <li>Quantum Health</li>
+                                <li>Travel Nurse – Southeastern Ohio Regional Medical Center (SEORMC)</li>
+                                <li>Grant Medical Center (OhioHealth)</li>
+                                <li>Nationwide Children's Hospital</li>
+                                <li>Grant Life Link </li>
+                                <li>Medcorp</li>
+                            </ul>
+                        </div>
+                        <div class="history-subsection">
+                            <h4>Community, Environmental, and Systems Work</h4>
+                            <ul>
+                                <li>Connected Landscapes – permaculture-driven landscaping</li>
+                                <li>Crispy Farms – small-scale regenerative farm</li>
+                                <li>Community Garden of Oviedo</li>
+                                <li>Independent e-commerce apparel platform (self-directed)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="history-resume-cta">
                     <p>Want the full chronological employment timeline?</p>
                     <div class="history-resume-buttons">
-                        <a href="#documents" class="doc-link">View Resume PDF</a>
+                        <a href="${data.resume.resume_pdf}" class="doc-link" target="_blank" rel="noopener noreferrer">View Resume PDF</a>
                         <a href="${data.resume.resume_pdf}" class="doc-link" download>Download Resume PDF</a>
                     </div>
                 </div>
@@ -1633,6 +1689,7 @@ function renderHistory(data) {
 function renderMeds(data) {
             const meds = data.resume.skills;
             const clinicalSkills = meds.clinical_documentation_systems;
+            const hardwareSkills = meds.hardware_firmware_systems;
             const webSkills = meds.web_interface_systems;
             const ecommerceSkills = meds.ecommerce_systems;
             const automationSkills = meds.automation_llm_systems;
@@ -1656,6 +1713,16 @@ function renderMeds(data) {
                     </div>
                     <div class="collapsible-content" id="meds-clinical">
                         <ul>${clinicalSkills.map(skill => `<li>${skill}</li>`).join('')}</ul>
+                    </div>
+                </div>
+
+                <div class="skills-section">
+                    <div class="collapsible-header" data-target="meds-hardware">
+                        <h3>Hardware, Firmware & HID/BLE Systems</h3>
+                        <span class="collapsible-icon">▶</span>
+                    </div>
+                    <div class="collapsible-content" id="meds-hardware">
+                        <ul>${hardwareSkills.map(skill => `<li>${skill}</li>`).join('')}</ul>
                     </div>
                 </div>
 
@@ -1774,6 +1841,7 @@ function renderNotes(data) {
                         <div id="blogTextContainer" class="blog-body">
                             <p><em>Loading latest note from blog/current.txt…</em></p>
                         </div>
+                        <button type="button" class="back-to-top-btn">Back to top ↑</button>
                     </div>
                 </div>
             `;
@@ -1908,8 +1976,24 @@ function renderNotes(data) {
             // Load blog post
             loadBlogPost();
 
+            // Auto-expand the current learning note in the Notes tab
+            const blogHeader = document.querySelector('.collapsible-header[data-target="blog-note"]');
+            const blogContent = document.getElementById('blog-note');
+            if (blogHeader && blogContent) {
+                blogHeader.classList.add('expanded');
+                blogContent.classList.add('expanded');
+                blogHeader.setAttribute('aria-expanded', 'true');
+            }
+
             // Initialize mobile tab scroll hint
             initMobileTabScrollHint();
+
+            // Global handler for any Back to top buttons
+            document.addEventListener('click', (e) => {
+                if (e.target.classList.contains('back-to-top-btn')) {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+            });
         }
 
         // Collapsible functionality
