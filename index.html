@@ -704,6 +704,11 @@
             transition: max-height var(--transition-speed) ease-in;
         }
 
+        /* Allow the Notes blog entry to grow to full height without clipping */
+        #blog-note.collapsible-content.expanded {
+            max-height: 9999px;
+        }
+
         .doc-meta {
             color: #666;
             font-size: 0.95rem;
