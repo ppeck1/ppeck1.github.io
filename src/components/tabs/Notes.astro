@@ -1,0 +1,159 @@
+---
+// Notes.astro - Blog posts list
+import { getCollection } from 'astro:content';
+
+// Get all blog posts, sorted by date (newest first)
+const allPosts = await getCollection('blog', ({ data }) => {
+  return data.draft !== true;
+});
+
+const posts = allPosts.sort((a, b) => 
+  b.data.date.valueOf() - a.data.date.valueOf()
+).slice(0, 5); // Show latest 5 posts
+
+function formatDate(date: Date) {
+  return new Intl.DateTimeFormat('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  }).format(date);
+}
+---
+
+<div class="tab-panel" id="panel-notes">
+  <h2>Notes – Progress Notes & Reflections</h2>
+  
+  <p class="tldr"><strong>TL;DR notes:</strong> Active learning threads • Workflow geometry • AI integration experiments</p>
+
+  <p>Lightweight "progress notes" on how my thinking and work are evolving.</p>
+
+  <div class="posts-list">
+    {posts.length === 0 ? (
+      <p class="no-posts">No posts yet. Check back soon!</p>
+    ) : (
+      posts.map((post) => (
+        <article class="post-card">
+          <div class="post-meta">
+            <time datetime={post.data.date.toISOString()}>
+              {formatDate(post.data.date)}
+            </time>
+            {post.data.tags && post.data.tags.length > 0 && (
+              <div class="post-tags">
+                {post.data.tags.slice(0, 3).map(tag => (
+                  <span class="tag">{tag}</span>
+                ))}
+              </div>
+            )}
+          </div>
+          <h3>
+            <a href={`/blog/${post.slug}`}>{post.data.title}</a>
+          </h3>
+          <p class="post-description">{post.data.description}</p>
+        </article>
+      ))
+    )}
+  </div>
+
+  {posts.length > 0 && (
+    <div class="view-all">
+      <p><strong>These notes will change over time.</strong> E-MyR is intentionally a living chart, not a frozen snapshot.</p>
+    </div>
+  )}
+</div>
+
+<style>
+  .tldr {
+    background: var(--bg-secondary);
+    padding: 1rem;
+    border-left: 3px solid var(--color-teal);
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+
+  .posts-list {
+    margin: 2rem 0;
+    display: grid;
+    gap: 2rem;
+  }
+
+  .post-card {
+    padding: 1.5rem;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    transition: all 0.2s ease;
+  }
+
+  .post-card:hover {
+    border-color: var(--color-teal);
+    transform: translateY(-2px);
+  }
+
+  .post-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .post-meta time {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+  }
+
+  .post-tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .tag {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    color: var(--text-secondary);
+  }
+
+  .post-card h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.5rem;
+  }
+
+  .post-card h3 a {
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .post-card h3 a:hover {
+    color: var(--color-teal);
+  }
+
+  .post-description {
+    color: var(--text-secondary);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  .no-posts {
+    text-align: center;
+    padding: 2rem;
+    color: var(--text-secondary);
+  }
+
+  .view-all {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-color);
+  }
+
+  @media (max-width: 768px) {
+    .post-meta {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>

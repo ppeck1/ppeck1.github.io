@@ -1,0 +1,57 @@
+---
+// Dock.astro - Bottom action bar
+---
+
+<div class="dock">
+  <button type="button" class="dock-button" id="dock-home" aria-label="Home">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+    </svg>
+    <span>Home</span>
+  </button>
+
+  <a href="/assets/resume.html" target="_blank" rel="noopener" class="dock-button" aria-label="Open Resume">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+    </svg>
+    <span>Download Resume</span>
+  </a>
+
+  <button type="button" class="dock-button" id="dock-restart" aria-label="Restart Intro">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+    </svg>
+    <span>Restart Intro</span>
+  </button>
+
+  <a href="mailto:paultpeck@gmail.com" class="dock-button" aria-label="Contact">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+    </svg>
+    <span>Contact</span>
+  </a>
+</div>
+
+<script is:inline>
+  (function () {
+    const homeButton = document.getElementById('dock-home');
+    const restartButton = document.getElementById('dock-restart');
+
+    // Home button - activate Demographics tab
+    if (homeButton) {
+      homeButton.addEventListener('click', function () {
+        const demographicsTab = document.querySelector('[data-tab="demographics"]');
+        if (demographicsTab && demographicsTab.click) demographicsTab.click();
+      });
+    }
+
+    // Restart intro
+    if (restartButton) {
+      restartButton.addEventListener('click', function () {
+        if (typeof window.restartIntro === 'function') {
+          window.restartIntro();
+        }
+      });
+    }
+  })();
+</script>

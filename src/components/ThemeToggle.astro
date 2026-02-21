@@ -1,0 +1,56 @@
+---
+// ThemeToggle.astro - Light/Dark mode toggle
+---
+
+<button data-theme-toggle class="theme-toggle" aria-label="Toggle theme">
+  <svg data-sun class="hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+  </svg>
+  <svg data-moon xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+  </svg>
+</button>
+
+<script is:inline>
+  (function () {
+    const KEY = 'emr-theme';
+    const toggles = Array.from(document.querySelectorAll('[data-theme-toggle]'));
+    const html = document.documentElement;
+
+    function syncIcons(theme) {
+      toggles.forEach((btn) => {
+        const sun = btn.querySelector('[data-sun]');
+        const moon = btn.querySelector('[data-moon]');
+        if (theme === 'dark') {
+          if (sun) sun.classList.remove('hidden');
+          if (moon) moon.classList.add('hidden');
+        } else {
+          if (sun) sun.classList.add('hidden');
+          if (moon) moon.classList.remove('hidden');
+        }
+      });
+    }
+
+    function apply(theme) {
+      html.setAttribute('data-theme', theme);
+      localStorage.setItem(KEY, theme);
+      syncIcons(theme);
+    }
+
+    const saved = localStorage.getItem(KEY);
+    if (saved) {
+      apply(saved);
+    } else {
+      const prefersDark =
+        window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      apply(prefersDark ? 'dark' : 'light');
+    }
+
+    toggles.forEach((btn) => {
+      btn.addEventListener('click', function () {
+        const current = html.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+        apply(current === 'dark' ? 'light' : 'dark');
+      });
+    });
+  })();
+</script>
