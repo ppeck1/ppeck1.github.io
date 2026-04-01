@@ -1,5 +1,5 @@
 ---
-title: "Coherence, Heard Not Forced"
+title: "Part 1: Coherence, Heard Not Forced"
 description: "An opening essay on coherence, expression, and why music makes system behavior easier to hear."
 date: 2026-02-09
 tags: ["coherence", "stewardship", "systems", "music", "alignment"]
