@@ -3,7 +3,7 @@ title: "Part 2: Coherence, Repeated Until Recognized."
 description: "A structured coherence diagnostic using cross-cultural music as a dataset."
 date: 2026-04-01
 tags: ["coherence", "music", "systems", "diagnostic"]
-status: active
+status: false
 ---
 
 *Updated April 1, 2026*
