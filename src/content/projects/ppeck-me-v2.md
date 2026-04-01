@@ -1,40 +1,174 @@
 ---
-title: "E-MyR Portfolio (Astro rebuild)"
-description: "Rebuilt my EMR-style portfolio as a structured Astro site with real blog + project routes… while preserving the clinical chart metaphor."
+title: "E-MyR Portfolio (Astro Rebuild)"
+description: "Re-architected a monolithic EMR-style resume into a structured Astro system with real routing, content separation, and deployable infrastructure."
 date: 2026-02-10
 tags: ["astro", "information-architecture", "ui", "content-system", "github-pages"]
 status: active
-repo: "https://github.com/ppeck1/ppeck1.github.io/tree/astro"   
-demo: "https://ppeck.me"                        
+repo: "https://github.com/ppeck1/ppeck1.github.io/tree/astro"
+demo: "https://ppeck.me"
 ---
 
-> **TL;DR:** I converted a fragile single-page portfolio into a maintainable Astro system with sharable URLs for posts/projects… without losing the EMR interface that makes it memorable.
+> **TL;DR:** Rebuilt a single-file EMR-style resume into a structured Astro application with real routing, modular components, and deployable infrastructure… while preserving the clinical interface as a functional system, not just a visual theme.
+
+---
+
+*Updated April 1, 2026*
 
 ## Problem
-My original site was a single HTML app. It looked distinctive, but it was hard to extend without breaking things:
-- Content changes required editing a large monolithic file
-- No clean URLs for posts or shareable artifacts
-- Adding a blog and projects risked turning into a brittle “everything script”
+
+The original site was a **single HTML application** with embedded data, UI, and logic.
+
+It worked… but it did not scale:
+
+- All content (resume, experience, documents, blog) lived inside one file :contentReference[oaicite:1]{index=1}  
+- UI rendering, data structure, and interaction logic were tightly coupled  
+- No real routing → nothing was linkable or indexable  
+- Any change risked breaking unrelated parts of the system  
+- “Cool interface” existed, but **no underlying content architecture**
+
+---
 
 ## Diagnosis
-I needed a portfolio that behaves like a real system:
-- **Stable structure** for iteration (add content without UI drift)
-- **Sharable routes** for credibility (SEO, recruiting links, direct references)
-- A **content pipeline** (projects + posts as first-class assets)
-- Preserve the **clinical chart metaphor** as a differentiator, not a gimmick
+
+The issue wasn’t visual—it was structural.
+
+The system lacked:
+
+- **Separation of concerns** (data, UI, routing)
+- **Stable content primitives** (projects, posts, documents)
+- **Addressability** (URLs that can be shared, indexed, or referenced)
+- **Deployment reliability** (build pipeline vs static file drop)
+
+In practice:
+> It behaved like a demo… not a system.
+
+---
 
 ## Treatment
-Astro rebuild with a hybrid architecture:
-- **EMR shell** stays on `/` with tab navigation (Demographics / History / Diagnosis / Meds / Labs / Notes / Documents)
-- **Blog posts** render as real pages under `/blog/<slug>`
-- **Project case studies** render under `/projects/<slug>`
-- “Notes” tab becomes the blog index inside the chart metaphor
-- Theme system (light/dark) + background grid to keep the EMR vibe consistent
 
-## What this demonstrates (why it matters)
-- Information architecture + UI metaphor that communicates domain identity (clinical systems)
-- Turning “cool design” into a maintainable content system
-- Production-minded web work: routes, deployability, structure, iteration safety
+Full rebuild using **Astro as a structured content system**.
+
+### Architectural shift
+
+From:
+- Single HTML file
+- Embedded JSON + DOM rendering
+- Runtime composition
+
+To:
+- **File-based routing**
+- **Componentized UI**
+- **Static build output (dist/)**
+- **Content collections (blog + projects)**
+
+---
+
+### System design
+
+**1. EMR interface preserved as shell**
+- `/` remains the “chart”
+- Tabs (Demographics, History, Meds, Labs, Notes, Documents)
+- Now backed by **modular Astro components**, not injected HTML
+
+**2. Real routing layer introduced**
+- `/blog/[slug]` → individual posts
+- `/projects/[slug]` → case studies
+- Eliminates “dead-end UI” problem
+
+**3. Content becomes first-class**
+- Markdown-driven blog + project entries
+- No longer hardcoded into UI
+- Supports iteration without layout risk
+
+**4. Asset layer normalized**
+- PDFs (resume, credentials) moved to `/public/assets/`
+- Direct download paths (`/assets/*.pdf`)
+- Eliminates runtime link ambiguity
+
+**5. Deployment pipeline**
+- GitHub Actions build → `dist/`
+- GitHub Pages hosting
+- Transition from static file hosting → **build-driven deployment**
+
+---
+
+## What changed (materially)
+
+### Before (HTML system)
+- UI, data, and logic tightly coupled
+- Resume stored as embedded JSON + HTML rendering
+- Links were indirect and sometimes inconsistent
+- No reliable extension model
+
+### After (Astro system)
+- UI = components
+- Data = content files / assets
+- Routing = file-based
+- Build = deterministic output
+
+---
+
+## What this demonstrates
+
+### 1. Translation layer thinking
+You are not just “building a site” — you are:
+
+- Taking a domain (clinical EMR structure)
+- Mapping it into UI architecture
+- Then mapping that into a maintainable system
+
+That is **informatics thinking**, not frontend styling.
+
+---
+
+### 2. Structure over surface
+The key shift:
+
+> From “interface that looks like a system”  
+> → “system that happens to have an interface”
+
+---
+
+### 3. Constraint-aware design
+The rebuild directly addresses:
+
+- content drift
+- scaling friction
+- deployment reliability
+- linkability / credibility
+
+---
+
+### 4. Real-world production concerns
+- Static build pipeline (Astro)
+- GitHub Actions deployment
+- Asset path correctness (`/public/assets`)
+- Handling integration failures (e.g., sitemap build issues)
+
+---
 
 ## Status
-Active… adding projects + posts as proof artifacts.
+
+Active.
+
+- Core architecture complete
+- Content system operational (blog + projects)
+- Deployment pipeline functional (with minor integration tuning)
+- Ongoing work:
+  - expanding project case studies
+  - refining content density
+  - stabilizing build integrations (e.g., sitemap)
+
+---
+
+## Bottom line
+
+This project is no longer a “creative resume.”
+
+It is a **structured, deployable system** that demonstrates:
+
+- clinical → technical translation
+- workflow thinking applied to software
+- ability to turn an idea into a maintainable architecture
+
+That is the actual signal.
