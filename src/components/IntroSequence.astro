@@ -1,0 +1,76 @@
+---
+// IntroSequence.astro - Boot screen + EKG animation + Welcome modal
+---
+
+<div id="boot-screen" class="boot-screen hidden">
+  <div class="boot-text">Initializing system...</div>
+  <div class="ekg-container">
+    <svg viewBox="0 0 300 100" xmlns="http://www.w3.org/2000/svg">
+      <path 
+        class="ekg-line" 
+        d="M 0 50 L 40 50 L 50 20 L 60 80 L 70 50 L 90 50 L 100 40 L 110 60 L 120 50 L 160 50 L 170 30 L 180 70 L 190 50 L 220 50 L 230 35 L 240 65 L 250 50 L 300 50"
+      />
+    </svg>
+  </div>
+</div>
+
+<div id="intro-modal" class="intro-modal hidden">
+  <div class="intro-modal-content">
+    <h1>Welcome to E-MyR</h1>
+    <h2>Paul Peck, RN</h2>
+    <p>E-MyR is an EMR-style clinical systems lab where I map workflows, cognitive load, and how AI changes the work.</p>
+    <div class="intro-modal-buttons">
+      <button id="enter-chart">Enter Chart &rarr;</button>
+      <button id="dont-show-again">Don't show this again</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // v2 key: deliberately renamed so the old 'emr-intro-seen' value (written
+  // by the previous Enter Chart handler) is ignored. Only "Don't show this
+  // again" sets this key, so the intro plays on every visit by default.
+  const SUPPRESS_KEY = 'emr-intro-suppress-v2';
+
+  const bootScreen  = document.getElementById('boot-screen');
+  const introModal  = document.getElementById('intro-modal');
+  const enterButton = document.getElementById('enter-chart');
+  const dontShowBtn = document.getElementById('dont-show-again');
+
+  function playIntro() {
+    bootScreen?.classList.remove('hidden');
+    setTimeout(() => {
+      bootScreen?.classList.add('hidden');
+      introModal?.classList.remove('hidden');
+    }, 2500);
+  }
+
+  function closeIntro() {
+    introModal?.classList.add('hidden');
+  }
+
+  // Play on every visit unless the user explicitly opted out.
+  if (!localStorage.getItem(SUPPRESS_KEY)) {
+    playIntro();
+  }
+
+  // "Enter Chart" just dismisses without suppressing future plays.
+  enterButton?.addEventListener('click', () => closeIntro());
+
+  // "Don't show this again" suppresses future plays.
+  dontShowBtn?.addEventListener('click', () => {
+    localStorage.setItem(SUPPRESS_KEY, 'true');
+    closeIntro();
+  });
+
+  // ESC dismisses without suppressing.
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeIntro();
+  });
+
+  // Dock "Restart Intro" button calls this; also clears suppress flag.
+  window.restartIntro = () => {
+    localStorage.removeItem(SUPPRESS_KEY);
+    playIntro();
+  };
+</script>

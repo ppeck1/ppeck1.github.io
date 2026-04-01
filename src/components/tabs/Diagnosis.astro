@@ -1,0 +1,134 @@
+---
+// Diagnosis.astro - Projects and case studies
+import { getCollection } from 'astro:content';
+
+const projects = await getCollection('projects');
+const sortedProjects = projects.sort((a, b) => 
+  b.data.date.valueOf() - a.data.date.valueOf()
+);
+---
+
+<div class="tab-panel" id="panel-diagnosis">
+  <h2>Diagnosis – Projects & Case Studies</h2>
+  
+  <p class="intro">Problem identification and solution design across clinical, biological, and creative systems.</p>
+
+  <div class="projects-grid">
+    {sortedProjects.length === 0 ? (
+      <div class="placeholder">
+        <p><strong>Projects coming soon.</strong></p>
+        <p>This section will showcase:</p>
+        <ul>
+          <li>Clinical workflow tools and systems</li>
+          <li>Biological system experiments (hydroponics, aquaponics)</li>
+          <li>Creative infrastructure (Big Peckture Studio, Sinternetcult)</li>
+          <li>GitHub repositories and technical projects</li>
+        </ul>
+      </div>
+    ) : (
+      sortedProjects.map((project) => (
+        <article class="project-card">
+          <h3><a href={`/projects/${project.slug}`}>{project.data.title}</a></h3>
+          <p>{project.data.description}</p>
+          {project.data.github && (
+            <a href={project.data.github} class="github-link" target="_blank" rel="noopener">
+              View on GitHub →
+            </a>
+          )}
+          <span class={`status-badge status-${project.data.status}`}>{project.data.status}</span>
+        </article>
+      ))
+    )}
+  </div>
+</div>
+
+<style>
+  .intro {
+    margin: 1.5rem 0;
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+  }
+
+  .projects-grid {
+    margin: 2rem 0;
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .project-card {
+    padding: 1.5rem;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    position: relative;
+    transition: all 0.2s ease;
+  }
+
+  .project-card:hover {
+    border-color: var(--color-teal);
+    transform: translateY(-2px);
+  }
+
+  .project-card h3 {
+    margin: 0 0 0.75rem 0;
+    font-size: 1.3rem;
+  }
+
+  .project-card h3 a {
+    color: var(--text-primary);
+    text-decoration: none;
+  }
+
+  .project-card h3 a:hover {
+    color: var(--color-teal);
+  }
+
+  .github-link {
+    display: inline-block;
+    margin-top: 1rem;
+    color: var(--color-teal);
+    font-size: 0.9rem;
+  }
+
+  .status-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+
+  .status-active {
+    background: var(--color-green);
+    color: white;
+  }
+
+  .status-completed {
+    background: var(--color-teal);
+    color: white;
+  }
+
+  .status-archived {
+    background: var(--border-color);
+    color: var(--text-secondary);
+  }
+
+  .placeholder {
+    padding: 2rem;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+  }
+
+  .placeholder ul {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+  }
+
+  .placeholder li {
+    margin: 0.5rem 0;
+  }
+</style>

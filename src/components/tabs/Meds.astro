@@ -1,0 +1,61 @@
+---
+// Meds.astro - Interventions and approaches
+---
+
+<div class="tab-panel" id="panel-meds">
+  <h2>Meds – Interventions I Reach For</h2>
+  
+  <p class="tldr"><strong>TL;DR interventions:</strong> Workflow mapping • Lane clarity • Documentation structure • Signal design • Thoughtful AI touchpoints</p>
+
+  <p>System-level interventions I reach for when working with teams on workflow and operations.</p>
+
+  <h3>Clinical Workflow & Documentation Interventions</h3>
+  <ul>
+    <li>Diagramming the real workflow (not the policy version) and naming each lane so ownership is unambiguous.</li>
+    <li>Refactoring documentation templates and smart phrases to match how clinicians actually think and speak.</li>
+    <li>Reducing duplicate entry and unnecessary variation so the same story isn't told three different ways in three different notes.</li>
+    <li>Designing structured intake and triage flows that reduce back-and-forth messaging and "who owns this?" confusion.</li>
+  </ul>
+
+  <h3>Interface & Interaction Interventions</h3>
+  <ul>
+    <li>Reordering fields, sections, and prompts to align with clinical reasoning instead of database schemas.</li>
+    <li>Spotting UI patterns that create hidden friction (extra clicks, unclear states, ambiguous alerts).</li>
+    <li>Making "next best action" more obvious so clinicians don't have to mentally parse the whole system to move forward.</li>
+    <li>Connecting the dots between frontline workflows and the data/analytics teams rely on downstream.</li>
+  </ul>
+
+  <h3>Team, Communication, and AI-Enabled Interventions</h3>
+  <ul>
+    <li>Clarifying what gets decided by nurses, what escalates to providers, and what should be automated with safe defaults.</li>
+    <li>Designing message routing and handoff patterns that minimize cognitive ping-pong across teams.</li>
+    <li>Identifying where AI tools can safely compress effort (drafting, summarization, triage support) without erasing clinical judgment.</li>
+    <li>Supporting leaders in translating "we need AI" into specific, testable workflow experiments with clear guardrails.</li>
+  </ul>
+</div>
+
+<style>
+  .tldr {
+    background: var(--bg-secondary);
+    padding: 1rem;
+    border-left: 3px solid var(--color-teal);
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+
+  #panel-meds h3 {
+    color: var(--color-teal);
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  #panel-meds ul {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+  }
+
+  #panel-meds li {
+    margin: 0.75rem 0;
+    line-height: 1.6;
+  }
+</style>

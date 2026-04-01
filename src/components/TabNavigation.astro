@@ -1,0 +1,110 @@
+---
+// TabNavigation.astro - Tab switching system
+import ThemeToggle from './ThemeToggle.astro';
+
+const tabs = [
+  { id: 'demographics', label: 'Demographics' },
+  { id: 'history', label: 'History' },
+  { id: 'diagnosis', label: 'Diagnosis' },
+  { id: 'meds', label: 'Meds' },
+  { id: 'labs', label: 'Labs' },
+  { id: 'notes', label: 'Notes' },
+  { id: 'documents', label: 'Documents' },
+];
+---
+
+<div class="tabbar" role="tablist" aria-label="E-MyR Navigation">
+  <nav class="tab-navigation">
+    {tabs.map((tab) => (
+      <button
+        type="button"
+        class="tab-button"
+        data-tab={tab.id}
+        role="tab"
+        aria-selected="false"
+        aria-controls={`panel-${tab.id}`}
+      >
+        {tab.label}
+      </button>
+    ))}
+  </nav>
+  <ThemeToggle />
+</div>
+
+<script is:inline>
+  (function () {
+    const tabButtons = document.querySelectorAll('.tab-button');
+
+    // Last active tab, otherwise default.
+    const lastTab = localStorage.getItem('emr-last-tab') || 'demographics';
+
+    function activateTab(tabId) {
+      // Query panels live each time — they may not exist at script-init time
+      const tabPanels = document.querySelectorAll('.tab-panel');
+
+      tabButtons.forEach((btn) => {
+        btn.classList.remove('active');
+        btn.setAttribute('aria-selected', 'false');
+      });
+      tabPanels.forEach((panel) => panel.classList.remove('active'));
+
+      const selectedButton = document.querySelector('[data-tab="' + tabId + '"]');
+      const selectedPanel = document.getElementById('panel-' + tabId);
+
+      if (selectedButton) {
+        selectedButton.classList.add('active');
+        selectedButton.setAttribute('aria-selected', 'true');
+      }
+      if (selectedPanel) {
+        selectedPanel.classList.add('active');
+        // Scroll to top of page so the active panel is always in view
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      localStorage.setItem('emr-last-tab', tabId);
+
+      try {
+        history.replaceState(null, '', '#' + tabId);
+      } catch (e) {
+        // no-op
+      }
+    }
+
+    // Attach click listeners immediately — buttons exist at this point.
+    tabButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const tabId = button.getAttribute('data-tab');
+        if (tabId) activateTab(tabId);
+      });
+    });
+
+    // Allow other components to switch tabs.
+    window.activateTab = activateTab;
+
+    // Defer the initial panel activation until the full DOM is parsed.
+    // With is:inline, this script runs before the .tab-panel divs exist.
+    function initActiveTab() {
+      const hash = window.location.hash ? window.location.hash.substring(1) : '';
+      if (hash && document.getElementById('panel-' + hash)) {
+        activateTab(hash);
+      } else {
+        activateTab(lastTab);
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initActiveTab);
+    } else {
+      initActiveTab();
+    }
+  })();
+</script>
+
+<style>
+  .tabbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+</style>

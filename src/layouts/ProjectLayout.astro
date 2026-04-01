@@ -1,0 +1,221 @@
+---
+// ProjectLayout.astro - Individual project case study template
+import Layout from './Layout.astro';
+import ThemeToggle from '../components/ThemeToggle.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  date: Date;
+  tags?: string[];
+  github?: string;
+  status?: string;
+}
+
+const { title, description, date, tags = [], github, status = 'active' } = Astro.props;
+
+function formatDate(d: Date) {
+  return new Intl.DateTimeFormat('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  }).format(d);
+}
+---
+
+<Layout title={`${title} — Paul Peck, RN`} description={description}>
+  <ThemeToggle />
+
+  <div class="project-container">
+    <nav class="back-nav">
+      <a href="/#diagnosis" class="back-link">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+        </svg>
+        <span>Back to Chart</span>
+      </a>
+    </nav>
+
+    <article class="project">
+      <header class="project-header">
+        <h1>{title}</h1>
+        <div class="project-meta">
+          <time datetime={date.toISOString()}>{formatDate(date)}</time>
+          <span class={`status status-${status}`}>{status}</span>
+        </div>
+        {github && (
+          <p class="project-links">
+            <a href={github} target="_blank" rel="noopener">GitHub →</a>
+          </p>
+        )}
+        {tags.length > 0 && (
+          <div class="tags">
+            {tags.map((tag) => (
+              <span class="tag">{tag}</span>
+            ))}
+          </div>
+        )}
+      </header>
+
+      <div class="project-content">
+        <slot />
+      </div>
+    </article>
+  </div>
+</Layout>
+
+<style>
+  .project-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+    min-height: 100vh;
+  }
+
+  .back-nav {
+    margin-bottom: 2rem;
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--color-teal);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+  }
+
+  .back-link:hover {
+    background: var(--bg-secondary);
+    border-color: var(--color-teal);
+  }
+
+  .back-link svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .project {
+    background: var(--bg-secondary);
+    padding: 3rem;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+  }
+
+  .project-header {
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 2px solid var(--border-color);
+  }
+
+  .project-header h1 {
+    font-size: 2.3rem;
+    margin-bottom: 0.75rem;
+    line-height: 1.2;
+  }
+
+  .project-meta {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 0.75rem;
+  }
+
+  .project-meta time {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+  }
+
+  .status {
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+  }
+
+  .status-active {
+    border-color: var(--color-teal);
+    color: var(--color-teal);
+  }
+
+  .status-completed {
+    border-color: var(--color-green);
+    color: var(--color-green);
+  }
+
+  .status-archived {
+    opacity: 0.8;
+  }
+
+  .project-links {
+    margin: 0.5rem 0 0.75rem;
+  }
+
+  .tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .tag {
+    padding: 0.25rem 0.75rem;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+  }
+
+  .project-content {
+    font-size: 1.05rem;
+    line-height: 1.8;
+  }
+
+  .project-content :global(h2) {
+    color: var(--color-teal);
+    margin: 2.2rem 0 1rem;
+    font-size: 1.6rem;
+  }
+
+  .project-content :global(p) {
+    margin: 1rem 0;
+  }
+
+  .project-content :global(ul) {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+  }
+
+  .project-content :global(li) {
+    margin: 0.4rem 0;
+  }
+
+  @media (max-width: 768px) {
+    .project-container {
+      padding: 1rem;
+    }
+    .project {
+      padding: 2rem 1.5rem;
+    }
+    .project-header h1 {
+      font-size: 1.9rem;
+    }
+  }
+</style>
+
+<script is:inline>
+  // When returning to chart, activate Diagnosis tab
+  (function () {
+    const backLink = document.querySelector('.back-link');
+    if (backLink) {
+      backLink.addEventListener('click', function () {
+        localStorage.setItem('emr-last-tab', 'diagnosis');
+      });
+    }
+  })();
+</script>

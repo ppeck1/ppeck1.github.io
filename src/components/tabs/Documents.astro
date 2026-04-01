@@ -1,0 +1,120 @@
+---
+// Documents.astro - Credentials and verification
+---
+
+<div class="tab-panel" id="panel-documents">
+  <h2>Documents – Verification</h2>
+
+  <p class="tldr"><strong>TL;DR:</strong> Resume • RN license verification • Key credentials</p>
+
+  <div class="document-grid">
+    <div class="document-card">
+      <h3>Resume</h3>
+      <p class="institution">Current resume (PDF).</p>
+      <div class="document-links">
+        <a href="/assets/resume.pdf" download>Download Resume</a>
+      </div>
+    </div>
+
+    <div class="document-card">
+      <h3>Registered Nurse – Compact Multistate License</h3>
+      <p class="license-info">FL RN9613731, Unencumbered, Expires 07/31/2026</p>
+      <p>License status can be verified via the Nursys QuickConfirm portal.</p>
+      <div class="document-links">
+        <a href="https://www.nursys.com" target="_blank" rel="noopener">Verify Online</a>
+      </div>
+    </div>
+
+    <div class="document-card">
+      <h3>Associate Degree in Nursing (ADN)</h3>
+      <p class="institution">ADN — Nursing, 2012 · Chamberlain College of Nursing</p>
+      <div class="document-links">
+        <a href="/assets/pp_NURSING_ADN.pdf" download>Download Credential (PDF)</a>
+      </div>
+    </div>
+
+    <div class="document-card">
+      <h3>Programming for Everybody (Python)</h3>
+      <p class="institution">University of Michigan | Coursera</p>
+      <div class="document-links">
+        <a href="https://www.coursera.org/account/accomplishments/verify/YNCNEVGXEJDG" target="_blank" rel="noopener">Verify Online</a>
+      </div>
+    </div>
+
+    <div class="document-card">
+      <h3>Systems Thinking Basics</h3>
+      <p class="institution">Coursera</p>
+      <div class="document-links">
+        <a href="https://coursera.org/verify/IL7X19XU9VH9" target="_blank" rel="noopener">Verify Online</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .tldr {
+    background: var(--bg-secondary);
+    padding: 1rem;
+    border-left: 3px solid var(--color-teal);
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+
+  .document-grid {
+    margin: 2rem 0;
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .document-card {
+    padding: 1.5rem;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    transition: all 0.2s ease;
+  }
+
+  .document-card:hover {
+    border-color: var(--color-teal);
+  }
+
+  .document-card h3 {
+    color: var(--color-teal);
+    margin: 0 0 0.75rem 0;
+    font-size: 1.2rem;
+  }
+
+  .institution {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin: 0.5rem 0;
+  }
+
+  .license-info {
+    font-weight: 500;
+    margin: 0.5rem 0;
+  }
+
+  .document-links {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+  }
+
+  .document-links a {
+    padding: 0.5rem 1rem;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+    text-decoration: none;
+  }
+
+  .document-links a:hover {
+    background: var(--color-teal);
+    color: white;
+    border-color: var(--color-teal);
+  }
+</style>

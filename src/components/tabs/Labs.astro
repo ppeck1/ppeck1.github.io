@@ -1,0 +1,65 @@
+---
+// Labs.astro - Signals and metrics
+---
+
+<div class="tab-panel" id="panel-labs">
+  <h2>Labs – Signals I Watch</h2>
+  
+  <p class="tldr"><strong>Key signals:</strong> Friction & rework • Handoff quality • Cognitive load • Operational reliability</p>
+
+  <p>Signals I watch to understand whether a system is helping or hurting the people working inside it.</p>
+
+  <h3>Friction & Rework</h3>
+  <ul>
+    <li>Frequency of callbacks, clarifications, and "sorry, wrong team" message reroutes.</li>
+    <li>How often nurses or providers have to re-document the same story in a different format for a different audience.</li>
+    <li>Number of manual workarounds or shadow systems required to keep things moving.</li>
+  </ul>
+
+  <h3>Handoff Quality & Lane Clarity</h3>
+  <ul>
+    <li>Are responsibilities clearly owned at each step, or is work frequently "floating" between roles?</li>
+    <li>Do handoffs carry enough context that the next person can act confidently without starting from scratch?</li>
+    <li>Does the workflow geometry support safe escalation and de-escalation, or does everything bottleneck in one lane?</li>
+  </ul>
+
+  <h3>Cognitive Load & Attention</h3>
+  <ul>
+    <li>How much of a clinician's attention is spent on the patient vs. on remembering how to work the system.</li>
+    <li>Whether documentation flows feel like a story being told, or a puzzle being solved.</li>
+    <li>Where alerts, notifications, and inboxes create noise instead of useful signal.</li>
+  </ul>
+
+  <h3>Operational Reliability & Change Resilience</h3>
+  <ul>
+    <li>How the system behaves under stress – surges, staff shortages, or sudden policy changes.</li>
+    <li>Whether small defects quietly accumulate into failure patterns, or get surfaced early and handled.</li>
+    <li>How easy it is to safely test and iterate on workflow changes without destabilizing everything else.</li>
+  </ul>
+</div>
+
+<style>
+  .tldr {
+    background: var(--bg-secondary);
+    padding: 1rem;
+    border-left: 3px solid var(--color-teal);
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+
+  #panel-labs h3 {
+    color: var(--color-teal);
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  #panel-labs ul {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+  }
+
+  #panel-labs li {
+    margin: 0.75rem 0;
+    line-height: 1.6;
+  }
+</style>

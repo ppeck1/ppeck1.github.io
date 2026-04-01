@@ -1,0 +1,30 @@
+---
+// src/pages/projects/[slug].astro - Dynamic project case study page
+import { getCollection } from 'astro:content';
+import ProjectLayout from '../../layouts/ProjectLayout.astro';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects', ({ data }) => {
+    return true;
+  });
+
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const { Content } = await project.render();
+---
+
+<ProjectLayout
+  title={project.data.title}
+  description={project.data.description}
+  date={project.data.date}
+  tags={project.data.tags}
+  github={project.data.github}
+  status={project.data.status}
+>
+  <Content />
+</ProjectLayout>
