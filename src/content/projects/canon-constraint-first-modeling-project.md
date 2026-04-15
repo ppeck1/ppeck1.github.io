@@ -132,22 +132,3 @@ The repository currently includes:
 
 Important distinction: the hospital materials are **an application**, not the full scope of the framework.
 
-## What this demonstrates
-- Original systems thinking with a coherent governing layer
-- Ability to formalize an abstract concept into variables, operators, and execution semantics
-- Awareness that observation itself is a structural problem, not just a technical detail
-- A consistent design philosophy: preserve truth under load rather than optimize only for visible performance
-
-## Best images to keep with this post
-If only three images are used, these are the right three:
-- `canon_system_flow.svg`
-- `viability_boundary.svg`
-- `delta_c_chart.svg`
-
-They create the strongest sequence:
-1. what the framework is
-2. how viability is represented
-3. why the framework is operationally useful
-
-## Status
-Active… the framework is specified, diagrammed, and partially implementation-ready. The current repository presents both the general model and one domain application, with the general model kept as the governing layer.
