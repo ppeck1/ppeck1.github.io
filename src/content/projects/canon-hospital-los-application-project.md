@@ -54,12 +54,8 @@ A reduced retrospective execution form is then used to compute a latent stabilit
 Δc*(t) = 1.0·ΩV(t) − w2·Π(t) − w3·H(t) − w4·L_P(t)
 ```
 
-The repo is explicit that this operationalized form is an illustrative domain execution layer, not a replacement for the fuller canon.
-
 ## Data-to-state mapping
 ![Hospital data pipeline](/assets/Images/projects/data_pipeline.svg)
-
-This is the most important image for the application post.
 
 It shows the practical logic:
 - start with real operational data sources
@@ -86,11 +82,7 @@ That is exactly the kind of environment where a latent-state model has a better 
 ## Latent deterioration vs KPI-visible deterioration
 ![Latent divergence vs KPI](/assets/Images/projects/delta_c_chart.svg)
 
-This image still belongs here because it captures the operational hypothesis behind the whole application:
-
 **latent deterioration should become visible in the model before conventional KPI-visible deterioration becomes obvious in dashboards.**
-
-That is the reason to do this work at all.
 
 ## What the repository currently includes for the hospital application
 The hospital-specific layer already includes:
@@ -100,8 +92,6 @@ The hospital-specific layer already includes:
 - example cases
 - a retrospective evaluation design using public hospital event logs
 - execution guidance for a no-leakage evaluation pipeline
-
-That gives the project more credibility than a vague concept note. It is not just an idea for hospital operations. It is structured as a domain translation with explicit variables, data dependencies, and evaluation logic.
 
 ## What this project is not
 It is not:
@@ -119,28 +109,9 @@ Healthcare is unusually vulnerable to projection problems because:
 - coordination burden is real but unevenly visible
 - failure often emerges as a systems property rather than an individual mistake
 
-That makes hospital operations a strong proving ground for a framework designed to preserve truth under load.
-
 ## Relationship to the broader framework
 This post should stay explicit about inheritance:
 
 This is **one application** of CANON, not the totality of CANON.
 
 The broader framework is domain-general. Hospital LOS and bed flow are simply one place where the abstract model becomes concrete enough to inspect.
-
-## Best images to keep with this post
-If this post stays lean, keep:
-- `data_pipeline.svg`
-- `delta_c_chart.svg`
-
-Optional later addition:
-- a clean screenshot from `canon_los_atlas.html`, but only if the final captured image is visually strong and not cluttered
-
-## What this demonstrates
-- clinical operations thinking grounded in actual workflow strain
-- an attempt to bridge formal systems modeling with hospital reality
-- awareness that implementation depends on data structure, lag, and proxy quality
-- a more serious approach to throughput failure than simply tracking outputs and reacting late
-
-## Status
-Active… the application layer is conceptually strong, structurally specified, and mapped to existing hospital data sources, but it is still pre-validation. At this stage it reads best as a rigorous applied case study and prototype diagnostic architecture rather than a finished operational product.
