@@ -214,3 +214,4 @@ The architecture here is intentional. It is not the fastest path to a working de
 - **Whitepaper:** [Architecture rationale, design philosophy, and positioning](https://github.com/ppeck1/Bag-of-Holding/blob/main/docs/whitepaper.md)
 - **README:** [Quickstart, invariants, and API reference](https://github.com/ppeck1/Bag-of-Holding/blob/main/README.md)
 
+ 
