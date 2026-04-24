@@ -71,7 +71,7 @@ Nothing becomes canonical by accident. Canonical status requires explicit operat
 
 ## Architecture
 
-![Bag of Holding — Constraint-Aware Knowledge Architecture](/assets/Images/projects/boh/boh_system_blueprint.jpg)
+<div style="text-align: center; margin: 2rem 0;"> <img src="/assets/Images/projects/boh/boh_system_blueprint.jpg" alt="Bag of Holding — Constraint-Aware Knowledge Architecture" style="max-width: 100%; width: 1000px; border-radius: 8px;" /> </div>
 
 The system operates as a local knowledge OS with distinct layers:
 
@@ -91,7 +91,7 @@ The system operates as a local knowledge OS with distinct layers:
 
 ## Dashboard
 
-![Dashboard — knowledge base health at a glance](/assets/Images/projects/boh/boh_dashboard_screenshot.jpg)
+<div style="text-align: center; margin: 2rem 0;"> <img src="/assets/Images/projects/boh/boh_dashboard_screenshot.jpg" alt="Dashboard — knowledge base health at a glance" style="max-width: 100%; width: 1000px; border-radius: 8px;" /> </div>
 
 The dashboard shows corpus health: total docs, canonical count, open conflicts, lineage records, duplicate pairs, and recent document list with status, type, and lifecycle state visible at a glance.
 
@@ -99,7 +99,7 @@ The dashboard shows corpus health: total docs, canonical count, open conflicts, 
 
 ## Atlas — The Relationship Field
 
-![Atlas — force-directed relationship graph with zoom, pan, and edge hover](/assets/Images/projects/boh/boh_atlas_screenshot.jpg)
+<div style="text-align: center; margin: 2rem 0;"> <img src="/assets/Images/projects/boh/boh_atlas_screenshot.jpg" alt="Atlas — force-directed relationship graph with zoom, pan, and edge hover" style="max-width: 100%; width: 1000px; border-radius: 8px;" /> </div>
 
 Atlas is not decorative visualization.
 
@@ -111,7 +111,7 @@ Interaction model: scroll to zoom, drag canvas to pan, drag node to reposition, 
 
 ## LLM Governance
 
-![LLM Review Queue — proposals awaiting user review; nothing applies automatically](/assets/Images/projects/boh/boh_llm_queue_screenshot.jpg)
+<div style="text-align: center; margin: 2rem 0;"> <img src="/assets/Images/projects/boh/boh_llm_queue_screenshot.jpg" alt="LLM Review Queue — proposals awaiting user review; nothing applies automatically" style="max-width: 100%; width: 1000px; border-radius: 8px;" /> </div>
 
 The LLM integration is designed around a single architectural principle:
 
@@ -127,7 +127,7 @@ Every invocation is recorded in `llm_invocations` for audit.
 
 ## Canon & Conflicts
 
-![Canon & Conflicts — no auto-resolution](/assets/Images/projects/boh/boh_canon_screenshot.jpg)
+<div style="text-align: center; margin: 2rem 0;"> <img src="/assets/Images/projects/boh/boh_canon_screenshot.jpg" alt="Canon & Conflicts — no auto-resolution" style="max-width: 100%; width: 1000px; border-radius: 8px;" /> </div>
 
 Canon resolution is deterministic and explainable. Every document receives a canonical authority score based on its status, type, path, version, and recency. Same inputs, same output, every time — no inference, no weighting by usage, no drift.
 
@@ -137,7 +137,7 @@ Conflicts surface and stay surfaced. The Acknowledge button marks a conflict as 
 
 ## Library and Ingestion
 
-![Library — 107 documents with status, corpus class, type, and lifecycle state filters](/assets/Images/projects/boh/boh_library_screenshot.jpg)
+<div style="text-align: center; margin: 2rem 0;"> <img src="/assets/Images/projects/boh/boh_library_screenshot.jpg" alt="Library — 107 documents with status, corpus class, type, and lifecycle state filters" style="max-width: 100%; width: 1000px; border-radius: 8px;" /> </div> <div style="text-align: center; margin: 2rem 0;"> <img src="/assets/Images/projects/boh/boh_import_screenshot.jpg" alt="Import / Ingest — filesystem indexing with canon guard active" style="max-width: 100%; width: 1000px; border-radius: 8px;" /> </div>
 
 ![Import / Ingest — filesystem indexing with canon guard active](/assets/Images/projects/boh/boh_import_screenshot.jpg)
 
@@ -149,9 +149,7 @@ Ingestion includes a canon guard: snapshot imports cannot overwrite canonical do
 
 ## Governance and Status
 
-![Governance — Ollama invocation panel with task-scoped execution and workspace policies](/assets/Images/projects/boh/boh_governance_screenshot.jpg)
-
-![System Status — server health, library path, Ollama availability, index diagnostics](/assets/Images/projects/boh/boh_status_screenshot.jpg)
+<div style="text-align: center; margin: 2rem 0;"> <img src="/assets/Images/projects/boh/boh_governance_screenshot.jpg" alt="Governance — Ollama invocation panel with task-scoped execution and workspace policies" style="max-width: 100%; width: 1000px; border-radius: 8px;" /> </div> <div style="text-align: center; margin: 2rem 0;"> <img src="/assets/Images/projects/boh/boh_status_screenshot.jpg" alt="System Status — server health, library path, Ollama availability, index diagnostics" style="max-width: 100%; width: 1000px; border-radius: 8px;" /> </div>
 
 The Governance panel provides workspace policy management, Ollama task invocation, audit log access, and code execution. Every invocation is labeled "Non-authoritative · requires confirmation."
 
