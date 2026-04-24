@@ -139,8 +139,6 @@ Conflicts surface and stay surfaced. The Acknowledge button marks a conflict as 
 
 <div style="text-align: center; margin: 2rem 0;"> <img src="/assets/Images/projects/boh/boh_library_screenshot.jpg" alt="Library — 107 documents with status, corpus class, type, and lifecycle state filters" style="max-width: 100%; width: 1000px; border-radius: 8px;" /> </div> <div style="text-align: center; margin: 2rem 0;"> <img src="/assets/Images/projects/boh/boh_import_screenshot.jpg" alt="Import / Ingest — filesystem indexing with canon guard active" style="max-width: 100%; width: 1000px; border-radius: 8px;" /> </div>
 
-![Import / Ingest — filesystem indexing with canon guard active](/assets/Images/projects/boh/boh_import_screenshot.jpg)
-
 The Library panel exposes the full browseable corpus with multi-axis filtering: status, type, lifecycle state, and corpus class. Each document opens into a detail drawer with rendered Markdown, KaTeX math, related documents, Rubrix lifecycle controls, and lifecycle event history.
 
 Ingestion includes a canon guard: snapshot imports cannot overwrite canonical documents. Docs that would overwrite canon are skipped and reported, not silently discarded.
