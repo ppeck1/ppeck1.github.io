@@ -2,14 +2,13 @@
 // Notes.astro - Blog posts list
 import { getCollection } from 'astro:content';
 
-// Get all blog posts, sorted by date (newest first)
 const allPosts = await getCollection('blog', ({ data }) => {
   return data.draft !== true;
 });
 
-const posts = allPosts.sort((a, b) => 
+const posts = allPosts.sort((a, b) =>
   b.data.date.valueOf() - a.data.date.valueOf()
-).slice(0, 5); // Show latest 5 posts
+).slice(0, 5);
 
 function formatDate(date: Date) {
   return new Intl.DateTimeFormat('en-US', {
@@ -21,9 +20,9 @@ function formatDate(date: Date) {
 ---
 
 <div class="tab-panel" id="panel-notes">
-  <h2>Notes – Progress Notes & Reflections</h2>
-  
-  <p class="tldr"><strong>TL;DR notes:</strong> Active learning threads • Workflow geometry • AI integration experiments</p>
+  <h2>Notes - Progress Notes & Reflections</h2>
+
+  <p class="tldr"><strong>TL;DR notes:</strong> Active learning threads - Workflow geometry - AI integration experiments</p>
 
   <p>Lightweight "progress notes" on how my thinking and work are evolving.</p>
 
@@ -45,6 +44,11 @@ function formatDate(date: Date) {
               </div>
             )}
           </div>
+          {post.data.image && (
+            <a href={`/blog/${post.slug}`} class="post-image-link" aria-label={`Open ${post.data.title}`}>
+              <img src={post.data.image} alt={post.data.imageAlt || `${post.data.title} image`} loading="lazy" />
+            </a>
+          )}
           <h3>
             <a href={`/blog/${post.slug}`}>{post.data.title}</a>
           </h3>
@@ -102,6 +106,22 @@ function formatDate(date: Date) {
     color: var(--text-secondary);
   }
 
+  .post-image-link {
+    display: block;
+    margin: 0.75rem 0 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    overflow: hidden;
+    background: var(--bg-primary);
+  }
+
+  .post-image-link img {
+    display: block;
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+  }
+
   .post-tags {
     display: flex;
     gap: 0.5rem;
@@ -154,6 +174,10 @@ function formatDate(date: Date) {
     .post-meta {
       flex-direction: column;
       align-items: flex-start;
+    }
+
+    .post-image-link img {
+      height: 150px;
     }
   }
 </style>

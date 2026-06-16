@@ -4,8 +4,11 @@ description: "Re-architected a monolithic EMR-style resume into a structured Ast
 date: 2026-02-10
 tags: ["astro", "information-architecture", "ui", "content-system", "github-pages"]
 status: active
-repo: "https://github.com/ppeck1/ppeck1.github.io/tree/astro"
+github: "https://github.com/ppeck1/ppeck1.github.io"
 demo: "https://ppeck.me"
+image: "/assets/preview.png"
+imageAlt: "E-MyR portfolio preview showing an EMR-style portfolio interface."
+priority: 20
 ---
 
 > **TL;DR:** Rebuilt a single-file EMR-style resume into a structured Astro application with real routing, modular components, and deployable infrastructure… while preserving the clinical interface as a functional system, not just a visual theme.

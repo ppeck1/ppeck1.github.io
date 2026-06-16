@@ -4,7 +4,8 @@ description: "A systems-level model of influence showing how interpretation is r
 date: 2026-04-17
 tags: ["systems", "cognition", "healthcare", "social-engineering", "constraint", "CANON"]
 status: active
-repo: "https://github.com/ppeck1/canon-system"
+github: "https://github.com/ppeck1/canon-system"
+priority: 12
 ---
 
 > **TL;DR:** A CANON-aligned project artifact that extends constraint-first modeling into the cognitive plane… showing how action can be produced by interpretive compression under load rather than deception alone.

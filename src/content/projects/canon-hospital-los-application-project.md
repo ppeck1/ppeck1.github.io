@@ -4,8 +4,11 @@ description: "A hospital operations case study showing how a latent-state framew
 date: 2026-04-13
 tags: ["healthcare", "hospital-operations", "LOS", "bed-flow", "systems", "diagnostics", "clinical-informatics"]
 status: active
-repo: "https://github.com/ppeck1/canon-system"
+github: "https://github.com/ppeck1/canon-system"
 demo: "https://ppeck.me"
+image: "/assets/Images/projects/delta_c_chart.svg"
+imageAlt: "CANON chart showing latent deterioration before visible KPI failure."
+priority: 11
 ---
 
 > **TL;DR:** This project applies the broader CANON framework to hospital length-of-stay and bed-flow dynamics. The point is not to build another dashboard. The point is to model whether the unit is still structurally viable before visible throughput failure fully shows up in reported metrics.

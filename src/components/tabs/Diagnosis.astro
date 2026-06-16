@@ -3,14 +3,15 @@
 import { getCollection } from 'astro:content';
 
 const projects = await getCollection('projects');
-const sortedProjects = projects.sort((a, b) => 
+const sortedProjects = projects.sort((a, b) =>
+  (a.data.priority ?? 100) - (b.data.priority ?? 100) ||
   b.data.date.valueOf() - a.data.date.valueOf()
 );
 ---
 
 <div class="tab-panel" id="panel-diagnosis">
-  <h2>Diagnosis – Projects & Case Studies</h2>
-  
+  <h2>Diagnosis - Projects & Case Studies</h2>
+
   <p class="intro">Problem identification and solution design across clinical, biological, and creative systems.</p>
 
   <div class="projects-grid">
@@ -28,13 +29,27 @@ const sortedProjects = projects.sort((a, b) =>
     ) : (
       sortedProjects.map((project) => (
         <article class="project-card">
-          <h3><a href={`/projects/${project.slug}`}>{project.data.title}</a></h3>
-          <p>{project.data.description}</p>
-          {project.data.github && (
-            <a href={project.data.github} class="github-link" target="_blank" rel="noopener">
-              View on GitHub →
+          {project.data.image && (
+            <a href={`/projects/${project.slug}`} class="project-image-link" aria-label={`Open ${project.data.title}`}>
+              <img src={project.data.image} alt={project.data.imageAlt || `${project.data.title} screenshot`} loading="lazy" />
             </a>
           )}
+          <div class="project-card-body">
+            <h3><a href={`/projects/${project.slug}`}>{project.data.title}</a></h3>
+            <p>{project.data.description}</p>
+            <div class="project-actions">
+              {project.data.github && (
+                <a href={project.data.github} class="github-link" target="_blank" rel="noopener">
+                  GitHub -&gt;
+                </a>
+              )}
+              {project.data.demo && (
+                <a href={project.data.demo} class="github-link" target="_blank" rel="noopener">
+                  Demo -&gt;
+                </a>
+              )}
+            </div>
+          </div>
           <span class={`status-badge status-${project.data.status}`}>{project.data.status}</span>
         </article>
       ))
@@ -56,7 +71,7 @@ const sortedProjects = projects.sort((a, b) =>
   }
 
   .project-card {
-    padding: 1.5rem;
+    overflow: hidden;
     background: var(--bg-secondary);
     border: 1px solid var(--border-color);
     border-radius: 8px;
@@ -69,8 +84,26 @@ const sortedProjects = projects.sort((a, b) =>
     transform: translateY(-2px);
   }
 
+  .project-image-link {
+    display: block;
+    border-bottom: 1px solid var(--border-color);
+    background: var(--bg-primary);
+  }
+
+  .project-image-link img {
+    display: block;
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+  }
+
+  .project-card-body {
+    padding: 1.5rem;
+  }
+
   .project-card h3 {
     margin: 0 0 0.75rem 0;
+    padding-right: 5rem;
     font-size: 1.3rem;
   }
 
@@ -83,9 +116,15 @@ const sortedProjects = projects.sort((a, b) =>
     color: var(--color-teal);
   }
 
-  .github-link {
-    display: inline-block;
+  .project-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
     margin-top: 1rem;
+  }
+
+  .github-link {
+    display: inline-flex;
     color: var(--color-teal);
     font-size: 0.9rem;
   }
@@ -130,5 +169,11 @@ const sortedProjects = projects.sort((a, b) =>
 
   .placeholder li {
     margin: 0.5rem 0;
+  }
+
+  @media (max-width: 768px) {
+    .project-image-link img {
+      height: 170px;
+    }
   }
 </style>

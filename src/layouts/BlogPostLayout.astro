@@ -8,9 +8,11 @@ interface Props {
   description: string;
   date: Date;
   tags?: string[];
+  image?: string;
+  imageAlt?: string;
 }
 
-const { title, description, date, tags = [] } = Astro.props;
+const { title, description, date, tags = [], image, imageAlt } = Astro.props;
 
 function formatDate(date: Date) {
   return new Intl.DateTimeFormat('en-US', {
@@ -21,9 +23,9 @@ function formatDate(date: Date) {
 }
 ---
 
-<Layout title={`${title} — Paul Peck, RN`} description={description}>
+<Layout title={`${title} - Paul Peck, RN`} description={description}>
   <ThemeToggle />
-  
+
   <div class="blog-post-container">
     <nav class="back-nav">
       <a href="/#notes" class="back-link">
@@ -48,6 +50,12 @@ function formatDate(date: Date) {
           )}
         </div>
       </header>
+
+      {image && (
+        <figure class="post-hero">
+          <img src={image} alt={imageAlt || `${title} image`} />
+        </figure>
+      )}
 
       <div class="post-content">
         <slot />
@@ -135,6 +143,21 @@ function formatDate(date: Date) {
     border-radius: 4px;
     font-size: 0.85rem;
     color: var(--text-secondary);
+  }
+
+  .post-hero {
+    margin: 0 0 2rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--bg-primary);
+  }
+
+  .post-hero img {
+    display: block;
+    width: 100%;
+    max-height: 460px;
+    object-fit: contain;
   }
 
   .post-content {
@@ -229,11 +252,9 @@ function formatDate(date: Date) {
 </style>
 
 <script>
-  // When returning to chart, activate Notes tab
   const backLink = document.querySelector('.back-link');
   if (backLink) {
-    backLink.addEventListener('click', (e) => {
-      // Store that we want to open the Notes tab
+    backLink.addEventListener('click', () => {
       localStorage.setItem('emr-last-tab', 'notes');
     });
   }

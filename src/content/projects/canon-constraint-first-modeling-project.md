@@ -4,8 +4,12 @@ description: "A general latent-state framework for diagnosing whether a system r
 date: 2026-04-13
 tags: ["systems", "math", "constraint", "observability", "diagnostics", "latent-state", "healthcare"]
 status: active
-repo: "https://github.com/ppeck1/canon-system"
+github: "https://github.com/ppeck1/canon-system"
 demo: "https://ppeck.me"
+image: "/assets/Images/projects/canon_system_flow.svg"
+imageAlt: "CANON system flow diagram showing latent evolution, constraint boundary, and projected metrics."
+featured: true
+priority: 3
 ---
 
 > **TL;DR:** CANON is a constraint-first framework for modeling systems as evolving latent state rather than as a collection of visible metrics. It separates what the system **is** from what the dashboard **can see**, then asks the more important question: **is the system still viable?**

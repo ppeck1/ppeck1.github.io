@@ -4,8 +4,12 @@ description: "A local-first knowledge operating system for governed documents, r
 date: 2026-04-24
 tags: ["systems", "knowledge-architecture", "constraint", "LLM", "governance", "local-first", "python", "fastapi", "sqlite"]
 status: active
-repo: "https://github.com/ppeck1/Bag-of-Holding"
+github: "https://github.com/ppeck1/Bag-of-Holding"
 demo: "https://ppeck.me"
+image: "/assets/Images/projects/boh/boh_dashboard_screenshot.jpg"
+imageAlt: "Bag of Holding dashboard showing corpus health, canonical count, conflicts, and document state."
+featured: true
+priority: 1
 ---
 
 > **TL;DR:** Bag of Holding is a local knowledge operating system, not a notes app. It governs documents through an explicit lifecycle, enforces canonical authority, detects conflicts deterministically, and gates LLM assistance behind mandatory human review. The architecture treats knowledge stewardship as a systems engineering problem — not a storage problem.

@@ -9,10 +9,14 @@ interface Props {
   date: Date;
   tags?: string[];
   github?: string;
+  demo?: string;
+  image?: string;
+  imageAlt?: string;
+  links?: { label: string; url: string }[];
   status?: string;
 }
 
-const { title, description, date, tags = [], github, status = 'active' } = Astro.props;
+const { title, description, date, tags = [], github, demo, image, imageAlt, links = [], status = 'active' } = Astro.props;
 
 function formatDate(d: Date) {
   return new Intl.DateTimeFormat('en-US', {
@@ -23,7 +27,7 @@ function formatDate(d: Date) {
 }
 ---
 
-<Layout title={`${title} — Paul Peck, RN`} description={description}>
+<Layout title={`${title} - Paul Peck, RN`} description={description}>
   <ThemeToggle />
 
   <div class="project-container">
@@ -43,9 +47,13 @@ function formatDate(d: Date) {
           <time datetime={date.toISOString()}>{formatDate(date)}</time>
           <span class={`status status-${status}`}>{status}</span>
         </div>
-        {github && (
+        {(github || demo || links.length > 0) && (
           <p class="project-links">
-            <a href={github} target="_blank" rel="noopener">GitHub →</a>
+            {github && <a href={github} target="_blank" rel="noopener">GitHub -&gt;</a>}
+            {demo && <a href={demo} target="_blank" rel="noopener">Demo -&gt;</a>}
+            {links.map((link) => (
+              <a href={link.url} target="_blank" rel="noopener">{link.label} -&gt;</a>
+            ))}
           </p>
         )}
         {tags.length > 0 && (
@@ -56,6 +64,12 @@ function formatDate(d: Date) {
           </div>
         )}
       </header>
+
+      {image && (
+        <figure class="project-hero">
+          <img src={image} alt={imageAlt || `${title} screenshot`} />
+        </figure>
+      )}
 
       <div class="project-content">
         <slot />
@@ -154,6 +168,13 @@ function formatDate(d: Date) {
 
   .project-links {
     margin: 0.5rem 0 0.75rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .project-links a {
+    color: var(--color-teal);
   }
 
   .tags {
@@ -169,6 +190,21 @@ function formatDate(d: Date) {
     border-radius: 4px;
     font-size: 0.85rem;
     color: var(--text-secondary);
+  }
+
+  .project-hero {
+    margin: 0 0 2rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--bg-primary);
+  }
+
+  .project-hero img {
+    display: block;
+    width: 100%;
+    max-height: 520px;
+    object-fit: contain;
   }
 
   .project-content {
@@ -195,6 +231,12 @@ function formatDate(d: Date) {
     margin: 0.4rem 0;
   }
 
+  .project-content :global(img) {
+    max-width: 100%;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+  }
+
   @media (max-width: 768px) {
     .project-container {
       padding: 1rem;
@@ -209,7 +251,6 @@ function formatDate(d: Date) {
 </style>
 
 <script is:inline>
-  // When returning to chart, activate Diagnosis tab
   (function () {
     const backLink = document.querySelector('.back-link');
     if (backLink) {

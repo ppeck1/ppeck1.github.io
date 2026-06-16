@@ -4,9 +4,7 @@ import { getCollection } from 'astro:content';
 import ProjectLayout from '../../layouts/ProjectLayout.astro';
 
 export async function getStaticPaths() {
-  const projects = await getCollection('projects', ({ data }) => {
-    return true;
-  });
+  const projects = await getCollection('projects');
 
   return projects.map((project) => ({
     params: { slug: project.slug },
@@ -24,6 +22,10 @@ const { Content } = await project.render();
   date={project.data.date}
   tags={project.data.tags}
   github={project.data.github}
+  demo={project.data.demo}
+  image={project.data.image}
+  imageAlt={project.data.imageAlt}
+  links={project.data.links}
   status={project.data.status}
 >
   <Content />
