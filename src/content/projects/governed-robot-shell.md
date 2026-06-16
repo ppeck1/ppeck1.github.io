@@ -1,46 +1,60 @@
 ---
 title: "Governed Robot Shell - Safe Language-to-Action Prototype"
-description: "An early robotics shell where text commands become limited actions, pass safety checks, and only then reach a mock or simulator body."
-date: 2026-06-11
-tags: ["robotics", "llm", "safety", "simulation", "fastapi", "python", "governance"]
+description: "A decoupled robot-control prototype where LLM output becomes intent proposal, passes a safety gate, and only then reaches bounded actuators—demonstrating constraint-aware reasoning before motion authority."
+date: 2026-06-16
+tags: ["robotics", "llm", "safety", "governance", "safety-gate", "audit-log", "python"]
 github: "https://github.com/ppeck1/governed-robot-shell"
 status: active
-image: "/assets/project-shots/llm-robot-shell/dashboard-overview.png"
-imageAlt: "Governed Robot Shell simulator dashboard showing robot state, safety controls, and review panels."
+image: "/assets/project-shots/llm-robot-shell/governed-robot-shell-hero.jpg"
+imageAlt: "Governed Robot Shell architecture diagram showing Perception, Parse, Intent, Planner, Safety Gate, and Subsystem Dispatch, with labels for Authority Boundary, Audit Log, and E-stop override."
 featured: true
 priority: 5
 ---
 
-> **TL;DR:** Governed Robot Shell is a robot-control prototype built around one rule: text never directly controls motors, servos, GPIO, actuator angles, or locomotion.
-
 ## What it is
 
-The shell turns a user command into a limited internal action. That action is checked before anything reaches a mock or simulator body.
+A prototype decoupling LLM intelligence from direct actuator control. The core principle: intelligence should NOT automatically become actuator authority.
 
-This shell reduces commands through a finite pipeline:
+The pipeline is strict:
 
 ```text
-language input -> intent -> planned action -> safety validation -> body execution -> event log
+Perception (input)
+  ↓
+Parse (structure)
+  ↓
+Intent (LLM reading)
+  ↓
+Planner (constraint-aware reasoning)
+  ↓
+Safety Gate (human/authority check)
+  ↓
+Subsystem Dispatch
+  ↓
+Actuator
 ```
 
-## What the screenshot shows
+## Safety Architecture
 
-![Governed command flow with blocked movement](/assets/project-shots/llm-robot-shell/dashboard-command-flow.png)
+The safety gate model treats LLM output as a proposal, never as command.
 
-The dashboard screenshot shows both sides of the design: a normal expression command approved through the pipeline and a movement command blocked by the safety gate.
+- **Perception layer**: raw input from interface (CLI, dashboard, sensor events)
+- **Parse layer**: convert input to controlled intent labels
+- **Intent layer**: keyword→intent mapping; future LLM assistance
+- **Planner layer**: finite action vocabulary (no raw servo angles, no GPIO direct calls)
+- **Safety Gate layer**: state-aware approval/block using config-based rules
+- **Subsystem dispatch**: routes approved actions to bounded backends
+- **Actuator layer**: mock body by default; servo/hardware opt-in only
 
-This is an early architecture prototype, not a production robotics safety system. The value is in the boundary design:
+Every action is logged with full provenance: timestamp, raw input, intent, planned action, approval decision, reason, state snapshot.
 
-- central action registry
-- state-aware safety checks that fail closed on unknown actions
-- mock body by default
-- optional simulator body
-- explicit opt-in hardware backend skeleton
-- append-only JSONL event kernel
+## Hard Boundaries
+
+Movement and locomotion remain blocked by design. The shell demonstrates expression-only movement (head turns, eyelid flutter) with bounded servo angles.
+
+Hard override always available: E-stop and manual movement controls bypass normal pipeline without touching safety logic.
+
+Unknown actions fail closed. Unrecognized intents default to safe idle behavior.
 
 ## What This Demonstrates
 
-- Turning natural language into bounded internal action
-- Safety gates as architecture, not prose
-- Prototype honesty around hardware and locomotion
-- A practical model for AI as proposal/input, not actuator authority
+How to gate AI proposals through human authority and constraint models. How to separate intelligence (reasoning about what to do) from authority (permission to actually do it). That safety architecture, not safety prose, is what prevents accidents.

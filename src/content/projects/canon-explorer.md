@@ -36,7 +36,7 @@ The local screenshots include binary, Life, trinary, and Wireworld modes. The po
 
 ## What This Demonstrates
 
+- CANON concepts translated into inspectable rule evolution
 - Visual reasoning about latent system behavior
-- CANON ideas translated into an inspectable laboratory
 - Multiple rule families under one exploratory UI
-- A bridge between abstract systems theory and visible interaction
+- How constraint persistence surfaces before visible collapse

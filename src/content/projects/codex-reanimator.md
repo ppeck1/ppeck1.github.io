@@ -34,4 +34,4 @@ The README describes:
 - Artifact recovery as a reviewable workflow
 - Provenance preservation during format conversion
 - Windows-first packaging and CLI/app surfaces
-- A bridge between messy source material and durable Markdown
+- Converting archived HTML into provenance-preserved Markdown without losing material

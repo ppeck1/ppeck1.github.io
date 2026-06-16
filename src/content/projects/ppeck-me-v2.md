@@ -170,7 +170,7 @@ This project is no longer a “creative resume.”
 
 It is a **structured, deployable system** that demonstrates:
 
-- clinical → technical translation
+- EMR patterns mapped into sustainable web architecture
 - workflow thinking applied to software
 - ability to turn an idea into a maintainable architecture
 
