@@ -4,6 +4,7 @@ description: "HTML atlases exploring knowledge needed before modern systems hid 
 date: 2026-06-16
 tags: ["knowledge-architecture", "craft", "resilience", "education", "systems", "html"]
 status: active
+demo: "/demo/pre-industrialization/"
 image: "/assets/project-shots/pre-industrialization/lens-v1.png"
 imageAlt: "Pre-Industrialization Knowledge Canon showing Provision, Protection, and Meaning framework"
 priority: 13
@@ -44,3 +45,23 @@ Educational knowledge design for systems literacy without flattening material gr
 ## Publication Boundary
 
 Local artifact set. No public source repo.
+
+---
+
+## Try It
+
+<div class="demo-embed">
+  <div class="demo-bar">
+    <span>Pre-Industrialization Lens on Craft — V1.0</span>
+    <a href="/demo/pre-industrialization/" target="_blank" rel="noopener">Open full screen ↗</a>
+  </div>
+  <iframe
+    src="/demo/pre-industrialization/"
+    width="100%"
+    height="620"
+    title="Pre-Industrialization Knowledge Canon interactive demo"
+    loading="lazy"
+  ></iframe>
+</div>
+
+Also available: [Kid-readable version](/demo/pre-industrialization/kid-atlas.html) of the canon.

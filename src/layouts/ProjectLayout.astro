@@ -238,6 +238,40 @@ function formatDate(d: Date) {
     border: 1px solid var(--border-color);
   }
 
+  .project-content :global(.demo-embed) {
+    margin: 2rem 0;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .project-content :global(.demo-bar) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    background: var(--bg-primary);
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--border-color);
+    font-family: monospace;
+  }
+
+  .project-content :global(.demo-bar a) {
+    color: var(--color-teal);
+    text-decoration: none;
+  }
+
+  .project-content :global(.demo-bar a:hover) {
+    text-decoration: underline;
+  }
+
+  .project-content :global(.demo-embed iframe) {
+    display: block;
+    width: 100%;
+    border: none;
+  }
+
   @media (max-width: 768px) {
     .project-container {
       padding: 1rem;

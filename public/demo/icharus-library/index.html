@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Icharus Library — Deep Edition</title>
+<style>
+:root{
+  --bg:#fbfaf8; --ink:#1f1f1f; --muted:#4b4b4b;
+  --card:#ffffff; --line:#e6e2da;
+  --gold:#c9b458; --blue:#4f86d7; --shadow: 0 8px 22px rgba(0,0,0,.06);
+}
+body{margin:0; background:var(--bg); color:var(--ink); font-family: Georgia, serif; line-height:1.7;}
+main{max-width:980px; margin:0 auto; padding:28px 18px 80px;}
+header{background:linear-gradient(180deg,#ffffff 0%, var(--bg) 100%); border-bottom:1px solid var(--line);}
+header .wrap{max-width:980px; margin:0 auto; padding:28px 18px;}
+h1{font-family: "Trebuchet MS", system-ui, sans-serif; font-size:2.2rem; margin:0 0 8px;}
+p.lead{margin:0; color:var(--muted); font-size:1.05rem;}
+.badge{display:inline-block; font-size:.78rem; letter-spacing:.02em; padding:.18rem .5rem; border-radius:999px; background:#f4f1e7; border:1px solid var(--line); color:#463e24; margin-right:.35rem;}
+.card{background:var(--card); border:1px solid var(--line); border-radius:16px; box-shadow:var(--shadow); padding:16px 16px; margin:18px 0;}
+h2{font-family:"Trebuchet MS", system-ui, sans-serif; margin:34px 0 12px; font-size:1.6rem;}
+h3{font-family:"Trebuchet MS", system-ui, sans-serif; margin:18px 0 8px; font-size:1.25rem;}
+details.role{background:var(--card); border:1px solid var(--line); border-radius:16px; box-shadow:var(--shadow); margin:14px 0; overflow:hidden;}
+details.role > summary{cursor:pointer; list-style:none; padding:14px 16px; display:flex; align-items:baseline; justify-content:space-between; gap:12px;}
+details.role > summary::-webkit-details-marker{display:none;}
+.role-title{font-family:"Trebuchet MS", system-ui, sans-serif; font-size:1.18rem;}
+.role-sub{color:var(--muted); font-size:.95rem;}
+.role-body{padding:0 16px 16px;}
+.role-body h4{font-family:"Trebuchet MS", system-ui, sans-serif; margin:16px 0 6px; font-size:1.02rem;}
+.story{background:#fffaf0; border-left:6px solid var(--gold); padding:12px 12px; border-radius:10px; margin:12px 0; border:1px solid #efe6c8;}
+.story-head{color:#3d361f; margin-bottom:6px;}
+.origin{color:#6a6147; font-size:.92rem;}
+.lesson{color:#3d361f; margin:6px 0 0;}
+.now{background:#eef5ff; border-left:6px solid var(--blue); padding:12px 12px; border-radius:10px; margin:14px 0 0; border:1px solid #d9e8ff;}
+.small{color:var(--muted); font-size:.98rem;}
+hr{border:0; border-top:1px solid var(--line); margin:22px 0;}
+ul{margin:8px 0 8px 22px;}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>The Icharus Library — Deep Edition</h1>
+    <p class="lead">A mind-opening library of old human know-how… written so an 8-year-old can understand now, and still understand later.</p>
+  </div>
+</header>
+<main>
+
+<div class="card">
+  <h3>How to use this library</h3>
+  <p>
+    Each section is a <strong>drop-down</strong>. Tap one to open it. You’ll find:
+  </p>
+  <ul>
+    <li><strong>What / How / Who / When / Where / Why</strong> (the “full picture”)</li>
+    <li><strong>Tools & tiny rules</strong> (small habits that keep things working)</li>
+    <li><strong>Common mistakes</strong> (because humans learn by messing up)</li>
+    <li><strong>Stories</strong> from many cultures (stories are how knowledge survives time)</li>
+    <li><strong>How it applies now</strong> (so it isn’t just history)</li>
+  </ul>
+  <p class="small">
+    Note: This library uses stories and simple language on purpose. Stories are like “mind containers” — they help big ideas stay safe in your head without breaking.
+  </p>
+</div>
+
+<div class="card">
+  <h3>The Icharus reminder</h3>
+  <p>
+    Icharus flew with wings made of wax. He rose higher and higher, forgot the sun, and fell.
+    Knowledge can be like wings: it can lift you… or burn you… depending on how you use it.
+  </p>
+  <p class="small">
+    This library is not about flying higher. It is about flying <em>longer</em>.
+  </p>
+</div>
+
+<h2>How People Stayed Alive</h2>
+
+    <details class="role">
+      <summary>
+        <span class="role-title">Growing Food</span>
+        <span class="role-sub">(The Garden Listener)</span>
+      </summary>
+      <div class="role-body">
+
+        <h4>What is it?</h4>
+        <p>Growing food means helping living things become tomorrow’s meals. It’s not just planting. It’s paying attention: soil, water, sun, bugs, and seasons.</p>
+
+        <h4>How does it work?</h4>
+        <p>You start with the ground. You loosen it, feed it, and protect it. You choose seeds that match your place. You plant at the right time, water gently, and wait. Then you notice problems early (too dry, too wet, hungry insects) and fix them before they grow into disasters.</p>
+
+        <h4>Who did it?</h4>
+        <p>Farmers, gardeners, foragers, seed keepers, herders, and children who helped. In many villages, everyone did a little: carrying water, pulling weeds, chasing birds, and learning which plants are friends and which are tricksters.</p>
+
+        <h4>When did it happen?</h4>
+        <p>Every day, but especially at “change times”: spring planting, summer tending, autumn harvest, and winter storing. People planned for hungry months, not just happy weeks.</p>
+
+        <h4>Where did it happen?</h4>
+        <p>Near homes, along rivers, on terraces in mountains, in forest edges, on islands, in deserts—everywhere humans lived. The method changed, but the job stayed: help life keep life going.</p>
+
+        <h4>Why did it matter?</h4>
+        <p>Because food is the first promise: if we can eat, we can learn, laugh, heal, and dream. Also because growing teaches a deep rule: you cannot rush living things without breaking them.</p>
+
+        <h4>Tools, skills, and “tiny rules”</h4>
+        <p>Seeds saved in jars. Sticks, hoes, digging tools. Compost. Mulch. Rain barrels. Tiny rules: plant with the season, not with impatience; keep soil covered; rotate crops; save the best seeds; share extra harvest so the village stays strong.</p>
+
+        <h4>Common mistakes (and what they teach)</h4>
+        <p>Planting too early because you feel excited. Watering too much because you feel worried. Ignoring little bugs until they become an army. Forgetting to rest the soil. Mistakes teach the same lesson: feelings are real… but seasons still exist.</p>
+
+        <h4>Try it (kid-sized)</h4>
+        <p>Put a bean in a clear cup with a wet paper towel. Watch roots grow. Draw a ‘plant diary’ for 7 days: what changed? what stayed? what did it need?</p>
+
+        <h4>Stories from many places</h4>
+        <div class="story">
+          <div class="story-head"><span class="badge">Story</span> <strong>The Three Sisters</strong> <span class="origin">(Haudenosaunee (Iroquois) teaching)</span></div>
+          <p>Corn grows tall. Beans climb corn. Squash spreads wide and shades the soil. They protect and feed each other. Planted together, they become stronger than alone.</p>
+          <p class="lesson"><strong>What it teaches:</strong> A good team is not identical. Each part does a different job, and the jobs fit.</p>
+        </div>
+<div class="story">
+          <div class="story-head"><span class="badge">Proverb</span> <strong>“If you want to go fast, go alone. If you want to go far, go together.”</strong> <span class="origin">(Often attributed to West African wisdom (shared across many cultures))</span></div>
+          <p>A short saying that reminds people that distance is a team sport.</p>
+          <p class="lesson"><strong>What it teaches:</strong> Long-term success is usually shared success.</p>
+        </div>
+<div class="story">
+          <div class="story-head"><span class="badge">Fable</span> <strong>The Ant and the Grasshopper</strong> <span class="origin">(Aesop (Greek tradition))</span></div>
+          <p>The ant stores food during warm days. The grasshopper sings and plays. When winter comes, the ant can eat. The grasshopper is hungry.</p>
+          <p class="lesson"><strong>What it teaches:</strong> Play matters, but preparing for hard seasons matters too.</p>
+        </div>
+<div class="story">
+          <div class="story-head"><span class="badge">Idiom</span> <strong>“Make hay while the sun shines.”</strong> <span class="origin">(English farming idiom (similar ideas worldwide))</span></div>
+          <p>When weather is good, you do the work you can—because you don’t control the sky.</p>
+          <p class="lesson"><strong>What it teaches:</strong> Use good moments wisely, because conditions change.</p>
+        </div>
+
+        <div class="now">
+          <h4>How it applies now</h4>
+          <p>Today we buy food at stores, but the old skills still help: noticing patterns, planning ahead, sharing extras, and respecting real limits. Even in school: study a little often (tending), instead of cramming once (panic-watering).</p>
+        </div>
+
+      </div>
+    </details>
+    
+
+    <details class="role">
+      <summary>
+        <span class="role-title">Water and Storage</span>
+        <span class="role-sub">(The Thirst-Protector)</span>
+      </summary>
+      <div class="role-body">
+
+        <h4>What is it?</h4>
+        <p>This role is about finding clean water, keeping it clean, and saving it for later. Water is invisible danger if you ignore it, and invisible safety if you respect it.</p>
+
+        <h4>How does it work?</h4>
+        <p>People looked for springs, rivers, rain, and wells. They learned which water is safe, how to filter with cloth, sand, or charcoal, and how to boil. They stored water in clay jars, kept lids on, and separated dirty tasks (washing) from drinking water.</p>
+
+        <h4>Who did it?</h4>
+        <p>Well diggers, water carriers, potters who made jars, and families who kept “water rules.” In many places, children learned early: water is not a toy. It’s life.</p>
+
+        <h4>When did it happen?</h4>
+        <p>Daily, and especially during droughts, long trips, illness, and hot seasons. Also after storms and floods, when water can look clean but carry sickness.</p>
+
+        <h4>Where did it happen?</h4>
+        <p>Everywhere—deserts used clever cisterns, islands used rain catchers, mountains used channels, and cities built aqueducts. The shape changes; the need doesn’t.</p>
+
+        <h4>Why did it matter?</h4>
+        <p>Because without water, food can’t grow and bodies can’t work. And because bad water can spread sickness fast through a whole community.</p>
+
+        <h4>Tools, skills, and “tiny rules”</h4>
+        <p>Clay pots, gourds, leather skins, buckets, wells, simple filters, fire for boiling. Tiny rules: separate drinking water, wash hands, don’t let animals step in storage water, and learn where ‘upstream’ is.</p>
+
+        <h4>Common mistakes (and what they teach)</h4>
+        <p>Thinking clear water is always safe. Letting a dirty cup touch clean storage. Forgetting to cover water and inviting bugs. Not labeling which water is for what.</p>
+
+        <h4>Try it (kid-sized)</h4>
+        <p>Make a simple filter with a bottle: cloth + sand + charcoal (adult help). Pour muddy water through and observe: clearer doesn’t always mean safe—talk about boiling.</p>
+
+        <h4>Stories from many places</h4>
+        <div class="story">
+          <div class="story-head"><span class="badge">Parable</span> <strong>The Two Wells</strong> <span class="origin">(Middle Eastern folktale themes (various retellings))</span></div>
+          <p>One village kept their well covered and clean. Another left theirs open and tossed scraps nearby. When sickness came, the first village had fewer problems.</p>
+          <p class="lesson"><strong>What it teaches:</strong> Care today prevents emergencies tomorrow.</p>
+        </div>
+<div class="story">
+          <div class="story-head"><span class="badge">Proverb</span> <strong>“Don’t foul the water you must drink.”</strong> <span class="origin">(Found in many cultures (variants across Europe/Asia))</span></div>
+          <p>A warning that you will meet your own choices again.</p>
+          <p class="lesson"><strong>What it teaches:</strong> Hurting shared resources hurts you too.</p>
+        </div>
+<div class="story">
+          <div class="story-head"><span class="badge">Idiom</span> <strong>“Still waters run deep.”</strong> <span class="origin">(Common European idiom)</span></div>
+          <p>Quiet water can be more powerful than noisy waves.</p>
+          <p class="lesson"><strong>What it teaches:</strong> Calm-looking things can carry strength—or risk—so pay attention.</p>
+        </div>
+<div class="story">
+          <div class="story-head"><span class="badge">Story</span> <strong>The Rain Jar</strong> <span class="origin">(Pacific Islander rain-catch traditions (general))</span></div>
+          <p>Families placed jars under roof edges to catch rain. Children learned to check lids and keep insects out.</p>
+          <p class="lesson"><strong>What it teaches:</strong> Small habits protect big needs.</p>
+        </div>
+
+        <div class="now">
+          <h4>How it applies now</h4>
+          <p>Modern life has pipes and bottles, but the lesson stays: protect what you depend on. This applies to your body (sleep and hydration), your friendships (trust), and your devices (passwords). Don’t ‘dirty’ the things you need later.</p>
+        </div>
+
+      </div>
+    </details>
+    
+
+    <details class="role">
+      <summary>
+        <span class="role-title">Making Tools and Homes</span>
+        <span class="role-sub">(The Fixer-Builder)</span>
+      </summary>
+      <div class="role-body">
+
+        <h4>What is it?</h4>
+        <p>Making is turning raw things into helpful things: a bowl, a shirt, a roof, a hook, a handle. It’s also fixing what breaks instead of throwing it away.</p>
+
+        <h4>How does it work?</h4>
+        <p>Makers learned materials: wood grain, stone, clay, fiber, leather, bone, metal. They practiced small steps: measure, cut, shape, test, adjust. Apprentices watched, copied, and learned by doing.</p>
+
+        <h4>Who did it?</h4>
+        <p>Carpenters, potters, weavers, blacksmiths, tanners, builders, and anyone who repaired daily tools. Often one maker served a whole neighborhood, and the neighborhood helped when big work was needed.</p>
+
+        <h4>When did it happen?</h4>
+        <p>All year. Repair spikes after storms, during travel, and before winter. Making also followed festivals and life events: new homes, new babies, marriages, funerals.</p>
+
+        <h4>Where did it happen?</h4>
+        <p>Workshops, home yards, shared ovens, village greens, riverbanks (for clay), forests (for wood). The maker’s space was usually near people, because repair must be close to use.</p>
+
+        <h4>Why did it matter?</h4>
+        <p>Because tools multiply human strength. A good needle turns thread into warmth. A good roof turns rain into safety. And repair teaches a powerful truth: you are not helpless when something breaks.</p>
+
+        <h4>Tools, skills, and “tiny rules”</h4>
+        <p>Needles, looms, knives, chisels, hammers, fire, molds, measuring cords. Tiny rules: sharpen tools; keep fire safe; measure twice; test on scraps; learn from failures.</p>
+
+        <h4>Common mistakes (and what they teach)</h4>
+        <p>Rushing cuts. Using the wrong material for the job. Ignoring safety with fire. Making something fancy that breaks fast. Repairing only the outside instead of the cause.</p>
+
+        <h4>Try it (kid-sized)</h4>
+        <p>Pick a simple broken item (a toy, a strap, a button). With adult help, fix it. Then name what the break was ‘asking for’: stronger thread? a better knot? gentler use?</p>
+
+        <h4>Stories from many places</h4>
+        <div class="story">
+          <div class="story-head"><span class="badge">Story</span> <strong>Kintsugi (Golden Repair)</strong> <span class="origin">(Japan)</span></div>
+          <p>A bowl breaks. Instead of hiding the crack, it is repaired with lacquer and gold. The bowl becomes more precious because its story is visible.</p>
+          <p class="lesson"><strong>What it teaches:</strong> Repair can add strength and meaning, not shame.</p>
+        </div>
+<div class="story">
+          <div class="story-head"><span class="badge">Fable</span> <strong>The Bundle of Sticks</strong> <span class="origin">(Aesop / widespread folk motif)</span></div>
+          <p>One stick snaps easily. A bundle is hard to break. The lesson is taught through a simple object.</p>
+          <p class="lesson"><strong>What it teaches:</strong> Strength often comes from joining, not from being ‘tough’ alone.</p>
+        </div>
+<div class="story">
+          <div class="story-head"><span class="badge">Proverb</span> <strong>“A stitch in time saves nine.”</strong> <span class="origin">(English (repair wisdom))</span></div>
+          <p>Fix a small tear now, or it becomes a big rip later.</p>
+          <p class="lesson"><strong>What it teaches:</strong> Small maintenance prevents big disasters.</p>
+        </div>
+<div class="story">
+          <div class="story-head"><span class="badge">Idiom</span> <strong>“Use the right tool for the job.”</strong> <span class="origin">(Modern phrasing; ancient truth worldwide)</span></div>
+          <p>Different problems need different approaches.</p>
+          <p class="lesson"><strong>What it teaches:</strong> Matching tools to tasks is wisdom.</p>
+        </div>
+
+        <div class="now">
+          <h4>How it applies now</h4>
+          <p>Today, making still matters: cooking, fixing, building, crafting, coding. Even feelings are ‘repairable’ with the right tools: apology, rest, asking for help. The maker mindset says: slow down, test, and improve—don’t panic and smash.</p>
+        </div>
+
+      </div>
+    </details>
+    
+
+    <details class="role">
+      <summary>
+        <span class="role-title">Carrying and Trading</span>
+        <span class="role-sub">(The Bridge-Walker)</span>
+      </summary>
+      <div class="role-body">
+
+        <h4>What is it?</h4>
+        <p>Trade is moving things people need: salt, cloth, food, stories, news. Carrying is trade’s muscles: boats, carts, packs, and feet.</p>
+
+        <h4>How does it work?</h4>
+        <p>Traders learned routes, seasons, dangers, and who could be trusted. They learned weights and measures. They also learned negotiation: not ‘winning,’ but ‘both sides can live with this.’</p>
+
+        <h4>Who did it?</h4>
+        <p>Merchants, caravan leaders, sailors, peddlers, market organizers, and translators. Often traders were also diplomats: they kept peace by connecting groups.</p>
+
+        <h4>When did it happen?</h4>
+        <p>Markets were weekly or seasonal. Long trips waited for safer weather. Trading also increased after harvest and before winter.</p>
+
+        <h4>Where did it happen?</h4>
+        <p>Crossroads, rivers, ports, mountain passes, city gates, and market squares. Trade happens where paths meet.</p>
+
+        <h4>Why did it matter?</h4>
+        <p>Because no one place has everything. Trade turns ‘lack’ into ‘connection.’ It also spreads ideas—sometimes helpful, sometimes dangerous—so it requires care.</p>
+
+        <h4>Tools, skills, and “tiny rules”</h4>
+        <p>Scales, measuring cups, ropes, ledgers (later), maps, memory, languages. Tiny rules: be fair; keep promises; know what your goods are worth; don’t take advantage of desperation.</p>
+
+        <h4>Common mistakes (and what they teach)</h4>
+        <p>Cheating once and losing trust forever. Carrying too much and collapsing. Trading without understanding local customs. Spreading rumors as ‘news.’</p>
+
+        <h4>Try it (kid-sized)</h4>
+        <p>Trade game: you and a friend each get different ‘tokens’ (paper shapes). Try to trade until both of you can build a full set. Notice what makes trades feel fair.</p>
+
+        <h4>Stories from many places</h4>
+        <div class="story">
+          <div class="story-head"><span class="badge">Idiom</span> <strong>“My word is my bond.”</strong> <span class="origin">(Merchant ethics (strong in many trading cultures))</span></div>
+          <p>A promise is treated like a rope tying you to someone else.</p>
+          <p class="lesson"><strong>What it teaches:</strong> Trust is currency that can’t be printed.</p>
+        </div>
+<div class="story">
+          <div class="story-head"><span class="badge">Fable</span> <strong>The Honest Woodcutter</strong> <span class="origin">(Greek/Indian variants exist)</span></div>
+          <p>A woodcutter loses an axe. Offered a gold one, he refuses because it isn’t his. He is rewarded for honesty.</p>
+          <p class="lesson"><strong>What it teaches:</strong> Honesty builds long-term strength.</p>
+        </div>
+<div class="story">
+          <div class="story-head"><span class="badge">Proverb</span> <strong>“Trust arrives on foot and leaves on horseback.”</strong> <span class="origin">(Dutch proverb (variants across Europe))</span></div>
+          <p>Trust is slow to build and quick to lose.</p>
+          <p class="lesson"><strong>What it teaches:</strong> Protect trust like food storage.</p>
+        </div>
+<div class="story">
+          <div class="story-head"><span class="badge">Story</span> <strong>The Silk Road as a Thread</strong> <span class="origin">(Eurasian history (many peoples))</span></div>
+          <p>A network of routes connected distant lands. Goods traveled, but so did music, stories, and inventions.</p>
+          <p class="lesson"><strong>What it teaches:</strong> Connections can grow the world—but they also carry risks, so wisdom must travel too.</p>
+        </div>
+
+        <div class="now">
+          <h4>How it applies now</h4>
+          <p>Today we still trade: money, time, attention, favors. Online markets are faster, but trust is still slow. The old lesson applies: be careful what you carry (gossip, anger, lies) because you deliver it into other people’s lives.</p>
+        </div>
+
+      </div>
+    </details>
+    
+<h2>How Harm Was Kept Small</h2>
+
+    <details class="role">
+      <summary>
+        <span class="role-title">Community Defense</span>
+        <span class="role-sub">(The Night Watch)</span>
+      </summary>
+      <div class="role-body">
+
+        <h4>What is it?</h4>
+        <p>Defense is keeping people safe from sudden harm: нападение (attack), theft, wild animals, storms, fire. It’s protection with boundaries, not domination.</p>
+
+        <h4>How does it work?</h4>
+        <p>Communities used watches, signals, and shared drills. They built walls or fences when needed. They trained with tools for hunting and defense. Most important: they coordinated—one person warns, all respond.</p>
+
+        <h4>Who did it?</h4>
+        <p>Guards, scouts, hunters, elders who planned, and neighbors who showed up when the alarm sounded. Defense wasn’t only ‘fighters.’ It included the people who made food, bandages, and plans.</p>
+
+        <h4>When did it happen?</h4>
+        <p>At night, during travel, during harvest (when food is stored), and during conflict seasons. Also during disasters like floods and fires.</p>
+
+        <h4>Where did it happen?</h4>
+        <p>Village edges, gates, lookout points, forest borders, river crossings. Defense happens where “inside” meets “outside.”</p>
+
+        <h4>Why did it matter?</h4>
+        <p>Because safety lets learning and joy exist. Without safety, everyone lives in panic, and panic breaks communities.</p>
+
+        <h4>Tools, skills, and “tiny rules”</h4>
+        <p>Drums, horns, bells, fires, watch rotations, simple weapons, safe storage. Tiny rules: don’t cry wolf; practice signals; protect children first; don’t confuse bravery with recklessness.</p>
+
+        <h4>Common mistakes (and what they teach)</h4>
+        <p>Overreacting and hurting innocents. Ignoring small warnings. Treating outsiders as enemies by default. Letting fear become the leader.</p>
+
+        <h4>Try it (kid-sized)</h4>
+        <p>Make a family ‘signal plan’ for emergencies (fire alarm, lost at store). Practice calmly once. The goal is not fear. The goal is readiness.</p>
+
+        <h4>Stories from many places</h4>
+        <div class="story">
+          <div class="story-head"><span class="badge">Story</span> <strong>The Village Drum</strong> <span class="origin">(West African folktale motifs)</span></div>
+          <p>A drum sounds when danger comes. The drum isn’t ‘just noise.’ It is shared attention.</p>
+          <p class="lesson"><strong>What it teaches:</strong> Warnings only help if the group listens and responds together.</p>
+        </div>
+<div class="story">
+          <div class="story-head"><span class="badge">Fable</span> <strong>The Boy Who Cried Wolf</strong> <span class="origin">(Aesop (Greek tradition))</span></div>
+          <p>A boy lies about danger for fun. When real danger comes, no one believes him.</p>
+          <p class="lesson"><strong>What it teaches:</strong> Trust is part of safety.</p>
+        </div>
+<div class="story">
+          <div class="story-head"><span class="badge">Proverb</span> <strong>“An ounce of prevention is worth a pound of cure.”</strong> <span class="origin">(Common proverb (popularized in English))</span></div>
+          <p>Small prevention beats big emergencies.</p>
+          <p class="lesson"><strong>What it teaches:</strong> Practice and preparation are kindness.</p>
+        </div>
+<div class="story">
+          <div class="story-head"><span class="badge">Idiom</span> <strong>“Keep your powder dry.”</strong> <span class="origin">(Old military idiom; modern meaning)</span></div>
+          <p>Stay ready and calm.</p>
+          <p class="lesson"><strong>What it teaches:</strong> Preparedness is quiet.</p>
+        </div>
+
+        <div class="now">
+          <h4>How it applies now</h4>
+          <p>Today, defense includes cyber safety, safe adults, emergency plans, and community care. The key is still the same: shared signals, practiced responses, and not letting fear run the whole town (or the internet).</p>
+        </div>
+
+      </div>
+    </details>
+    
+
+    <details class="role">
+      <summary>
+        <span class="role-title">Law and Fairness</span>
+        <span class="role-sub">(The Fence-Mender)</span>
+      </summary>
+      <div class="role-body">
+
+        <h4>What is it?</h4>
+        <p>Law is the community’s ‘fairness memory.’ It answers: What happens when someone hurts someone else? In many places, the goal was to repair the tear in the community, not just punish.</p>
+
+        <h4>How does it work?</h4>
+        <p>Communities used councils, elders, witnesses, and storytelling to remember rules. They asked questions, listened to both sides, and chose actions that restored safety and trust.</p>
+
+        <h4>Who did it?</h4>
+        <p>Elders, judges, councils, mediators, respected neighbors, and witnesses. Sometimes spiritual leaders also helped because fairness was tied to meaning.</p>
+
+        <h4>When did it happen?</h4>
+        <p>Whenever harm happened: theft, lies, violence, broken promises. Also during festivals and meetings, rules were repeated so children learned them.</p>
+
+        <h4>Where did it happen?</h4>
+        <p>Meeting circles, longhouses, courtyards, under trees, in town squares. Fairness needs a place where voices can be heard.</p>
+
+        <h4>Why did it matter?</h4>
+        <p>Because groups fall apart without fairness. People stop helping. Fear grows. Revenge spreads. Fairness is not ‘nice.’ It’s a survival tool for communities.</p>
+
+        <h4>Tools, skills, and “tiny rules”</h4>
+        <p>Witnesses, memory, oaths, ceremonies, restitution (paying back), apology, boundaries. Tiny rules: listen; don’t decide too fast; separate facts from anger; protect the weak; repair what can be repaired.</p>
+
+        <h4>Common mistakes (and what they teach)</h4>
+        <p>Punishing to feel powerful. Listening only to the loudest voice. Forgetting the harmed person. Making rules that help the strong and crush the weak.</p>
+
+        <h4>Try it (kid-sized)</h4>
+        <p>Family fairness circle: when there’s a conflict, try ‘facts first.’ Each person says what happened without insults. Then everyone suggests one repair action.</p>
+
+        <h4>Stories from many places</h4>
+        <div class="story">
+          <div class="story-head"><span class="badge">Parable</span> <strong>The Broken Fence</strong> <span class="origin">(Common restorative-justice teaching (many cultures))</span></div>
+          <p>A child breaks a fence. Instead of only punishment, the child helps repair it with guidance. The lesson becomes skill and responsibility, not only fear.</p>
+          <p class="lesson"><strong>What it teaches:</strong> Repair teaches more than revenge.</p>
+        </div>
+<div class="story">
+          <div class="story-head"><span class="badge">Story</span> <strong>King Solomon’s Wisdom (Two Mothers)</strong> <span class="origin">(Hebrew Bible tradition (1 Kings 3))</span></div>
+          <p>A wise leader tests claims not by shouting, but by seeing who protects the child’s life.</p>
+          <p class="lesson"><strong>What it teaches:</strong> True care shows itself when something precious is at risk.</p>
+        </div>
+<div class="story">
+          <div class="story-head"><span class="badge">Proverb</span> <strong>“Justice delayed is justice denied.”</strong> <span class="origin">(Legal proverb (modern phrasing))</span></div>
+          <p>If fairness takes forever, harm keeps happening.</p>
+          <p class="lesson"><strong>What it teaches:</strong> Speed matters, but not at the cost of truth.</p>
+        </div>
+<div class="story">
+          <div class="story-head"><span class="badge">Idiom</span> <strong>“Let the punishment fit the crime.”</strong> <span class="origin">(Common principle across cultures)</span></div>
+          <p>Responses should match the harm, not the mood.</p>
+          <p class="lesson"><strong>What it teaches:</strong> Proportion is part of fairness.</p>
+        </div>
+
+        <div class="now">
+          <h4>How it applies now</h4>
+          <p>Today, fairness shows up in schools, teams, online spaces, and workplaces. The old rule still matters: decide slowly enough to be right, but fast enough to stop harm. And always ask: what repair makes the future safer?</p>
+        </div>
+
+      </div>
+    </details>
+    
+
+    <details class="role">
+      <summary>
+        <span class="role-title">Stewardship and Long View</span>
+        <span class="role-sub">(The Future-Holder)</span>
+      </summary>
+      <div class="role-body">
+
+        <h4>What is it?</h4>
+        <p>Stewardship is caring for shared things: land, water, tools, knowledge, and people. It’s leadership that remembers tomorrow’s children.</p>
+
+        <h4>How does it work?</h4>
+        <p>Stewards set limits (don’t take too much), create rhythms (rest seasons), and keep records (who needs help). They also teach: the goal isn’t to win today; it’s to keep the village alive over time.</p>
+
+        <h4>Who did it?</h4>
+        <p>Elders, caretakers, council members, land keepers, healers, and anyone trusted to hold keys—not because they were ‘boss,’ but because they were steady.</p>
+
+        <h4>When did it happen?</h4>
+        <p>Always, but especially during scarcity, conflict, and big changes. Stewardship shows during temptation: when you could take extra, but choose not to.</p>
+
+        <h4>Where did it happen?</h4>
+        <p>Fields, forests, water sources, storehouses, community meeting places. Stewardship lives where shared resources live.</p>
+
+        <h4>Why did it matter?</h4>
+        <p>Because short-term greed breaks long-term survival. Stewardship is the skill of saying ‘enough’ in a world that whispers ‘more.’</p>
+
+        <h4>Tools, skills, and “tiny rules”</h4>
+        <p>Rotations, shared rules, counting stores, boundary markers, rituals of gratitude, teaching stories. Tiny rules: take what you need; leave some; repair what you use; teach the young; keep promises; admit mistakes early.</p>
+
+        <h4>Common mistakes (and what they teach)</h4>
+        <p>Letting power become ownership. Making decisions for applause instead of survival. Ignoring quiet warnings (soil tired, people tired). Treating nature like an infinite vending machine.</p>
+
+        <h4>Try it (kid-sized)</h4>
+        <p>Pick one shared thing at home (remote, toys, snacks). Make a ‘steward rule’ together: how to keep it fair and lasting. Try it for a week and adjust.</p>
+
+        <h4>Stories from many places</h4>
+        <div class="story">
+          <div class="story-head"><span class="badge">Teaching</span> <strong>Seven Generations</strong> <span class="origin">(Native American principle (often linked to Haudenosaunee))</span></div>
+          <p>Make choices as if your great-great-great grandchildren are watching.</p>
+          <p class="lesson"><strong>What it teaches:</strong> Think past your own lifetime.</p>
+        </div>
+<div class="story">
+          <div class="story-head"><span class="badge">Proverb</span> <strong>“We do not inherit the earth from our ancestors; we borrow it from our children.”</strong> <span class="origin">(Often attributed in modern form; echoes Indigenous stewardship teachings)</span></div>
+          <p>A reminder that the future is not someone else’s job.</p>
+          <p class="lesson"><strong>What it teaches:</strong> Borrowed things must be returned in good condition.</p>
+        </div>
+<div class="story">
+          <div class="story-head"><span class="badge">Fable</span> <strong>The Goose that Laid the Golden Eggs</strong> <span class="origin">(Aesop (Greek tradition))</span></div>
+          <p>A person kills a goose to get all the gold at once—then gets none forever.</p>
+          <p class="lesson"><strong>What it teaches:</strong> Greed can destroy the source.</p>
+        </div>
+<div class="story">
+          <div class="story-head"><span class="badge">Idiom</span> <strong>“Cut your coat according to your cloth.”</strong> <span class="origin">(English idiom)</span></div>
+          <p>Live within what you truly have.</p>
+          <p class="lesson"><strong>What it teaches:</strong> Limits are not punishment; they are reality.</p>
+        </div>
+
+        <div class="now">
+          <h4>How it applies now</h4>
+          <p>Today, stewardship is saving money, protecting time, caring for health, and choosing what you feed your attention. It also includes community: don’t drain teachers, nurses, parents, or friends like they’re machines. A good steward protects the ‘helpers’ too.</p>
+        </div>
+
+      </div>
+    </details>
+    
+<h2>How People Stayed Human</h2>
+
+    <details class="role">
+      <summary>
+        <span class="role-title">Wonder and Belief</span>
+        <span class="role-sub">(The Sky Listener)</span>
+      </summary>
+      <div class="role-body">
+
+        <h4>What is it?</h4>
+        <p>Wonder is how humans stay soft inside. Belief stories helped people face storms, death, and mystery without breaking.</p>
+
+        <h4>How does it work?</h4>
+        <p>People made rituals, songs, and myths to carry big feelings safely. They named fears so they could be shared. They used ceremonies to mark change: birth, coming of age, loss, and hope.</p>
+
+        <h4>Who did it?</h4>
+        <p>Storytellers, spiritual leaders, grandparents, artists, and entire communities. Children learned wonder by watching adults treat nature with respect.</p>
+
+        <h4>When did it happen?</h4>
+        <p>At night under stars, at dawn, during seasons, during grief, during celebration. Wonder often appears when words are too small.</p>
+
+        <h4>Where did it happen?</h4>
+        <p>Firesides, temples, forests, rivers, mountain tops, quiet corners of homes. Wonder likes places where attention is not rushed.</p>
+
+        <h4>Why did it matter?</h4>
+        <p>Because humans need meaning to keep going. Not pretend-meaning, but enough meaning to carry the day.</p>
+
+        <h4>Tools, skills, and “tiny rules”</h4>
+        <p>Songs, symbols, offerings, shared silence, prayer, meditation, gratitude, storytelling nights. Tiny rules: be gentle with mysteries; don’t use belief to bully; let questions exist.</p>
+
+        <h4>Common mistakes (and what they teach)</h4>
+        <p>Forcing one story on everyone. Using fear as control. Confusing certainty with wisdom. Mocking wonder until life feels flat.</p>
+
+        <h4>Try it (kid-sized)</h4>
+        <p>Night-sky minute: go outside (or look at a photo of stars). Name three things you feel. Then draw ‘what the sky reminds me of.’</p>
+
+        <h4>Stories from many places</h4>
+        <div class="story">
+          <div class="story-head"><span class="badge">Myth</span> <strong>Stars as Sky Holes</strong> <span class="origin">(Inuit (common retellings))</span></div>
+          <p>Some stories say stars are holes in the sky where light shines through. Night becomes a blanket with tiny windows.</p>
+          <p class="lesson"><strong>What it teaches:</strong> Mystery can be comforting, not scary.</p>
+        </div>
+<div class="story">
+          <div class="story-head"><span class="badge">Story</span> <strong>The Blind Men and the Elephant</strong> <span class="origin">(South Asian parable (India))</span></div>
+          <p>Each person touches one part of an elephant and argues what it is. They’re all partly right, and all incomplete.</p>
+          <p class="lesson"><strong>What it teaches:</strong> One viewpoint is rarely the whole truth.</p>
+        </div>
+<div class="story">
+          <div class="story-head"><span class="badge">Proverb</span> <strong>“The ocean is made of drops.”</strong> <span class="origin">(Often linked to Persian/Arabic sayings)</span></div>
+          <p>Big things are built from small things.</p>
+          <p class="lesson"><strong>What it teaches:</strong> Small efforts matter.</p>
+        </div>
+<div class="story">
+          <div class="story-head"><span class="badge">Idiom</span> <strong>“Walk softly.”</strong> <span class="origin">(Many cultures; modern phrasing varies)</span></div>
+          <p>Move through the world with care.</p>
+          <p class="lesson"><strong>What it teaches:</strong> Power isn’t always loud.</p>
+        </div>
+
+        <div class="now">
+          <h4>How it applies now</h4>
+          <p>Today, wonder protects you from becoming a robot. It can be art, nature, music, faith, or quiet. Wonder also helps online: when you see something confusing, you can hold a question instead of instantly attacking or believing.</p>
+        </div>
+
+      </div>
+    </details>
+    
+
+    <details class="role">
+      <summary>
+        <span class="role-title">Teaching and Learning</span>
+        <span class="role-sub">(The Apprenticeship Guide)</span>
+      </summary>
+      <div class="role-body">
+
+        <h4>What is it?</h4>
+        <p>Teaching is passing skills and wisdom from one person to another so the next generation doesn’t start from zero.</p>
+
+        <h4>How does it work?</h4>
+        <p>Children learned by watching, helping, copying, and practicing. Lessons were small and repeated. Mistakes were expected. The teacher’s job was to keep mistakes from becoming dangerous.</p>
+
+        <h4>Who did it?</h4>
+        <p>Parents, grandparents, masters, older siblings, community experts. Often every adult was a teacher in some way.</p>
+
+        <h4>When did it happen?</h4>
+        <p>All the time. Teaching happened while cooking, building, walking, and working. It wasn’t a separate building; it was life.</p>
+
+        <h4>Where did it happen?</h4>
+        <p>Homes, fields, workshops, rivers, forests, markets. Anywhere skill was used.</p>
+
+        <h4>Why did it matter?</h4>
+        <p>Because skills decay if no one practices them. Because a community is only as strong as what it can teach.</p>
+
+        <h4>Tools, skills, and “tiny rules”</h4>
+        <p>Stories, songs, repetition, simple tests, checklists, demonstrations. Tiny rules: show, then try; one step at a time; praise effort; correct gently; practice until it becomes easy.</p>
+
+        <h4>Common mistakes (and what they teach)</h4>
+        <p>Shaming learners. Teaching too fast. Teaching without letting kids try. Confusing ‘knowing words’ with ‘knowing how.’</p>
+
+        <h4>Try it (kid-sized)</h4>
+        <p>Teach someone one tiny skill (knot, paper airplane, folding). Use ‘show once, do together, watch them do.’ Notice: teaching is a skill too.</p>
+
+        <h4>Stories from many places</h4>
+        <div class="story">
+          <div class="story-head"><span class="badge">Proverb</span> <strong>“Tell me and I forget. Show me and I remember. Involve me and I understand.”</strong> <span class="origin">(Often attributed as Chinese proverb (modern form))</span></div>
+          <p>A simple ladder of learning: hearing → seeing → doing.</p>
+          <p class="lesson"><strong>What it teaches:</strong> Doing makes knowledge stick.</p>
+        </div>
+<div class="story">
+          <div class="story-head"><span class="badge">Story</span> <strong>The Empty Cup</strong> <span class="origin">(Zen Buddhist teaching (Japan/China))</span></div>
+          <p>A student’s cup is full, so no tea can be poured. The teacher says: empty your cup first.</p>
+          <p class="lesson"><strong>What it teaches:</strong> To learn, you must make room.</p>
+        </div>
+<div class="story">
+          <div class="story-head"><span class="badge">Idiom</span> <strong>“Practice makes permanent.”</strong> <span class="origin">(Modern teaching saying)</span></div>
+          <p>What you practice becomes your habit—good or bad.</p>
+          <p class="lesson"><strong>What it teaches:</strong> Practice carefully.</p>
+        </div>
+<div class="story">
+          <div class="story-head"><span class="badge">Fable</span> <strong>The Tortoise and the Hare</strong> <span class="origin">(Aesop (Greek tradition))</span></div>
+          <p>Fast confidence loses to slow steadiness.</p>
+          <p class="lesson"><strong>What it teaches:</strong> Steady progress beats flashy speed.</p>
+        </div>
+
+        <div class="now">
+          <h4>How it applies now</h4>
+          <p>Today, learning still works best when it’s hands-on and repeated. Screens can help, but real skill is ‘in your muscles.’ Also: asking for help is not weakness. It’s apprenticeship.</p>
+        </div>
+
+      </div>
+    </details>
+    
+
+    <details class="role">
+      <summary>
+        <span class="role-title">Art and Story</span>
+        <span class="role-sub">(The Truth-Singer)</span>
+      </summary>
+      <div class="role-body">
+
+        <h4>What is it?</h4>
+        <p>Art is how humans carry feelings and truths that don’t fit in rules. Story is memory you can share.</p>
+
+        <h4>How does it work?</h4>
+        <p>People sang, danced, carved, painted, joked, and told tales. Stories made lessons easier to remember. Songs helped workers move together. Jokes helped pain become survivable.</p>
+
+        <h4>Who did it?</h4>
+        <p>Artists, bards, griots, poets, comedians, grandparents, children playing. In many cultures, ‘the artist’ was also the historian and the conscience.</p>
+
+        <h4>When did it happen?</h4>
+        <p>During work, celebrations, grief, travel, and quiet nights. Stories show up most when life is too big for plain words.</p>
+
+        <h4>Where did it happen?</h4>
+        <p>Around fires, in homes, on stages, in temples, in fields, on roads. Wherever people gather.</p>
+
+        <h4>Why did it matter?</h4>
+        <p>Because without story, people forget who they are. And without art, pain becomes only pain.</p>
+
+        <h4>Tools, skills, and “tiny rules”</h4>
+        <p>Rhythm, metaphor, symbols, costumes, instruments, drawing, masks. Tiny rules: tell the truth without cruelty; make space for many voices; use humor to heal, not to punch down.</p>
+
+        <h4>Common mistakes (and what they teach)</h4>
+        <p>Using art to bully. Telling only one kind of story. Making beauty that hides harm. Forgetting that audiences include children and elders.</p>
+
+        <h4>Try it (kid-sized)</h4>
+        <p>Write a 6-sentence story: someone wants something, tries, fails, learns, tries again, changes. Or draw a ‘truth picture’ about something you noticed this week.</p>
+
+        <h4>Stories from many places</h4>
+        <div class="story">
+          <div class="story-head"><span class="badge">Story</span> <strong>Anansi the Spider</strong> <span class="origin">(Akan (Ghana/West Africa))</span></div>
+          <p>Anansi uses cleverness to solve problems and sometimes causes them too. The stories teach children about pride, greed, and creativity.</p>
+          <p class="lesson"><strong>What it teaches:</strong> Cleverness needs responsibility.</p>
+        </div>
+<div class="story">
+          <div class="story-head"><span class="badge">Fable</span> <strong>The Crow and the Pitcher</strong> <span class="origin">(Aesop (Greek tradition))</span></div>
+          <p>A crow drops stones into a pitcher to raise the water level and drink.</p>
+          <p class="lesson"><strong>What it teaches:</strong> Problem-solving can be simple and patient.</p>
+        </div>
+<div class="story">
+          <div class="story-head"><span class="badge">Parable</span> <strong>The Emperor’s New Clothes</strong> <span class="origin">(Hans Christian Andersen (Denmark))</span></div>
+          <p>Everyone pretends to see magic clothes because they’re afraid to look foolish—until a child tells the truth.</p>
+          <p class="lesson"><strong>What it teaches:</strong> Truth sometimes needs a brave small voice.</p>
+        </div>
+<div class="story">
+          <div class="story-head"><span class="badge">Proverb</span> <strong>“The truth has a way of walking.”</strong> <span class="origin">(Common theme in many cultures)</span></div>
+          <p>Truth doesn’t stay buried forever.</p>
+          <p class="lesson"><strong>What it teaches:</strong> Honesty lasts longer than pretending.</p>
+        </div>
+
+        <div class="now">
+          <h4>How it applies now</h4>
+          <p>Today, stories still shape how we see the world—movies, memes, songs, posts. So art is also a responsibility: it can open minds or trap them. The old rule: make the story strong enough to carry truth without breaking people.</p>
+        </div>
+
+      </div>
+    </details>
+    
+
+<hr>
+<div class="card">
+  <h3>One last “kid-superpower”</h3>
+  <p>
+    If you ever feel overwhelmed, use this simple question:
+    <strong>“What is the smallest next helpful thing?”</strong>
+  </p>
+  <p class="small">
+    Old knowledge is full of small next steps. That’s why it lasts.
+  </p>
+</div>
+
+</main>
+</body>
+</html>

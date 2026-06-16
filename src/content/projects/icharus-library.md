@@ -6,6 +6,7 @@ tags: ["knowledge-architecture", "decision-geometry", "craft-history", "graph", 
 featured: false
 priority: 10
 status: active
+demo: "/demo/icharus-library/"
 image: /assets/project-shots/icharus-library/canonical-v1.png
 imageAlt: "Icharus Library canonical interface showing three-root Provision/Protection/Meaning structure"
 ---
@@ -44,3 +45,21 @@ How to use governed graph substrates for human-authored knowledge without flatte
 ## Publication Boundary
 
 Local/generated artifact. No public source repo link yet.
+
+---
+
+## Try It
+
+<div class="demo-embed">
+  <div class="demo-bar">
+    <span>Icharus Library — Deep Edition</span>
+    <a href="/demo/icharus-library/" target="_blank" rel="noopener">Open full screen ↗</a>
+  </div>
+  <iframe
+    src="/demo/icharus-library/"
+    width="100%"
+    height="660"
+    title="Icharus Library interactive demo"
+    loading="lazy"
+  ></iframe>
+</div>

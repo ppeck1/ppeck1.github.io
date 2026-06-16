@@ -6,6 +6,7 @@ tags: ["trade-craft", "decision-geometry", "interactive", "offline", "history"]
 featured: false
 priority: 12
 status: active
+demo: "/demo/trade-craft-card-library/"
 image: /assets/project-shots/trade-craft-card-library/globe-browser.png
 imageAlt: "Trade Craft Card Library interactive globe showing geographic distribution of crafts"
 ---
@@ -44,3 +45,21 @@ Unlike linear histories, the card library asks: "What trades emerged in response
 ## What This Demonstrates
 
 How to organize human knowledge by function rather than era. Decision geometry applied to labor history. That understanding craft patterns across time reveals invariant problems that keep reoccurring, even as tools and contexts change.
+
+---
+
+## Try It
+
+<div class="demo-embed">
+  <div class="demo-bar">
+    <span>Trade Craft Card Library — 122 cards</span>
+    <a href="/demo/trade-craft-card-library/" target="_blank" rel="noopener">Open full screen ↗</a>
+  </div>
+  <iframe
+    src="/demo/trade-craft-card-library/"
+    width="100%"
+    height="720"
+    title="Trade Craft Card Library interactive demo"
+    loading="lazy"
+  ></iframe>
+</div>

@@ -4,6 +4,7 @@ description: "A generated static atlas that turns governed philosophy data into 
 date: 2026-06-16
 tags: ["knowledge-architecture", "philosophy", "static-site", "graph", "systems", "governed-data"]
 status: active
+demo: "/demo/philosophy-atlas/"
 image: "/assets/project-shots/philosophy-atlas/atlas-cockpit.png"
 imageAlt: "Philosophy Atlas Atlas Cockpit showing five entry modes: Terrain, Folds, Lineages, Timeline, Matrix"
 featured: true
@@ -49,3 +50,21 @@ Governed data as source of truth for public knowledge infrastructure. Static gen
 ## Publication Boundary
 
 Local/generated artifact set. No public repo link yet.
+
+---
+
+## Try It
+
+<div class="demo-embed">
+  <div class="demo-bar">
+    <span>Philosophy Atlas — Atlas Cockpit</span>
+    <a href="/demo/philosophy-atlas/" target="_blank" rel="noopener">Open full screen ↗</a>
+  </div>
+  <iframe
+    src="/demo/philosophy-atlas/"
+    width="100%"
+    height="740"
+    title="Philosophy Atlas interactive demo"
+    loading="lazy"
+  ></iframe>
+</div>

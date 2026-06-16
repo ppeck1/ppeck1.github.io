@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>A Pre‑Industrialization Lens on Craft — V1.0</title>
+<style>
+:root{
+  --bg:#0f1115;
+  --card:#161a22;
+  --ink:#e9edf5;
+  --muted:#b8c0d6;
+  --line:#2a3142;
+  --accent:#ffd166;
+  --accent2:#7bdff2;
+  --accent3:#b388ff;
+  --good:#95f985;
+  --warn:#ff6b6b;
+  --shadow: 0 10px 28px rgba(0,0,0,.38);
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+  background:linear-gradient(180deg,#0b0d12 0%, var(--bg) 38%, #0b0d12 100%);
+  color:var(--ink);
+  line-height:1.55;
+}
+a{color:var(--accent2); text-decoration:none}
+a:hover{text-decoration:underline}
+header{max-width:1100px; margin:0 auto; padding:40px 18px 18px}
+h1{margin:0 0 10px; font-size: clamp(1.8rem, 2.8vw, 2.8rem); letter-spacing:.2px}
+h2{margin:26px 0 10px; font-size:1.35rem}
+h3{margin:18px 0 8px; font-size:1.1rem}
+p{margin:10px 0}
+.small{color:var(--muted); font-size:.98rem}
+.wrap{max-width:1100px; margin:0 auto; padding: 12px 18px 80px}
+.row{display:grid; grid-template-columns:1fr; gap:14px}
+@media (min-width: 960px){ .row{grid-template-columns: 1fr 1fr;} }
+.card{
+  background: rgba(22,26,34,0.9);
+  border:1px solid var(--line);
+  border-radius: 18px;
+  padding: 16px 16px 14px;
+  box-shadow: var(--shadow);
+}
+.pills{display:flex; flex-wrap:wrap; gap:8px; margin-top:12px}
+.pill{
+  font-size:.92rem;
+  color:var(--muted);
+  border:1px solid var(--line);
+  border-radius:999px;
+  padding:5px 10px;
+  background: rgba(255,255,255,0.02);
+}
+.tag{
+  display:inline-flex; align-items:center; gap:8px;
+  font-weight:800; font-size:.95rem;
+  padding:6px 10px; border-radius:999px;
+  border:1px solid var(--line);
+  background: rgba(255,255,255,0.03);
+  margin-bottom:10px;
+}
+.dot{width:10px;height:10px;border-radius:50%}
+.dot.a{background:var(--accent); box-shadow:0 0 0 3px rgba(255,209,102,0.15)}
+.dot.b{background:var(--accent2); box-shadow:0 0 0 3px rgba(123,223,242,0.15)}
+.dot.c{background:var(--accent3); box-shadow:0 0 0 3px rgba(179,136,255,0.18)}
+hr{border:0; border-top:1px solid var(--line); margin:18px 0}
+ul{margin:8px 0 0 20px}
+li{margin:6px 0}
+.box{
+  border:1px dashed rgba(255,255,255,0.18);
+  border-radius: 14px;
+  padding: 12px 12px 10px;
+  margin-top: 12px;
+  background: rgba(255,255,255,0.03);
+}
+.callout{
+  border-left: 4px solid var(--accent);
+  padding-left: 12px;
+  margin: 12px 0;
+}
+.good{border-left-color: var(--good)}
+.warn{border-left-color: var(--warn)}
+details{
+  border:1px solid var(--line);
+  border-radius: 14px;
+  padding: 10px 12px;
+  background: rgba(0,0,0,0.18);
+  margin-top: 12px;
+}
+summary{cursor:pointer; font-weight:800; color:var(--ink);}
+table{width:100%; border-collapse: collapse; margin-top:10px}
+th,td{text-align:left; padding:10px 10px; border-top:1px solid var(--line); vertical-align:top}
+th{color:var(--muted); font-weight:800; font-size:.92rem}
+.codeblock{
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size:.92rem;
+  white-space:pre-wrap;
+  background: rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.12);
+  border-radius: 14px;
+  padding: 12px;
+  margin-top: 10px;
+}
+.toc a{display:block; padding:6px 0}
+footer{max-width:1100px; margin:0 auto; padding: 0 18px 40px; color:var(--muted);}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>A pre‑industrialization lens on craft — V1.0</h1>
+  <p class="small">
+    By <strong>Paul Tobin Peck</strong> · ppeck.me · <strong>2026-01-10</strong>
+  </p>
+  <div class="pills" aria-label="quick anchors">
+    <span class="pill"><a href="#what-this-is">what this is</a></span>
+    <span class="pill"><a href="#how-to-use">how to use</a></span>
+    <span class="pill"><a href="#why-perspectives">why perspectives matter</a></span>
+    <span class="pill"><a href="#plane-of-craft">plane of craft through time</a></span>
+    <span class="pill"><a href="#craft-library-rooms">craft library rooms</a></span>
+    <span class="pill"><a href="#craft-carriers">craft carriers</a></span>
+    <span class="pill"><a href="#glossary">glossary</a></span>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="card" id="what-this-is">
+    <div class="tag"><span class="dot a"></span>Purpose</div>
+    <h2>What this is</h2>
+    <p>
+      This is a <strong>library framework</strong>: a way to organize pre‑industrial knowledge so it stays useful
+      today, tomorrow, and later. It is not "history trivia" and it is not "great person worship."
+      It is <strong>craft‑first</strong>: skills, methods, and patterns that keep humans alive, safe, and coherent… across time.
+    </p>
+    <div class="callout warn">
+      <p><strong>Anti‑spaghetti rule:</strong> we organize by <em>craft function</em>, not by job titles, not by nations,
+      and not by famous names. Names appear only as examples of craft, like "one clear torch in a long hallway."</p>
+    </div>
+    <div class="box">
+      <p><strong>Core claim:</strong> Pre‑industrial life forced humans to learn reality's constraints directly:
+      seasons, fatigue, scarcity, trust, repair, and consequences. Modern life often hides those constraints behind
+      screens, supply chains, and institutions. This library is a "ground check."</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="card" id="how-to-use">
+      <div class="tag"><span class="dot b"></span>Use</div>
+      <h2>How to use this</h2>
+      <p>Pick a craft room. Read it in three passes:</p>
+      <ul>
+        <li><strong>Pass 1:</strong> What is this doing? Why does it exist?</li>
+        <li><strong>Pass 2:</strong> How does it work? Where does it fail? What are the "tiny rules"?</li>
+        <li><strong>Pass 3:</strong> What is the modern version? What is being hidden? Who carries the cost?</li>
+      </ul>
+      <p class="small">The goal isn't to memorize. It's to build a "craft eye" — seeing function, limits, and ripple effects.</p>
+    </div>
+
+    <div class="card" id="why-perspectives">
+      <div class="tag"><span class="dot c"></span>Perspective</div>
+      <h2>Why different perspectives matter</h2>
+      <p>
+        One viewpoint is almost always incomplete. Different perspectives are not "opinions" here — they are
+        <strong>different tools</strong> for seeing different parts of a real system.
+      </p>
+      <details>
+        <summary>Why one lens is never enough</summary>
+        <ul>
+          <li>A single lens can hide harm, hide cost, or hide time.</li>
+          <li>Some truths only show up in stories, not statistics.</li>
+          <li>Some truths only show up in logistics, not poetry.</li>
+          <li>Some truths only show up when you ask: "who is paying?"</li>
+        </ul>
+      </details>
+      <details>
+        <summary>The "lens set" this library uses</summary>
+        <ul>
+          <li><strong>Mythology lens:</strong> warnings about scale, pride, power, consequence (e.g., Icarus).</li>
+          <li><strong>Bible lens:</strong> stewardship, justice, witness, mercy, humility, covenant.</li>
+          <li><strong>Aesop lens:</strong> small moral machines — stories that show consequences safely.</li>
+          <li><strong>Cross‑cultural lens:</strong> diverse ways of holding reality (proverbs, teachings, tricksters).</li>
+          <li><strong>Now lens:</strong> modern analogies: bureaucracy, markets, screens, systems, hidden costs.</li>
+        </ul>
+      </details>
+    </div>
+  </div>
+
+  <div class="card" id="plane-of-craft">
+    <div class="tag"><span class="dot a"></span>Framework</div>
+    <h2>A plane of craft through time</h2>
+    <p>
+      Think of craft like a "plane" that runs through history.
+      People and empires come and go, but the plane stays because humans still need the same functions.
+      When a craft is done well, it creates a <strong>ripple</strong> that travels:
+      from one person → to a household → to a community → to a civilization → to the future.
+    </p>
+    <div class="box">
+      <h3>Ripple questions (use everywhere)</h3>
+      <ul>
+        <li><strong>Before:</strong> What did life look like when this craft was missing or weak?</li>
+        <li><strong>Then:</strong> What method made it stronger? What small rule held it together?</li>
+        <li><strong>Now:</strong> Where does the craft still exist… and where has it been hidden behind systems?</li>
+        <li><strong>Cost:</strong> Who pays when the craft is degraded? (time, money, bodies, trust, meaning)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card toc" id="craft-library-rooms">
+    <div class="tag"><span class="dot b"></span>Map</div>
+    <h2>The library rooms (craft‑first)</h2>
+    <p class="small">Each room repeats: what / how / who / when / where / why + ripple + stories + now.</p>
+    <hr>
+    <h3>Provision rooms</h3>
+    <a href="#room-growing">Growing food</a>
+    <a href="#room-water">Water & storage</a>
+    <a href="#room-making">Making tools & shelter</a>
+    <a href="#room-preserving">Preserving food & heat</a>
+    <a href="#room-exchange">Exchange, trade, and trust</a>
+
+    <h3>Protection rooms</h3>
+    <a href="#room-defense">Community defense & warning</a>
+    <a href="#room-fairness">Law, fairness, and repair</a>
+    <a href="#room-stewardship">Stewardship and the long view</a>
+
+    <h3>Meaning rooms</h3>
+    <a href="#room-learning">Teaching, apprenticeship, and practice</a>
+    <a href="#room-story">Story, art, and memory</a>
+    <a href="#room-wonder">Wonder, belief, and humility</a>
+
+    <h3>Critical thinking rooms</h3>
+    <a href="#room-fallacies">Thinking traps & fallacies (by craft)</a>
+  </div>
+
+  <div class="card" id="room-growing">
+    <div class="tag"><span class="dot a"></span>Provision</div>
+    <h2>Room: Growing food</h2>
+    <p><strong>What:</strong> Turning sun + soil + water + time into edible life.</p>
+    <p><strong>How:</strong> Observation → planting → tending → protecting → harvesting → saving seeds → resting land.</p>
+    <details>
+      <summary>Lens set (examples)</summary>
+      <ul>
+        <li><strong>Myth:</strong> Icarus — nature doesn't negotiate with arrogance.</li>
+        <li><strong>Bible:</strong> "you reap what you sow" as a constraint, not a slogan.</li>
+        <li><strong>Aesop:</strong> Ant & Grasshopper — preparation is compassion for future‑you.</li>
+        <li><strong>Cross‑cultural:</strong> Three Sisters (Haudenosaunee) — different roles fit together.</li>
+      </ul>
+    </details>
+  </div>
+
+  <div class="card" id="room-water">
+    <div class="tag"><span class="dot a"></span>Provision</div>
+    <h2>Room: Water & storage</h2>
+    <p><strong>What:</strong> Keeping water clean, available, and separated by purpose.</p>
+    <p><strong>How:</strong> source → carry → filter/boil → store → protect from contamination.</p>
+  </div>
+
+  <div class="card" id="room-making">
+    <div class="tag"><span class="dot a"></span>Provision</div>
+    <h2>Room: Making tools & shelter</h2>
+    <p><strong>What:</strong> Turning materials into function: warmth, safety, repair.</p>
+    <p><strong>How:</strong> measure → cut → shape → test → adjust → maintain.</p>
+  </div>
+
+  <div class="card" id="room-preserving">
+    <div class="tag"><span class="dot a"></span>Provision</div>
+    <h2>Room: Preserving food & heat</h2>
+    <p><strong>What:</strong> Making "good season" last into "hard season."</p>
+    <p><strong>How:</strong> drying, salting, smoking, fermenting, insulation, fuel planning.</p>
+  </div>
+
+  <div class="card" id="room-exchange">
+    <div class="tag"><span class="dot a"></span>Provision</div>
+    <h2>Room: Exchange, trade, and trust</h2>
+    <p><strong>What:</strong> Moving goods and promises between people.</p>
+    <p><strong>How:</strong> measure → bargain → agree → deliver → maintain reputation.</p>
+  </div>
+
+  <div class="card" id="room-defense">
+    <div class="tag"><span class="dot b"></span>Protection</div>
+    <h2>Room: Community defense & warning</h2>
+    <p><strong>What:</strong> Keep danger from becoming catastrophe.</p>
+    <p><strong>How:</strong> signals → drills → watch rotations → coordination.</p>
+  </div>
+
+  <div class="card" id="room-fairness">
+    <div class="tag"><span class="dot b"></span>Protection</div>
+    <h2>Room: Law, fairness, and repair</h2>
+    <p><strong>What:</strong> A community's memory of "how we handle harm."</p>
+    <p><strong>How:</strong> witness → listen → decide → repair.</p>
+  </div>
+
+  <div class="card" id="room-stewardship">
+    <div class="tag"><span class="dot b"></span>Protection</div>
+    <h2>Room: Stewardship and the long view</h2>
+    <p><strong>What:</strong> Caring for shared resources across generations.</p>
+    <p><strong>How:</strong> limits, rotations, gratitude rituals, maintenance, teaching.</p>
+  </div>
+
+  <div class="card" id="room-learning">
+    <div class="tag"><span class="dot c"></span>Meaning</div>
+    <h2>Room: Teaching, apprenticeship, and practice</h2>
+    <p><strong>What:</strong> Passing skill so the next generation doesn't restart from zero.</p>
+    <p><strong>How:</strong> show → do together → do alone → feedback → repetition.</p>
+  </div>
+
+  <div class="card" id="room-story">
+    <div class="tag"><span class="dot c"></span>Meaning</div>
+    <h2>Room: Story, art, and memory</h2>
+    <p><strong>What:</strong> Carrying truth and identity across time.</p>
+    <p><strong>How:</strong> metaphor, rhythm, symbol, humor, witness.</p>
+  </div>
+
+  <div class="card" id="room-wonder">
+    <div class="tag"><span class="dot c"></span>Meaning</div>
+    <h2>Room: Wonder, belief, and humility</h2>
+    <p><strong>What:</strong> Making room for mystery so fear doesn't harden the heart.</p>
+    <p><strong>How:</strong> ritual, gratitude, contemplation.</p>
+  </div>
+
+  <div class="card" id="room-fallacies">
+    <div class="tag"><span class="dot b"></span>Critical thinking</div>
+    <h2>Room: Thinking traps & fallacies (by craft)</h2>
+    <table>
+      <thead><tr><th>Craft room</th><th>Common traps</th><th>What breaks</th></tr></thead>
+      <tbody>
+        <tr><td>Growing food</td><td>impatience; ignoring seasons</td><td>long‑term yield</td></tr>
+        <tr><td>Trade & trust</td><td>short‑term gain; deception</td><td>reputation</td></tr>
+        <tr><td>Law & fairness</td><td>authority bias; scapegoating</td><td>repair</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card" id="craft-carriers">
+    <div class="tag"><span class="dot a"></span>Craft carriers</div>
+    <h2>Famous people… by craft (method first)</h2>
+    <table>
+      <thead><tr><th>Craft</th><th>Example carrier(s)</th><th>Contribution</th><th>Ripple</th><th>Applies now</th></tr></thead>
+      <tbody>
+        <tr><td>Stone‑to‑structure architecting</td><td>Imhotep</td><td>Large‑scale building planning</td><td>Public works</td><td>Systems design scaffolding</td></tr>
+        <tr><td>Geometry</td><td>Euclid</td><td>Teachable reasoning structures</td><td>Engineering</td><td>Definitions and proofs</td></tr>
+        <tr><td>Experimentation</td><td>Ibn al‑Haytham</td><td>Observe → test → refine</td><td>Science pathways</td><td>Evidence before certainty</td></tr>
+        <tr><td>Wayfinding</td><td>Polynesian navigators</td><td>Multi‑signal navigation</td><td>Ocean travel</td><td>Reasoning under uncertainty</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card" id="glossary">
+    <div class="tag"><span class="dot b"></span>Glossary (linked)</div>
+    <h2>Glossary</h2>
+    <ul>
+      <li><a href="#g-craft">Craft</a></li>
+      <li><a href="#g-lens">Lens</a></li>
+    </ul>
+    <hr>
+    <h3 id="g-craft">Craft</h3><p>A repeatable method that turns reality into outcomes: food, safety, knowledge, repair.</p>
+    <h3 id="g-lens">Lens</h3><p>A way of seeing. Different lenses reveal different parts of the same system.</p>
+  </div>
+
+</div>
+
+<footer>
+  <p><strong>Version:</strong> 1.0 · <strong>Date:</strong> 2026-01-10 · <strong>Contact:</strong> ppeck.me</p>
+</footer>
+
+</body>
+</html>
