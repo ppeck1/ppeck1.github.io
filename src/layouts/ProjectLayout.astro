@@ -48,14 +48,24 @@ function formatDate(d: Date) {
           <time datetime={date.toISOString()}>{formatDate(date)}</time>
           <span class={`status status-${status}`}>{status}</span>
         </div>
-        {(github || demo || links.length > 0) && (
+        {(github || links.length > 0) && (
           <p class="project-links">
             {github && <a href={github} target="_blank" rel="noopener">GitHub -&gt;</a>}
-            {demo && <a href={demo} target="_blank" rel="noopener">Demo -&gt;</a>}
             {links.map((link) => (
               <a href={link.url} target="_blank" rel="noopener">{link.label} -&gt;</a>
             ))}
           </p>
+        )}
+        {demo && (
+          <a href={demo} target="_blank" rel="noopener" class="demo-cta">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="demo-cta-icon">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+            Launch Interactive Demo
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="demo-cta-arrow">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+            </svg>
+          </a>
         )}
         {tags.length > 0 && (
           <div class="tags">
@@ -176,6 +186,47 @@ function formatDate(d: Date) {
 
   .project-links a {
     color: var(--color-teal);
+  }
+
+  .demo-cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    margin: 1.25rem 0 0.5rem;
+    padding: 1rem 2rem;
+    background: var(--color-teal);
+    color: #000;
+    font-weight: 700;
+    font-size: 1.05rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 8px;
+    border: 2px solid transparent;
+    transition: background 0.18s, box-shadow 0.18s, transform 0.15s, border-color 0.18s;
+    box-shadow: 0 4px 18px rgba(0, 200, 180, 0.25);
+  }
+
+  .demo-cta:hover {
+    background: transparent;
+    color: var(--color-teal);
+    border-color: var(--color-teal);
+    box-shadow: 0 6px 28px rgba(0, 200, 180, 0.35);
+    transform: translateY(-2px);
+  }
+
+  .demo-cta-icon {
+    width: 1.2rem;
+    height: 1.2rem;
+    flex-shrink: 0;
+  }
+
+  .demo-cta-arrow {
+    width: 1.1rem;
+    height: 1.1rem;
+    flex-shrink: 0;
+    margin-left: auto;
   }
 
   .tags {
