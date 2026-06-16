@@ -1,6 +1,6 @@
 ---
-title: "Governed Local-First Systems"
-description: "Why several of my recent projects start from local ownership, explicit authority, and reviewable state before adding AI or automation."
+title: "Why I Keep Building Local-First Tools"
+description: "Why several recent projects start with local ownership, visible state, and human review before adding AI or automation."
 date: 2026-06-16
 tags: ["systems", "local-first", "governance", "AI"]
 draft: false

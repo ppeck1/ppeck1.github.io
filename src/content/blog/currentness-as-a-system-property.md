@@ -1,6 +1,6 @@
 ---
-title: "Currentness as a System Property"
-description: "How project state, documentation, screenshots, and public proof artifacts drift unless currentness is designed into the workflow."
+title: "Keeping Public Work Current"
+description: "How project state, documentation, screenshots, and public proof artifacts drift unless update loops are part of the workflow."
 date: 2026-06-14
 tags: ["documentation", "systems", "workflow", "portfolio"]
 draft: false
@@ -10,7 +10,7 @@ imageAlt: "Project Atlas Today screen showing active and blocked local work."
 
 Documentation does not become stale because people are careless.
 
-It becomes stale because currentness is rarely a first-class system property.
+It becomes stale because most workflows do not include a reliable update loop.
 
 The public portfolio is a useful example. The live site can be structurally solid and still lag behind the work. GitHub can show active repositories, while the site shows only the older proof artifacts. Screenshots can exist locally, but never reach the public page.
 

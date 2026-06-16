@@ -1,6 +1,6 @@
 ---
 title: "Canon Explorer - Cellular Automata Systems Lab"
-description: "A visual laboratory for exploring persistent system dynamics, substrate behavior, and CANON viability signals across multiple automata modes."
+description: "A visual lab for exploring how simple rule systems persist, collapse, or change shape over time."
 date: 2026-04-30
 tags: ["canon", "cellular-automata", "systems", "visualization", "python", "diagnostics"]
 github: "https://github.com/ppeck1/canon-explorer"
@@ -11,20 +11,20 @@ featured: true
 priority: 6
 ---
 
-> **TL;DR:** Canon Explorer is a visual systems lab. It uses cellular automata as a compact way to explore persistence, collapse, and viability under different rule sets.
+> **TL;DR:** Canon Explorer is a visual systems lab. It uses cellular automata to make persistence, collapse, and changing system state easy to see.
 
-## Why Cellular Automata
+## What it is
 
 Cellular automata are useful because they make state evolution visible. Small local rules can produce stable patterns, turbulence, propagation, or collapse.
 
-That makes them a good laboratory for CANON-style questions:
+That makes them a useful laboratory for systems questions:
 
 - What persists?
 - What decays?
 - What signals appear before collapse?
 - Which visible metrics are only projections of deeper state?
 
-## Modes
+## What the screenshots show
 
 ![CA Explorer Life mode](/assets/project-shots/ca-explorer/life-conway.png)
 

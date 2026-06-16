@@ -11,11 +11,11 @@ featured: true
 priority: 4
 ---
 
-> **TL;DR:** Project Atlas is a local operational console for personal work. It answers the daily questions: what am I carrying, what is blocked, what needs action, and what should go to my phone?
+> **TL;DR:** Project Atlas is a desktop app for keeping active work visible. It shows what is due, what is blocked, what needs attention today, and what should be sent to a phone handoff list.
 
-## Problem
+## What it is
 
-Personal project work often scatters across notes, terminals, chats, and half-remembered obligations. The problem is not only task storage. It is operational visibility.
+Personal project work often scatters across notes, terminals, chats, and half-remembered obligations. Project Atlas pulls that work into one local dashboard.
 
 Project Atlas is built around that visibility:
 
@@ -24,13 +24,13 @@ Project Atlas is built around that visibility:
 - Library: documents, drafts, filters, and local file actions
 - Settings: integrations, logs, export tools, contacts, and admin controls
 
-## Local-First Posture
+## Why it matters
 
 The app stores data locally in SQLite through Drift. The README states there is no cloud sync and no telemetry. Optional integrations such as Ollama summaries and Telegram handoff remain user-reviewed.
 
 ![Project Atlas Projects screen](/assets/project-shots/project-atlas/projects.png)
 
-## Working Surfaces
+## What the screenshots show
 
 The screenshots show an application built for repeated use rather than presentation:
 

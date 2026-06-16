@@ -2,7 +2,7 @@
 // Diagnosis.astro - Projects and case studies
 import { getCollection } from 'astro:content';
 
-const projects = await getCollection('projects');
+const projects = await getCollection('projects', ({ data }) => data.draft !== true);
 const sortedProjects = projects.sort((a, b) =>
   (a.data.priority ?? 100) - (b.data.priority ?? 100) ||
   b.data.date.valueOf() - a.data.date.valueOf()

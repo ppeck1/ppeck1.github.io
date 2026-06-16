@@ -1,6 +1,6 @@
 ---
-title: "Governed Robot Shell - Bounded Language to Action"
-description: "An early robotics shell prototype where language is reduced to finite intent, checked by safety gates, and only then sent to a mock or simulator body backend."
+title: "Governed Robot Shell - Safe Language-to-Action Prototype"
+description: "An early robotics shell where text commands become limited actions, pass safety checks, and only then reach a mock or simulator body."
 date: 2026-06-11
 tags: ["robotics", "llm", "safety", "simulation", "fastapi", "python", "governance"]
 github: "https://github.com/ppeck1/governed-robot-shell"
@@ -11,11 +11,11 @@ featured: true
 priority: 5
 ---
 
-> **TL;DR:** Governed Robot Shell is a robot-control prototype built around one rule: language never directly controls motors, servos, GPIO, actuator angles, or locomotion.
+> **TL;DR:** Governed Robot Shell is a robot-control prototype built around one rule: text never directly controls motors, servos, GPIO, actuator angles, or locomotion.
 
-## Problem
+## What it is
 
-LLM-assisted robotics gets dangerous when text is treated as action. Even in a prototype, the architecture should make unsafe paths hard to express and easy to inspect.
+The shell turns a user command into a limited internal action. That action is checked before anything reaches a mock or simulator body.
 
 This shell reduces commands through a finite pipeline:
 
@@ -23,13 +23,13 @@ This shell reduces commands through a finite pipeline:
 language input -> intent -> planned action -> safety validation -> body execution -> event log
 ```
 
-## Governed Command Flow
+## What the screenshot shows
 
 ![Governed command flow with blocked movement](/assets/project-shots/llm-robot-shell/dashboard-command-flow.png)
 
 The dashboard screenshot shows both sides of the design: a normal expression command approved through the pipeline and a movement command blocked by the safety gate.
 
-The repository currently frames itself as an early architecture prototype, not a production robotics safety system. That distinction is important. The value is in the boundary design:
+This is an early architecture prototype, not a production robotics safety system. The value is in the boundary design:
 
 - central action registry
 - state-aware safety checks that fail closed on unknown actions
