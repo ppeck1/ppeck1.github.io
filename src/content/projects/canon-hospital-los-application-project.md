@@ -5,7 +5,6 @@ date: 2026-04-13
 tags: ["healthcare", "hospital-operations", "LOS", "bed-flow", "systems", "diagnostics", "clinical-informatics"]
 status: active
 github: "https://github.com/ppeck1/canon-system"
-demo: "https://ppeck.me"
 image: "/assets/Images/projects/delta_c_chart.svg"
 imageAlt: "CANON chart showing latent deterioration before visible KPI failure."
 priority: 11

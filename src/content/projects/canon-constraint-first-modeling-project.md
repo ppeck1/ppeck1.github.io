@@ -5,7 +5,6 @@ date: 2026-04-13
 tags: ["systems", "math", "constraint", "observability", "diagnostics", "latent-state", "healthcare"]
 status: active
 github: "https://github.com/ppeck1/canon-system"
-demo: "https://ppeck.me"
 image: "/assets/Images/projects/canon_system_flow.svg"
 imageAlt: "CANON system flow diagram showing latent evolution, constraint boundary, and projected metrics."
 featured: true
