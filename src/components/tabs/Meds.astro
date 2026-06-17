@@ -5,32 +5,40 @@
 <div class="tab-panel" id="panel-meds">
   <h2>Meds – Interventions I Reach For</h2>
   
-  <p class="tldr"><strong>TL;DR interventions:</strong> Workflow mapping • Lane clarity • Documentation structure • Signal design • Thoughtful AI touchpoints</p>
+  <p class="tldr"><strong>TL;DR:</strong> Map the real workflow. Clarify the lanes. Structure the documentation. Preserve human judgment. Add automation only after the system can be evaluated.</p>
 
-  <p>System-level interventions I reach for when working with teams on workflow and operations.</p>
+  <p>I do not treat AI as the intervention by default. Often the useful intervention is upstream: naming the workflow, reducing ambiguity, strengthening documentation, and deciding where automation is safe enough to test.</p>
 
-  <h3>Clinical Workflow & Documentation Interventions</h3>
+  <h3>Workflow and lane clarity</h3>
   <ul>
-    <li>Diagramming the real workflow (not the policy version) and naming each lane so ownership is unambiguous.</li>
-    <li>Refactoring documentation templates and smart phrases to match how clinicians actually think and speak.</li>
-    <li>Reducing duplicate entry and unnecessary variation so the same story isn't told three different ways in three different notes.</li>
-    <li>Designing structured intake and triage flows that reduce back-and-forth messaging and "who owns this?" confusion.</li>
+    <li>Map the actual workflow rather than the policy version</li>
+    <li>Name decision points, handoff points, and ownership boundaries</li>
+    <li>Separate nurse-resolved work, provider-escalated work, administrative work, and automation candidates</li>
+    <li>Reduce cognitive ping-pong between teams by clarifying what happens next and who owns it</li>
   </ul>
 
-  <h3>Interface & Interaction Interventions</h3>
+  <h3>Documentation and signal design</h3>
   <ul>
-    <li>Reordering fields, sections, and prompts to align with clinical reasoning instead of database schemas.</li>
-    <li>Spotting UI patterns that create hidden friction (extra clicks, unclear states, ambiguous alerts).</li>
-    <li>Making "next best action" more obvious so clinicians don't have to mentally parse the whole system to move forward.</li>
-    <li>Connecting the dots between frontline workflows and the data/analytics teams rely on downstream.</li>
+    <li>Refactor templates, SmartPhrases, and structured prompts around how clinicians actually reason</li>
+    <li>Reduce duplicate entry and unnecessary variation</li>
+    <li>Improve the signal quality of notes, triage summaries, handoffs, and downstream review artifacts</li>
+    <li>Design documentation as operational infrastructure, not clerical residue</li>
   </ul>
 
-  <h3>Team, Communication, and AI-Enabled Interventions</h3>
+  <h3>AI and automation boundaries</h3>
   <ul>
-    <li>Clarifying what gets decided by nurses, what escalates to providers, and what should be automated with safe defaults.</li>
-    <li>Designing message routing and handoff patterns that minimize cognitive ping-pong across teams.</li>
-    <li>Identifying where AI tools can safely compress effort (drafting, summarization, triage support) without erasing clinical judgment.</li>
-    <li>Supporting leaders in translating "we need AI" into specific, testable workflow experiments with clear guardrails.</li>
+    <li>Identify safe AI touchpoints for drafting, summarization, intake support, routing, and review assistance</li>
+    <li>Require human review where clinical judgment, accountability, or patient safety are involved</li>
+    <li>Make provenance, uncertainty, source state, and review status visible</li>
+    <li>Define failure modes before expanding automation</li>
+  </ul>
+
+  <h3>Interface and system design</h3>
+  <ul>
+    <li>Reorder fields, sections, and prompts around user reasoning rather than database convenience</li>
+    <li>Surface next-best-action cues without pretending the system can replace judgment</li>
+    <li>Reduce hidden friction from extra clicks, unclear states, ambiguous alerts, and scattered context</li>
+    <li>Build tools that can be inspected, tested, revised, and governed</li>
   </ul>
 </div>
 
