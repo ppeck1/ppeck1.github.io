@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
+  <title id="title">Productivity Methods Atlas preview</title>
+  <desc id="desc">A dark diagnostic atlas interface with method categories, failure patterns, and chooser matrix cards.</desc>
+  <rect width="1280" height="720" fill="#07111c"/>
+  <rect x="44" y="38" width="1192" height="86" rx="10" fill="#0d1d2d" stroke="#24415d"/>
+  <text x="74" y="91" fill="#f4fbff" font-family="Segoe UI, Arial, sans-serif" font-size="31" font-weight="700">Productivity Methods Atlas</text>
+  <text x="76" y="116" fill="#87dce8" font-family="Segoe UI, Arial, sans-serif" font-size="15">diagnose the failure mode before choosing the method</text>
+  <g fill="#0f2234" stroke="#274964">
+    <rect x="74" y="160" width="260" height="110" rx="8"/>
+    <rect x="362" y="160" width="260" height="110" rx="8"/>
+    <rect x="650" y="160" width="260" height="110" rx="8"/>
+    <rect x="938" y="160" width="260" height="110" rx="8"/>
+  </g>
+  <g font-family="Segoe UI, Arial, sans-serif" font-weight="700" font-size="48">
+    <text x="105" y="227" fill="#ffd166">30</text>
+    <text x="393" y="227" fill="#ef476f">15</text>
+    <text x="681" y="227" fill="#8cff98">8</text>
+    <text x="969" y="227" fill="#78dce8">1</text>
+  </g>
+  <g font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#d8e9f4">
+    <text x="174" y="222">method families</text>
+    <text x="462" y="222">failure patterns</text>
+    <text x="735" y="222">selection lenses</text>
+    <text x="1022" y="222">operating model</text>
+  </g>
+  <circle cx="640" cy="414" r="91" fill="#13293e" stroke="#78dce8" stroke-width="3"/>
+  <text x="640" y="402" text-anchor="middle" fill="#f5fbff" font-family="Segoe UI, Arial, sans-serif" font-size="25" font-weight="700">Diagnostic</text>
+  <text x="640" y="434" text-anchor="middle" fill="#f5fbff" font-family="Segoe UI, Arial, sans-serif" font-size="25" font-weight="700">Method Matching</text>
+  <g fill="#162536" stroke-width="3" font-family="Segoe UI, Arial, sans-serif" font-weight="700" font-size="18">
+    <circle cx="320" cy="350" r="58" stroke="#ffd166"/>
+    <circle cx="480" cy="550" r="58" stroke="#8cff98"/>
+    <circle cx="800" cy="550" r="58" stroke="#b392ff"/>
+    <circle cx="960" cy="350" r="58" stroke="#ef476f"/>
+    <text x="320" y="356" text-anchor="middle" fill="#f7fbff">Constraint</text>
+    <text x="480" y="556" text-anchor="middle" fill="#f7fbff">Flow</text>
+    <text x="800" y="556" text-anchor="middle" fill="#f7fbff">Feedback</text>
+    <text x="960" y="356" text-anchor="middle" fill="#f7fbff">Governance</text>
+  </g>
+  <g stroke="#3b5874" stroke-width="3" opacity="0.9">
+    <line x1="392" y1="364" x2="550" y2="397"/>
+    <line x1="525" y1="518" x2="585" y2="475"/>
+    <line x1="755" y1="518" x2="695" y2="475"/>
+    <line x1="888" y1="364" x2="730" y2="397"/>
+  </g>
+  <rect x="76" y="626" width="1128" height="48" rx="8" fill="#0d1d2d" stroke="#24415d"/>
+  <text x="103" y="657" fill="#d8e9f4" font-family="Segoe UI, Arial, sans-serif" font-size="19">Searchable method catalog - anti-patterns - chooser matrix - evidence-aware operating rules</text>
+</svg>
