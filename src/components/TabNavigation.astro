@@ -5,10 +5,8 @@ import ThemeToggle from './ThemeToggle.astro';
 const tabs = [
   { id: 'demographics', label: 'Demographics' },
   { id: 'history', label: 'History' },
-  { id: 'diagnosis', label: 'Diagnosis' },
-  { id: 'meds', label: 'Meds' },
-  { id: 'labs', label: 'Labs' },
-  { id: 'notes', label: 'Notes' },
+  { id: 'diagnosis', label: 'Diagnosis (Projects)' },
+  { id: 'notes', label: 'Notes (Blog)' },
   { id: 'documents', label: 'Documents' },
 ];
 ---
@@ -35,10 +33,18 @@ const tabs = [
   (function () {
     const tabButtons = document.querySelectorAll('.tab-button');
 
+    // Legacy anchor mapping: the old Meds and Labs tabs are now strips inside
+    // History, so inbound #meds / #labs (and stale localStorage) land on #history.
+    function normalizeTab(tabId) {
+      return tabId === 'meds' || tabId === 'labs' ? 'history' : tabId;
+    }
+
     // Last active tab, otherwise default.
-    const lastTab = localStorage.getItem('emr-last-tab') || 'demographics';
+    const lastTab = normalizeTab(localStorage.getItem('emr-last-tab') || 'demographics');
 
     function activateTab(tabId) {
+      tabId = normalizeTab(tabId);
+
       // Query panels live each time — they may not exist at script-init time
       const tabPanels = document.querySelectorAll('.tab-panel');
 
@@ -84,7 +90,8 @@ const tabs = [
     // Defer the initial panel activation until the full DOM is parsed.
     // With is:inline, this script runs before the .tab-panel divs exist.
     function initActiveTab() {
-      const hash = window.location.hash ? window.location.hash.substring(1) : '';
+      const rawHash = window.location.hash ? window.location.hash.substring(1) : '';
+      const hash = normalizeTab(rawHash);
       if (hash && document.getElementById('panel-' + hash)) {
         activateTab(hash);
       } else {

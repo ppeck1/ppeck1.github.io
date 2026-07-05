@@ -5,6 +5,8 @@ date: 2026-04-24
 tags: ["systems", "knowledge-architecture", "constraint", "LLM", "governance", "local-first", "python", "fastapi", "sqlite"]
 status: active
 github: "https://github.com/ppeck1/Bag-of-Holding"
+repo: "ppeck1/Bag-of-Holding"
+pinned: true
 image: "/assets/Images/projects/boh/boh_dashboard_screenshot.jpg"
 imageAlt: "Bag of Holding dashboard showing corpus health, canonical count, conflicts, and document state."
 featured: true

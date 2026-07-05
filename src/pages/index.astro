@@ -9,13 +9,34 @@ import Dock from '../components/Dock.astro';
 import Demographics from '../components/tabs/Demographics.astro';
 import History from '../components/tabs/History.astro';
 import Diagnosis from '../components/tabs/Diagnosis.astro';
-import Meds from '../components/tabs/Meds.astro';
-import Labs from '../components/tabs/Labs.astro';
 import Notes from '../components/tabs/Notes.astro';
 import Documents from '../components/tabs/Documents.astro';
+
+// Person structured data (home page only)
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Paul Peck',
+  honorificSuffix: 'RN',
+  jobTitle: 'Healthcare AI Solutions Analyst',
+  description:
+    'Clinical workflow and governance systems: EHR documentation optimization, AI-assisted workflow design with human review, local-first knowledge systems.',
+  url: 'https://ppeck.me',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Columbus',
+    addressRegion: 'OH',
+    addressCountry: 'US'
+  },
+  sameAs: [
+    'https://www.linkedin.com/in/paul-peck-759737211/',
+    'https://github.com/ppeck1'
+  ]
+};
 ---
 
 <Layout>
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(personSchema)} />
   <IntroSequence />
   
   <div class="emr-container">
@@ -25,8 +46,6 @@ import Documents from '../components/tabs/Documents.astro';
       <Demographics />
       <History />
       <Diagnosis />
-      <Meds />
-      <Labs />
       <Notes />
       <Documents />
     </div>

@@ -26,9 +26,47 @@ function formatDate(d: Date) {
     timeZone: 'UTC',
   }).format(d);
 }
+
+// SoftwareSourceCode structured data
+const languageNames: Record<string, string> = {
+  python: 'Python',
+  typescript: 'TypeScript',
+  javascript: 'JavaScript',
+  gdscript: 'GDScript',
+  dart: 'Dart',
+  circuitpython: 'CircuitPython',
+  html: 'HTML',
+  css: 'CSS',
+  rust: 'Rust',
+  go: 'Go',
+};
+const programmingLanguage = tags
+  .map((t) => languageNames[t.toLowerCase()])
+  .filter(Boolean);
+
+const projectSchema: Record<string, unknown> = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareSourceCode',
+  name: title,
+  description,
+  url: new URL(Astro.url.pathname, Astro.site).href,
+  dateCreated: date.toISOString().split('T')[0],
+  author: {
+    '@type': 'Person',
+    name: 'Paul Peck',
+    url: 'https://ppeck.me',
+  },
+};
+if (github) projectSchema.codeRepository = github;
+if (programmingLanguage.length === 1) {
+  projectSchema.programmingLanguage = programmingLanguage[0];
+} else if (programmingLanguage.length > 1) {
+  projectSchema.programmingLanguage = programmingLanguage;
+}
 ---
 
-<Layout title={`${title} - Paul Peck, RN`} description={description}>
+<Layout title={`${title} — Paul Peck, RN | E-MyR`} description={description} image={image}>
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(projectSchema)} />
   <ThemeToggle />
 
   <div class="project-container">
@@ -78,7 +116,7 @@ function formatDate(d: Date) {
 
       {image && (
         <figure class="project-hero">
-          <img src={image} alt={imageAlt || `${title} screenshot`} />
+          <img src={image} alt={imageAlt || `${title} screenshot`} loading="lazy" decoding="async" />
         </figure>
       )}
 

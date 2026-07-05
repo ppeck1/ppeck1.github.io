@@ -4,6 +4,8 @@ description: "A simulated assistant dashboard for testing voice commands, tool r
 date: 2026-06-11
 tags: ["systems", "agent-governance", "voice", "simulation", "tooling", "python", "safety"]
 github: "https://github.com/ppeck1/metis-head"
+repo: "ppeck1/metis-head"
+pinned: true
 status: active
 image: "/assets/project-shots/metis-head/dashboard-public.png"
 imageAlt: "Metis Head mock Brain dashboard showing simulated voice trace and governed tool review state."

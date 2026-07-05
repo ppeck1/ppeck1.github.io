@@ -1,12 +1,138 @@
 ---
 // Diagnosis.astro - Projects and case studies
-import { getCollection } from 'astro:content';
+// Pin + collapse + GitHub sync (handoff §2):
+//  - "Pinned – Chief Concerns": owner-pinned entries render as full cards.
+//  - "Full Problem List — every public repo": one collapsible row per repo,
+//    merged at BUILD TIME with GitHub metadata. Public repos with no site
+//    entry render as orange "unfiled" rows; entries with no repo still render.
+//  - The GitHub fetch fails gracefully: on rate limit / offline the list is
+//    built from content collections alone and a build warning is logged.
+import { getCollection, type CollectionEntry } from 'astro:content';
+
+const GITHUB_USER = 'ppeck1';
 
 const projects = await getCollection('projects', ({ data }) => data.draft !== true);
 const sortedProjects = projects.sort((a, b) =>
   (a.data.priority ?? 100) - (b.data.priority ?? 100) ||
   b.data.date.valueOf() - a.data.date.valueOf()
 );
+
+// Repo full name ("ppeck1/<name>") for an entry: explicit `repo:` frontmatter
+// wins; otherwise derive it from the `github:` URL. Lowercased for matching.
+function repoFor(entry: CollectionEntry<'projects'>): string | null {
+  if (entry.data.repo) return entry.data.repo.toLowerCase();
+  if (entry.data.github) {
+    const m = entry.data.github.match(/github\.com\/([^/]+\/[^/?#]+)/i);
+    if (m) return m[1].replace(/\.git$/, '').toLowerCase();
+  }
+  return null;
+}
+
+interface RepoMeta {
+  full: string; // lowercased full_name, used for matching
+  name: string;
+  description: string;
+  url: string;
+  homepage: string;
+  language: string;
+  pushed: string; // YYYY-MM-DD
+  archived: boolean;
+}
+
+// Build-time GitHub sync. Never let the build fail because GitHub is
+// unreachable: on any error we render from content collections alone.
+let ghRepos: RepoMeta[] = [];
+let ghLive = false;
+try {
+  const res = await fetch(`https://api.github.com/users/${GITHUB_USER}/repos?per_page=100`);
+  if (!res.ok) throw new Error(`GitHub API responded ${res.status}`);
+  const list = await res.json();
+  ghRepos = (Array.isArray(list) ? list : [])
+    .filter((r) => !r.fork)
+    .map((r) => ({
+      full: String(r.full_name || '').toLowerCase(),
+      name: String(r.name || ''),
+      description: r.description || '',
+      url: r.html_url || `https://github.com/${r.full_name}`,
+      homepage: r.homepage || '',
+      language: r.language || '',
+      pushed: String(r.pushed_at || r.updated_at || '').slice(0, 10),
+      archived: !!r.archived,
+    }));
+  ghLive = true;
+} catch (err) {
+  console.warn(
+    '[Diagnosis] GitHub sync failed — rendering problem list from content collections only.',
+    err instanceof Error ? err.message : err
+  );
+}
+
+const repoByFull = new Map(ghRepos.map((r) => [r.full, r]));
+
+const pinnedProjects = sortedProjects.filter((p) => p.data.pinned);
+
+type Status = 'active' | 'completed' | 'archived' | 'unfiled';
+
+interface Row {
+  key: string;
+  title: string;
+  status: Status;
+  pinned: boolean;
+  description: string;
+  tags: string[];
+  language: string;
+  pushed: string;
+  metaFallback: string; // shown when GitHub metadata is unavailable
+  writeupUrl: string | null; // site write-up (/projects/[slug])
+  githubUrl: string | null;
+  demoUrl: string | null;
+}
+
+// Entry-backed rows: every content entry renders, with GitHub metadata merged
+// in when the entry's repo matched a fetched repo. Entries with no repo at all
+// (e.g. demo-only projects) still render.
+const entryRows: Row[] = sortedProjects.map((entry) => {
+  const full = repoFor(entry);
+  const meta = full ? repoByFull.get(full) : undefined;
+  return {
+    key: entry.slug,
+    title: entry.data.title,
+    status: meta?.archived ? 'archived' : entry.data.status,
+    pinned: entry.data.pinned,
+    description: entry.data.description,
+    tags: entry.data.tags,
+    language: meta?.language ?? '',
+    pushed: meta?.pushed ?? '',
+    metaFallback: full ? full.split('/')[1] : 'demo',
+    writeupUrl: `/projects/${entry.slug}`,
+    githubUrl: entry.data.github ?? (full ? `https://github.com/${full}` : null),
+    demoUrl: entry.data.demo ?? null,
+  };
+});
+
+// Unfiled rows: public repos with no site entry. Nothing public goes
+// unreflected — they surface automatically from the GitHub description.
+const claimed = new Set(
+  sortedProjects.map((entry) => repoFor(entry)).filter((full): full is string => full !== null)
+);
+const unfiledRows: Row[] = ghRepos
+  .filter((r) => !claimed.has(r.full))
+  .map((r) => ({
+    key: `gh-${r.name}`,
+    title: r.name,
+    status: 'unfiled' as Status,
+    pinned: false,
+    description: r.description,
+    tags: r.language ? [r.language.toLowerCase()] : [],
+    language: r.language,
+    pushed: r.pushed,
+    metaFallback: r.name,
+    writeupUrl: null,
+    githubUrl: r.url,
+    demoUrl: r.homepage || null,
+  }));
+
+const rows: Row[] = [...entryRows, ...unfiledRows];
 ---
 
 <div class="tab-panel" id="panel-diagnosis">
@@ -14,20 +140,11 @@ const sortedProjects = projects.sort((a, b) =>
 
   <p class="intro">This section is where projects and case studies live. The common thread is not the category of the project. It is the pattern of the problem.</p>
 
-  <div class="projects-grid">
-    {sortedProjects.length === 0 ? (
-      <div class="placeholder">
-        <p><strong>Projects coming soon.</strong></p>
-        <p>This section will showcase:</p>
-        <ul>
-          <li>Clinical workflow tools and systems</li>
-          <li>Biological system experiments (hydroponics, aquaponics)</li>
-          <li>Creative infrastructure (Big Peckture Studio, Sinternetcult)</li>
-          <li>GitHub repositories and technical projects</li>
-        </ul>
-      </div>
-    ) : (
-      sortedProjects.map((project) => (
+  <section class="pinned-section" aria-labelledby="pinned-heading">
+    <h3 id="pinned-heading">Pinned – Chief Concerns</h3>
+
+    <div class="projects-grid">
+      {pinnedProjects.map((project) => (
         <article class="project-card">
           {project.data.image && (
             <a href={`/projects/${project.slug}`} class="project-image-link" aria-label={`Open ${project.data.title}`}>
@@ -35,9 +152,17 @@ const sortedProjects = projects.sort((a, b) =>
             </a>
           )}
           <div class="project-card-body">
-            <h3><a href={`/projects/${project.slug}`}>{project.data.title}</a></h3>
+            <h4><a href={`/projects/${project.slug}`}>{project.data.title}</a></h4>
             <p>{project.data.description}</p>
+            {project.data.tags.length > 0 && (
+              <div class="tag-pills">
+                {project.data.tags.map((tag) => (
+                  <span class="tag-pill">{tag}</span>
+                ))}
+              </div>
+            )}
             <div class="project-actions">
+              <a href={`/projects/${project.slug}`} class="github-link">Open full case -&gt;</a>
               {project.data.github && (
                 <a href={project.data.github} class="github-link" target="_blank" rel="noopener">
                   GitHub -&gt;
@@ -52,9 +177,63 @@ const sortedProjects = projects.sort((a, b) =>
           </div>
           <span class={`status-badge status-${project.data.status}`}>{project.data.status}</span>
         </article>
-      ))
+      ))}
+    </div>
+  </section>
+
+  <section class="problem-list-section" aria-labelledby="problem-list-heading">
+    <div class="problem-list-head">
+      <h3 id="problem-list-heading">Full Problem List — every public repo</h3>
+      <span class="sync-note">
+        {ghLive
+          ? `⟳ synced from github.com/${GITHUB_USER} at build`
+          : '● snapshot — GitHub was unreachable at build time'}
+      </span>
+    </div>
+
+    <div class="repo-rows">
+      {rows.map((row) => (
+        <details class="repo-row">
+          <summary>
+            <span class="row-glyph" aria-hidden="true"></span>
+            <span class={`row-dot dot-${row.status}`} aria-hidden="true">●</span>
+            <span class="row-title">
+              {row.title}
+              {row.pinned && <span class="pin-chip">▲ PINNED</span>}
+            </span>
+            <span class="row-meta">
+              {row.language && `${row.language} · `}
+              {row.pushed ? `upd ${row.pushed}` : row.metaFallback}
+            </span>
+          </summary>
+          <div class="row-body">
+            {row.description && <p>{row.description}</p>}
+            {row.tags.length > 0 && (
+              <div class="tag-pills">
+                {row.tags.map((tag) => (
+                  <span class="tag-pill">{tag}</span>
+                ))}
+              </div>
+            )}
+            <div class="row-links">
+              {row.writeupUrl && <a href={row.writeupUrl}>Open full case -&gt;</a>}
+              {row.githubUrl && (
+                <a href={row.githubUrl} target="_blank" rel="noopener">GitHub -&gt;</a>
+              )}
+              {row.demoUrl && (
+                <a href={row.demoUrl} target="_blank" rel="noopener">Demo -&gt;</a>
+              )}
+              {row.status === 'unfiled' && <span class="unfiled-note">not yet filed on this chart</span>}
+            </div>
+          </div>
+        </details>
+      ))}
+    </div>
+
+    {unfiledRows.length > 0 && (
+      <p class="unfiled-legend">● orange rows are public repos not yet filed on this chart — they surface here automatically.</p>
     )}
-  </div>
+  </section>
 </div>
 
 <style>
@@ -64,8 +243,16 @@ const sortedProjects = projects.sort((a, b) =>
     color: var(--text-secondary);
   }
 
+  .pinned-section h3,
+  .problem-list-head h3 {
+    margin: 2rem 0 0.5rem 0;
+    font-size: 1.15rem;
+  }
+
+  /* ---- Pinned – Chief Concerns ---- */
+
   .projects-grid {
-    margin: 2rem 0;
+    margin: 1rem 0 2rem 0;
     display: grid;
     gap: 1.5rem;
   }
@@ -101,18 +288,18 @@ const sortedProjects = projects.sort((a, b) =>
     padding: 1.5rem;
   }
 
-  .project-card h3 {
+  .project-card h4 {
     margin: 0 0 0.75rem 0;
     padding-right: 5rem;
     font-size: 1.3rem;
   }
 
-  .project-card h3 a {
+  .project-card h4 a {
     color: var(--text-primary);
     text-decoration: none;
   }
 
-  .project-card h3 a:hover {
+  .project-card h4 a:hover {
     color: var(--color-teal);
   }
 
@@ -155,25 +342,186 @@ const sortedProjects = projects.sort((a, b) =>
     color: var(--text-secondary);
   }
 
-  .placeholder {
-    padding: 2rem;
-    background: var(--bg-secondary);
+  /* ---- Tag pills (shared) ---- */
+
+  .tag-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.375rem;
+    margin-top: 0.75rem;
+  }
+
+  .tag-pill {
+    padding: 0.125rem 0.6rem;
     border: 1px solid var(--border-color);
-    border-radius: 8px;
+    border-radius: 999px;
+    font-size: 0.72rem;
+    font-family: monospace;
+    color: var(--text-secondary);
+    background: var(--bg-primary);
+    white-space: nowrap;
   }
 
-  .placeholder ul {
-    margin: 1rem 0;
-    padding-left: 1.5rem;
+  /* ---- Full Problem List ---- */
+
+  .problem-list-section {
+    margin: 2.5rem 0;
   }
 
-  .placeholder li {
-    margin: 0.5rem 0;
+  .problem-list-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.5rem;
+  }
+
+  .sync-note {
+    font-family: monospace;
+    font-size: 0.72rem;
+    color: var(--text-secondary);
+    white-space: nowrap;
+  }
+
+  .repo-rows {
+    border-top: 1px solid var(--border-color);
+  }
+
+  .repo-row {
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .repo-row summary {
+    display: flex;
+    align-items: baseline;
+    gap: 0.625rem;
+    padding: 0.75rem 0.5rem;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .repo-row summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .repo-row summary:hover {
+    background: var(--bg-secondary);
+  }
+
+  .row-glyph {
+    flex: 0 0 auto;
+    font-family: monospace;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+  }
+
+  .row-glyph::before {
+    content: '▸';
+  }
+
+  .repo-row[open] .row-glyph::before {
+    content: '▾';
+  }
+
+  .row-dot {
+    flex: 0 0 auto;
+    font-size: 0.7rem;
+    line-height: 1;
+  }
+
+  .dot-active {
+    color: var(--color-green);
+  }
+
+  .dot-completed {
+    color: var(--color-teal);
+  }
+
+  .dot-archived {
+    color: var(--text-secondary);
+  }
+
+  .dot-unfiled {
+    color: var(--color-orange);
+  }
+
+  .row-title {
+    flex: 1 1 auto;
+    min-width: 180px;
+    font-weight: 600;
+    font-size: 0.98rem;
+    color: var(--text-primary);
+  }
+
+  .pin-chip {
+    font-family: monospace;
+    font-size: 0.65rem;
+    color: var(--color-orange);
+    letter-spacing: 0.5px;
+    margin-left: 0.625rem;
+    text-transform: uppercase;
+  }
+
+  .row-meta {
+    flex: 0 0 auto;
+    font-family: monospace;
+    font-size: 0.72rem;
+    color: var(--text-secondary);
+    white-space: nowrap;
+  }
+
+  .row-body {
+    padding: 0 0.5rem 1rem 1.875rem;
+  }
+
+  .row-body p {
+    margin: 0 0 0.625rem 0;
+    max-width: 45rem;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+  }
+
+  .row-body .tag-pills {
+    margin: 0 0 0.75rem 0;
+  }
+
+  .row-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: baseline;
+  }
+
+  .row-links a {
+    color: var(--color-teal);
+    font-size: 0.85rem;
+    font-family: monospace;
+    white-space: nowrap;
+  }
+
+  .unfiled-note {
+    font-family: monospace;
+    font-size: 0.72rem;
+    color: var(--color-orange);
+    white-space: nowrap;
+  }
+
+  .unfiled-legend {
+    margin-top: 0.75rem;
+    font-family: monospace;
+    font-size: 0.72rem;
+    color: var(--text-secondary);
   }
 
   @media (max-width: 768px) {
     .project-image-link img {
       height: 170px;
+    }
+
+    .row-meta {
+      display: none;
     }
   }
 </style>

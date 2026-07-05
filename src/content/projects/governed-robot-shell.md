@@ -4,6 +4,8 @@ description: "A decoupled robot-control prototype where LLM output becomes inten
 date: 2026-06-16
 tags: ["robotics", "llm", "safety", "governance", "safety-gate", "audit-log", "python"]
 github: "https://github.com/ppeck1/governed-robot-shell"
+repo: "ppeck1/governed-robot-shell"
+pinned: true
 status: active
 image: "/assets/project-shots/llm-robot-shell/governed-robot-shell-hero.jpg"
 imageAlt: "Governed Robot Shell architecture diagram showing Perception, Parse, Intent, Planner, Safety Gate, and Subsystem Dispatch, with labels for Authority Boundary, Audit Log, and E-stop override."
