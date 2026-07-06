@@ -282,7 +282,7 @@
   const enterButton = document.getElementById('enter-chart');
   const dontShowBtn = document.getElementById('dont-show-again');
 
-  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const reducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false;
 
   // phase: 'idle' | 'off' | 'poweron' | 'post' | 'ecg' | 'fading'
   let phase = 'idle';
@@ -297,6 +297,26 @@
   function clearTimers() {
     timers.forEach(clearTimeout);
     timers = [];
+  }
+
+  function canSuppressIntro() {
+    try {
+      return localStorage.getItem(SUPPRESS_KEY) === 'true';
+    } catch (e) {
+      return false;
+    }
+  }
+
+  function suppressIntro() {
+    try {
+      localStorage.setItem(SUPPRESS_KEY, 'true');
+    } catch (e) { /* storage may be blocked by browser policy */ }
+  }
+
+  function clearIntroSuppress() {
+    try {
+      localStorage.removeItem(SUPPRESS_KEY);
+    } catch (e) { /* storage may be blocked by browser policy */ }
   }
 
   function resetBoot() {
@@ -332,13 +352,13 @@
     post?.classList.add('hidden');
     ecgStage?.classList.remove('hidden');
 
-    // Stroke-draw the heartbeat (design: ~2.2s ease-out)
+    // Stroke-draw the heartbeat unless the user prefers reduced motion.
     ecgPaths.forEach((p) => {
       const path = p as unknown as SVGPathElement;
       const len = path.getTotalLength();
       path.style.strokeDasharray = String(len);
-      path.style.strokeDashoffset = String(len);
-      path.style.animation = 'drawHeartbeat 2.2s ease-out forwards';
+      path.style.strokeDashoffset = reducedMotion ? '0' : String(len);
+      path.style.animation = reducedMotion ? 'none' : 'drawHeartbeat 2.2s ease-out forwards';
     });
 
     if (audioAllowed && audio) {
@@ -378,12 +398,6 @@
   }
 
   function playIntro(opts?: { withPowerButton?: boolean }) {
-    if (reducedMotion) {
-      // Reduced motion: skip the CRT sequence entirely.
-      boot?.classList.add('hidden');
-      showModal();
-      return;
-    }
     resetBoot();
     boot?.classList.remove('hidden');
     if (opts && opts.withPowerButton) {
@@ -426,7 +440,7 @@
   });
 
   // Play on every visit unless the user explicitly opted out.
-  if (!localStorage.getItem(SUPPRESS_KEY)) {
+  if (!canSuppressIntro()) {
     playIntro();
   }
 
@@ -435,14 +449,14 @@
 
   // "Don't show this again" suppresses future plays.
   dontShowBtn?.addEventListener('click', () => {
-    localStorage.setItem(SUPPRESS_KEY, 'true');
+    suppressIntro();
     closeIntro();
   });
 
   // Dock "Restart Intro" button calls this; also clears suppress flag.
   // Replay is gesture-initiated, so it gets the full ⏻ POWER + beep treatment.
   (window as any).restartIntro = () => {
-    localStorage.removeItem(SUPPRESS_KEY);
+    clearIntroSuppress();
     closeIntro();
     playIntro({ withPowerButton: true });
   };
