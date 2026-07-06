@@ -22,6 +22,12 @@ const projects = defineCollection({
     tags: z.array(z.string()).default([]),
     draft: z.boolean().default(false),
     github: z.string().optional(),
+    // GitHub repo shorthand (`ppeck1/<name>`) linking this entry to a repo for
+    // build-time metadata sync; when absent, derived from the `github` URL.
+    repo: z.string().optional(),
+    // Owner-set flag: pinned entries render as full cards in the
+    // "Pinned – Chief Concerns" section of the Diagnosis tab.
+    pinned: z.boolean().default(false),
     demo: z.string().optional(),
     image: z.string().optional(),
     imageAlt: z.string().optional(),

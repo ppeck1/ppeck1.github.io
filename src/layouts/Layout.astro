@@ -3,12 +3,19 @@
 interface Props {
   title?: string;
   description?: string;
+  image?: string;
+  ogType?: string;
 }
 
-const { 
-  title = 'Paul Peck, Clinical Systems & Workflow Optimization | RN',
-  description = 'I operate as a translation layer between clinical operations and technical systems — converting real-world workflow patterns into structured documentation logic, constraint models, and scalable process improvements.'
+const {
+  title = 'Paul Peck, RN — Clinical Systems & Workflow Optimization | E-MyR',
+  description = 'Paul Peck, RN — Healthcare AI Solutions Analyst in Columbus, OH. Clinical workflow design, EHR documentation optimization, and governed AI systems, charted as an interactive EMR.',
+  image = '/assets/preview.png',
+  ogType = 'website'
 } = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const imageURL = new URL(image, Astro.site);
 ---
 
 <!DOCTYPE html>
@@ -19,22 +26,30 @@ const {
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
-    
+    <link rel="canonical" href={canonicalURL} />
+
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    
-    <!-- SEO -->
+
+    <!-- Open Graph -->
+    <meta property="og:type" content={ogType} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
-    <meta name="twitter:card" content="summary" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={imageURL} />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imageURL} />
+
+    <slot name="head" />
   </head>
   <body>
     <slot />

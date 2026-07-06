@@ -4,6 +4,10 @@ on:
   push:
     branches: [ main ]
   workflow_dispatch:
+  # Weekly rebuild so build-time GitHub repo metadata (Diagnosis tab
+  # "Full Problem List") stays fresh without client-side JS.
+  schedule:
+    - cron: '0 6 * * 1'  # Mondays 06:00 UTC
 
 permissions:
   contents: read

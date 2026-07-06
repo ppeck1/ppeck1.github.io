@@ -11,7 +11,11 @@
 /* Tab Navigation */
 .tab-navigation {
   display: flex;
+  flex: 1;
   gap: 0;
+  justify-content: center;
+  /* "safe" keeps the first tabs reachable when they overflow on narrow screens */
+  justify-content: safe center;
   background: var(--bg-secondary);
   border-bottom: 2px solid var(--border-color);
   padding: 0 2rem;
@@ -207,49 +211,7 @@
   border-color: var(--color-teal);
 }
 
-/* Boot Screen */
-.boot-screen {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: var(--bg-primary);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  z-index: 2000;
-}
-
-.boot-text {
-  font-family: 'Monaco', monospace;
-  color: var(--color-teal);
-  font-size: 1rem;
-  margin-bottom: 2rem;
-}
-
-/* EKG Animation */
-.ekg-container {
-  width: 300px;
-  height: 100px;
-  overflow: hidden;
-}
-
-.ekg-line {
-  stroke: var(--color-teal);
-  stroke-width: 2;
-  fill: none;
-  stroke-dasharray: 1000;
-  stroke-dashoffset: 1000;
-  animation: drawEKG 2s ease forwards;
-}
-
-@keyframes drawEKG {
-  to {
-    stroke-dashoffset: 0;
-  }
-}
+/* Boot screen + EKG styles now live in IntroSequence.astro (CRT boot layer) */
 
 /* Responsive Design */
 @media (max-width: 768px) {

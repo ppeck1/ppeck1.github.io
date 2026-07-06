@@ -1,5 +1,79 @@
 ---
-// History.astro - Work experience and systems
+// History.astro - Merged background tab: condensed work history + org pills
+// + Meds/Labs reduced to TL;DR strips. Full record lives in the resume PDF.
+
+const timelineCards = [
+  {
+    title: 'Clinical workflow and documentation systems',
+    intro: 'Most recent clinical work: remote triage, chronic care, and documentation-heavy healthcare operations.',
+    items: [
+      'Mapped nurse-led triage and care-management workflows into clearer decision lanes',
+      'Designed structured documentation components that reduced repeated entry and improved consistency',
+      'Worked directly inside EHR and remote-care systems where the practical question is whether a tool supports safe work',
+    ],
+  },
+  {
+    title: 'Emergency, rehab, and high-acuity environments',
+    intro: 'Earlier acute and post-acute work shaped how I think about handoffs, failure modes, and cognitive load.',
+    items: [
+      'Worked where unclear lanes, incomplete information, and timing pressure directly affect safety',
+      'Learned to treat handoff quality, escalation logic, and documentation clarity as operational safety issues, not administrative preferences',
+    ],
+  },
+  {
+    title: 'Technical and governed AI systems',
+    intro: 'In parallel with nursing: software that supports judgment without becoming unaccountable infrastructure.',
+    items: [
+      'Built local-first tools for document intake, knowledge organization, operational memory, and review workflows',
+      'Designed governance patterns for human-reviewed AI output, audit trails, state visibility, and boundary enforcement',
+      'Python, JavaScript/TypeScript, SQL, FastAPI, React, SQLite, Pytest, Playwright, and REST APIs across applied prototypes',
+    ],
+  },
+  {
+    title: 'Experimental and creative systems',
+    intro: 'Work outside traditional software categories that informs how I think about resilience, feedback, and constraints.',
+    items: [
+      'Built and tested small biological systems: hydroponics, aquaponics, nutrient-flow experiments, regenerative garden layouts',
+      'Developed ecommerce and creative infrastructure; photography and macro videography as studies in signal and attention',
+    ],
+  },
+];
+
+const clinicalOrgs = [
+  'Signallamp Health / Tellihealth',
+  'Nobis Health / Orlando Rehabilitation Hospital',
+  'Encompass Health',
+  'VitaLounge',
+  'Quantum Health',
+  'Southeastern Ohio Regional Medical Center',
+  'Grant Medical Center (OhioHealth)',
+  'Nationwide Children’s Hospital',
+  'Grant Life Link',
+  'MedCorp EMS',
+];
+
+const creativeOrgs = [
+  'Independent software prototypes',
+  'Visual media and ecommerce systems',
+  'Local-first knowledge and workflow tools',
+  'Biological and garden-system experiments',
+];
+
+const medsPills = [
+  'Map the real workflow',
+  'Clarify the lanes',
+  'Structure the documentation',
+  'Preserve human judgment',
+  'Automate only what can be evaluated',
+];
+
+const labsPills = [
+  'Friction & rework',
+  'Handoff quality',
+  'Cognitive load',
+  'Provenance & review status',
+  'Behavior under stress',
+];
 ---
 
 <div class="tab-panel" id="panel-history">
@@ -9,62 +83,53 @@
 
   <p>My work is systems-first because my background has been systems-heavy. I have worked inside clinical environments where unclear handoffs create risk, remote workflows where documentation becomes infrastructure, and technical projects where a system is only useful if it behaves safely under constraint.</p>
 
-  <h3>Clinical workflow and documentation systems</h3>
-  <p>Most of my recent clinical work has been in remote triage, chronic care, and documentation-heavy healthcare operations.</p>
-  <ul>
-    <li>Mapped nurse-led triage and care-management workflows into clearer decision lanes</li>
-    <li>Designed structured documentation components that reduced repeated entry and improved consistency</li>
-    <li>Identified friction between nurses, providers, administrative teams, and downstream interpretation needs</li>
-    <li>Worked directly inside EHR and remote-care systems where the practical question is not whether a tool exists, but whether it supports safe work</li>
-  </ul>
-
-  <h3>Emergency, rehab, and high-acuity environments</h3>
-  <p>Earlier clinical work in emergency and post-acute settings shaped how I think about handoffs, failure modes, and cognitive load.</p>
-  <ul>
-    <li>Worked in environments where unclear lanes, incomplete information, and timing pressure directly affect safety</li>
-    <li>Saw how small workflow defects compound during high-stress transitions of care</li>
-    <li>Learned to treat handoff quality, escalation logic, and documentation clarity as operational safety issues, not administrative preferences</li>
-  </ul>
-
-  <h3>Technical and governed AI systems</h3>
-  <p>In parallel with nursing, I have built software systems that explore how AI and automation can support judgment without becoming unaccountable infrastructure.</p>
-  <ul>
-    <li>Built local-first tools for document intake, knowledge organization, operational memory, and review workflows</li>
-    <li>Designed governance patterns for human-reviewed AI output, audit trails, state visibility, and boundary enforcement</li>
-    <li>Used Python, JavaScript, TypeScript, SQL, FastAPI, React, Vite, Pydantic, Pytest, Playwright, Git, GitHub, SQLite, and REST APIs across applied prototypes</li>
-    <li>Focused on tools that expose uncertainty, provenance, and review status rather than hiding them behind a fluent interface</li>
-  </ul>
-
-  <h3>Experimental and creative systems</h3>
-  <p>I also build outside traditional software categories. That work informs how I think about resilience, feedback, constraints, and interface design.</p>
-  <ul>
-    <li>Built and tested small biological systems including hydroponics, aquaponics, nutrient-flow experiments, and regenerative garden layouts</li>
-    <li>Developed ecommerce and creative infrastructure for publishing, product workflows, automation, and visual identity</li>
-    <li>Used photography, macro videography, and visual storytelling to study signal, attention, pattern, and perception</li>
-  </ul>
+  <div class="timeline-cards">
+    {timelineCards.map((card) => (
+      <section class="card">
+        <h3>{card.title}</h3>
+        <p class="card-intro">{card.intro}</p>
+        <ul>
+          {card.items.map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+      </section>
+    ))}
+  </div>
 
   <h3>Organizations and contexts</h3>
-  <p>A non-exhaustive list of organizations whose systems and workflows have shaped how I think:</p>
+  <p class="card-intro">A non-exhaustive list of organizations whose systems and workflows have shaped how I think.</p>
+  <div class="pill-strip" aria-label="Healthcare and clinical organizations">
+    {clinicalOrgs.map((org) => (
+      <span class="pill">{org}</span>
+    ))}
+  </div>
+  <div class="pill-strip" aria-label="Creative and systems-adjacent contexts">
+    {creativeOrgs.map((org) => (
+      <span class="pill secondary">{org}</span>
+    ))}
+  </div>
 
-Healthcare and clinical systems:
+  <h3>Meds – Interventions I Reach For</h3>
+  <div class="pill-strip" aria-label="Standing orders">
+    {medsPills.map((item) => (
+      <span class="pill">{item}</span>
+    ))}
+  </div>
+  <p class="strip-note">I do not treat AI as the intervention by default. Often the useful intervention is upstream: naming the workflow, reducing ambiguity, strengthening documentation, and deciding where automation is safe enough to test.</p>
 
-  <ul>
-    <li>Signallamp Health / TelliHealth</li>
-    <li>Nobis Rehabilitation Partners</li>
-    <li>Encompass Health</li>
-    <li>Vitalounge</li>
-    <li>Quantum Health</li>
-    <li>Emergency and travel nursing contexts</li>
-  </ul>
+  <h3>Labs – Signals I Watch</h3>
+  <div class="pill-strip" aria-label="Signal panel">
+    {labsPills.map((item) => (
+      <span class="pill">{item}</span>
+    ))}
+  </div>
+  <p class="strip-note">A system can look successful while quietly transferring burden to the people inside it. These are the signals I watch before trusting the story the dashboard tells.</p>
 
-Creative and systems-adjacent contexts:
-
-  <ul>
-    <li>Independent software prototypes</li>
-    <li>Visual media and ecommerce systems</li>
-    <li>Local-first knowledge and workflow tools</li>
-    <li>Biological and garden-system experiments</li>
-  </ul>
+  <p class="full-record">
+    This is the condensed chart. The full record lives in
+    <a href="/assets/resume.pdf" download>the resume (PDF)</a>.
+  </p>
 </div>
 
 <style>
@@ -82,20 +147,87 @@ Creative and systems-adjacent contexts:
     margin-bottom: 1rem;
   }
 
-  #panel-history h4 {
-    color: var(--text-primary);
-    margin-top: 1.5rem;
-    margin-bottom: 0.75rem;
-    font-size: 1.1rem;
-  }
-
   #panel-history ul {
-    margin: 1rem 0;
+    margin: 1rem 0 0;
     padding-left: 1.5rem;
   }
 
   #panel-history li {
     margin: 0.5rem 0;
     line-height: 1.6;
+  }
+
+  .timeline-cards {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+  }
+
+  .card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 1.25rem;
+  }
+
+  .card h3 {
+    margin-top: 0 !important;
+    margin-bottom: 0.6rem;
+  }
+
+  .card-intro {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin: 0;
+  }
+
+  .pill-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 0.75rem 0 1rem;
+  }
+
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.4rem 0.8rem;
+    border: 1px solid var(--color-teal);
+    border-radius: 999px;
+    background: var(--bg-secondary);
+    color: var(--color-teal);
+    font-size: 0.88rem;
+    line-height: 1.3;
+  }
+
+  .pill.secondary {
+    border-color: var(--border-color);
+    color: var(--text-secondary);
+  }
+
+  .strip-note {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0.5rem 0 1.5rem;
+  }
+
+  .full-record {
+    margin: 2.5rem 0 1rem;
+    padding: 1rem;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-left: 3px solid var(--color-teal);
+    border-radius: 6px;
+  }
+
+  .full-record a {
+    color: var(--color-teal);
+  }
+
+  @media (max-width: 860px) {
+    .timeline-cards {
+      grid-template-columns: 1fr;
+    }
   }
 </style>

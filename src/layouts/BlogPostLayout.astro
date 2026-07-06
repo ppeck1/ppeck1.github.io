@@ -22,9 +22,26 @@ function formatDate(date: Date) {
     timeZone: 'UTC'
   }).format(date);
 }
+
+// BlogPosting structured data
+const postSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: title,
+  description,
+  datePublished: date.toISOString().split('T')[0],
+  url: new URL(Astro.url.pathname, Astro.site).href,
+  mainEntityOfPage: new URL(Astro.url.pathname, Astro.site).href,
+  author: {
+    '@type': 'Person',
+    name: 'Paul Peck',
+    url: 'https://ppeck.me'
+  }
+};
 ---
 
-<Layout title={`${title} - Paul Peck, RN`} description={description}>
+<Layout title={`${title} — Paul Peck, RN | E-MyR`} description={description} image={image} ogType="article">
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(postSchema)} />
   <ThemeToggle />
 
   <div class="blog-post-container">
@@ -54,13 +71,19 @@ function formatDate(date: Date) {
 
       {image && (
         <figure class="post-hero">
-          <img src={image} alt={imageAlt || `${title} image`} />
+          <img src={image} alt={imageAlt || `${title} image`} loading="lazy" decoding="async" />
         </figure>
       )}
 
       <div class="post-content">
         <slot />
       </div>
+
+      <section class="post-comments" aria-label="Comments">
+        <h2 class="comments-heading">Comments – Addendum Notes</h2>
+        <p class="comments-note">Sign in with GitHub to comment or reply. Comments live as GitHub Discussions on the site repo — no ppeck.me account needed.</p>
+        <div id="giscus-container"></div>
+      </section>
     </article>
   </div>
 </Layout>
@@ -229,6 +252,24 @@ function formatDate(date: Date) {
     border-top: 2px solid var(--border-color);
   }
 
+  .post-comments {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 2px solid var(--border-color);
+  }
+
+  .comments-heading {
+    color: var(--color-teal);
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .comments-note {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+  }
+
   @media (max-width: 768px) {
     .blog-post-container {
       padding: 1rem;
@@ -259,4 +300,51 @@ function formatDate(date: Date) {
       localStorage.setItem('emr-last-tab', 'notes');
     });
   }
+</script>
+
+<script is:inline>
+  (function () {
+    // giscus: comments as GitHub Discussions on ppeck1/ppeck1.github.io.
+    // Theme follows the site's data-theme attribute (light / dark_dimmed).
+    function giscusTheme() {
+      return document.documentElement.getAttribute('data-theme') === 'dark'
+        ? 'dark_dimmed'
+        : 'light';
+    }
+
+    const container = document.getElementById('giscus-container');
+    if (!container) return;
+
+    const s = document.createElement('script');
+    s.src = 'https://giscus.app/client.js';
+    s.async = true;
+    s.crossOrigin = 'anonymous';
+    const attrs = {
+      'data-repo': 'ppeck1/ppeck1.github.io',
+      'data-repo-id': 'R_kgDOQN6Zbg',
+      'data-category': 'Announcements',
+      'data-category-id': 'DIC_kwDOQN6Zbs4DAkub',
+      'data-mapping': 'pathname',
+      'data-strict': '0',
+      'data-reactions-enabled': '1',
+      'data-emit-metadata': '0',
+      'data-input-position': 'bottom',
+      'data-theme': giscusTheme(),
+      'data-lang': 'en',
+      'data-loading': 'lazy',
+    };
+    for (const [k, v] of Object.entries(attrs)) s.setAttribute(k, v);
+    container.appendChild(s);
+
+    // Re-theme the embedded iframe when the site theme toggles.
+    new MutationObserver(function () {
+      const iframe = document.querySelector('iframe.giscus-frame');
+      if (iframe && iframe.contentWindow) {
+        iframe.contentWindow.postMessage(
+          { giscus: { setConfig: { theme: giscusTheme() } } },
+          'https://giscus.app'
+        );
+      }
+    }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+  })();
 </script>

@@ -4,6 +4,8 @@ description: "A Flutter desktop command center for tracking what is active, bloc
 date: 2026-06-11
 tags: ["flutter", "local-first", "sqlite", "project-management", "workflow", "desktop"]
 github: "https://github.com/ppeck1/project-atlas"
+repo: "ppeck1/project-atlas"
+pinned: true
 status: active
 image: "/assets/project-shots/project-atlas/today.png"
 imageAlt: "Project Atlas Today screen showing focus work, overdue items, phone queue, and blocked work."
