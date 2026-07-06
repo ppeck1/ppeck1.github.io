@@ -86,6 +86,15 @@ interface Row {
   writeupUrl: string | null; // site write-up (/projects/[slug])
   githubUrl: string | null;
   demoUrl: string | null;
+  image: string | null; // owner shot, else GitHub social preview
+  imageAlt: string;
+}
+
+// Every expanded row shows a visual (design rule): owner screenshot from the
+// entry's frontmatter wins; otherwise fall back to the repo's GitHub
+// social-preview image.
+function socialPreview(full: string | null): string | null {
+  return full ? `https://opengraph.githubusercontent.com/1/${full}` : null;
 }
 
 // Entry-backed rows: every content entry renders, with GitHub metadata merged
@@ -107,6 +116,8 @@ const entryRows: Row[] = sortedProjects.map((entry) => {
     writeupUrl: `/projects/${entry.slug}`,
     githubUrl: entry.data.github ?? (full ? `https://github.com/${full}` : null),
     demoUrl: entry.data.demo ?? null,
+    image: entry.data.image ?? socialPreview(full),
+    imageAlt: entry.data.imageAlt || `${entry.data.title} preview`,
   };
 });
 
@@ -130,6 +141,8 @@ const unfiledRows: Row[] = ghRepos
     writeupUrl: null,
     githubUrl: r.url,
     demoUrl: r.homepage || null,
+    image: socialPreview(r.full),
+    imageAlt: `${r.name} GitHub preview`,
   }));
 
 const rows: Row[] = [...entryRows, ...unfiledRows];
@@ -207,6 +220,15 @@ const rows: Row[] = [...entryRows, ...unfiledRows];
             </span>
           </summary>
           <div class="row-body">
+            {row.image && (
+              <a
+                href={row.writeupUrl ?? row.githubUrl ?? undefined}
+                class="row-shot"
+                aria-label={`Open ${row.title}`}
+              >
+                <img src={row.image} alt={row.imageAlt} loading="lazy" decoding="async" />
+              </a>
+            )}
             {row.description && <p>{row.description}</p>}
             {row.tags.length > 0 && (
               <div class="tag-pills">
@@ -473,6 +495,23 @@ const rows: Row[] = [...entryRows, ...unfiledRows];
 
   .row-body {
     padding: 0 0.5rem 1rem 1.875rem;
+  }
+
+  .row-shot {
+    display: block;
+    margin: 0.25rem 0 0.875rem 0;
+    max-width: 480px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    overflow: hidden;
+    background: var(--bg-primary);
+  }
+
+  .row-shot img {
+    display: block;
+    width: 100%;
+    max-height: 240px;
+    object-fit: cover;
   }
 
   .row-body p {

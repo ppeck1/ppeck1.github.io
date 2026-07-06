@@ -1,17 +1,45 @@
 ---
-// IntroSequence.astro - Boot screen + EKG animation + Welcome modal
+// IntroSequence.astro - CRT boot sequence (power-on → POST → ECG) + Welcome modal
+// Ported from the E-MyR Design System boot components (BootScreen/EcgTrace).
+// Behavioral contract preserved from v2: plays every visit unless suppressed
+// via 'emr-intro-suppress-v2'; window.restartIntro() replays (with ⏻ POWER).
 ---
 
-<div id="boot-screen" class="boot-screen hidden">
-  <div class="boot-text">Initializing system...</div>
-  <div class="ekg-container">
-    <svg viewBox="0 0 300 100" xmlns="http://www.w3.org/2000/svg">
-      <path 
-        class="ekg-line" 
-        d="M 0 50 L 40 50 L 50 20 L 60 80 L 70 50 L 90 50 L 100 40 L 110 60 L 120 50 L 160 50 L 170 30 L 180 70 L 190 50 L 220 50 L 230 35 L 240 65 L 250 50 L 300 50"
-      />
-    </svg>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=VT323&display=swap"
+/>
+
+<div id="boot-screen" class="emyr-boot hidden">
+  <div class="tube" id="boot-tube">
+    <div class="crt-fizzle hidden" id="boot-fizzle"></div>
+
+    <div class="post hidden" id="boot-post">
+      <div class="post-line hidden">E-MyR BIOS v3.0 — PECK SYSTEMS LAB</div>
+      <div class="post-line hidden">CPU: RN-CORE @ 4.0 GHz .......... <span class="ok">OK</span></div>
+      <div class="post-line hidden">MEMORY CHECK: 640K CLINICAL ..... <span class="ok">OK</span></div>
+      <div class="post-line hidden">MOUNTING CHART: PECK, PAUL T .... <span class="ok">OK</span></div>
+      <div class="post-line hidden amber">VITALS ACQUIRED. LOADING CHART...</div>
+      <span class="crt-cursor"></span>
+    </div>
+
+    <div class="ecg-stage hidden" id="boot-ecg">
+      <div class="logo">E-MyR</div>
+      <div class="sub">ELECTRONIC MEDICAL RECORD SYSTEM</div>
+      <svg viewBox="0 0 300 60" width="300" height="60" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path class="ecg-glow" d="M10 30 H80 L90 25 L100 30 H130 L140 35 L150 10 L160 45 L170 30 H200 L215 20 L230 30 H290"></path>
+        <path class="ecg-line" id="boot-ecg-path" d="M10 30 H80 L90 25 L100 30 H130 L140 35 L150 10 L160 45 L170 30 H200 L215 20 L230 30 H290"></path>
+      </svg>
+      <div class="sub bpm">SINUS RHYTHM DETECTED · 62 BPM</div>
+    </div>
+
+    <div class="crt-overlay"></div>
+    <button class="skip hidden" id="boot-skip">[ESC] SKIP INTRO</button>
   </div>
+
+  <button class="power-btn hidden" id="boot-power" aria-label="Power on">⏻ POWER</button>
 </div>
 
 <div id="intro-modal" class="intro-modal hidden">
@@ -26,28 +54,376 @@
   </div>
 </div>
 
+<style is:global>
+  /* ============================================
+     CRT boot layer — tokens scoped to the boot overlay.
+     VT323 only ever renders inside .emyr-boot.
+     ============================================ */
+  .emyr-boot {
+    --crt-bg: #020807;
+    --crt-phosphor: #00E5B8;
+    --crt-phosphor-bright: #8CFFE9;
+    --crt-phosphor-dim: rgba(0, 229, 184, 0.55);
+    --crt-amber: #FFB000;
+    --crt-scanline: rgba(0, 0, 0, 0.32);
+    --crt-glow: rgba(0, 229, 184, 0.35);
+    --glow-phosphor: 0 0 6px var(--crt-glow), 0 0 18px var(--crt-glow);
+    --glow-text: 0 0 4px var(--crt-glow);
+    --font-crt: 'VT323', 'IBM Plex Mono', monospace;
+
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.6s ease-out;
+  }
+  .emyr-boot.hidden { display: none; }
+  .emyr-boot.fading { opacity: 0; pointer-events: none; }
+
+  .emyr-boot .tube {
+    position: absolute;
+    inset: 0;
+    background: var(--crt-bg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transform-origin: center center;
+  }
+  .emyr-boot .tube.off { visibility: hidden; }
+
+  .emyr-boot .hidden { display: none; }
+
+  /* Scanlines + vignette */
+  .emyr-boot .crt-overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+      to bottom,
+      transparent 0px,
+      transparent 2px,
+      var(--crt-scanline) 3px,
+      transparent 4px
+    );
+  }
+  .emyr-boot .crt-overlay::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, 0.55) 100%);
+  }
+
+  /* Power-on pop: collapse-from-line + bloom */
+  @keyframes crtPowerOn {
+    0%   { transform: scaleY(0.004) scaleX(0); filter: brightness(30); }
+    32%  { transform: scaleY(0.004) scaleX(1); filter: brightness(24); }
+    52%  { transform: scaleY(0.02) scaleX(1);  filter: brightness(12); }
+    100% { transform: scale(1); filter: brightness(1); }
+  }
+  .emyr-boot .tube.crt-power-on { animation: crtPowerOn 0.7s ease-out forwards; }
+
+  /* Idle flicker — subtle luminance wobble */
+  @keyframes crtFlicker {
+    0%   { opacity: 1; }
+    3%   { opacity: 0.96; }
+    6%   { opacity: 1; }
+    54%  { opacity: 0.985; }
+    56%  { opacity: 1; }
+    92%  { opacity: 0.97; }
+    100% { opacity: 1; }
+  }
+  .emyr-boot .tube.crt-flicker { animation: crtFlicker 3.5s infinite; }
+
+  /* Static fizzle burst at power-on */
+  @keyframes crtFizzle {
+    0%   { opacity: 0.9; }
+    100% { opacity: 0; }
+  }
+  .emyr-boot .crt-fizzle {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: repeating-conic-gradient(rgba(255,255,255,0.12) 0% 0.0001%, transparent 0.0002% 0.02%);
+    background-size: 7px 7px;
+    mix-blend-mode: screen;
+    animation: crtFizzle 0.9s ease-out forwards;
+  }
+
+  /* POST readout */
+  .emyr-boot .post {
+    font-family: var(--font-crt);
+    font-size: clamp(16px, 2.2vmin, 22px);
+    line-height: 1.5;
+    color: var(--crt-phosphor);
+    text-shadow: var(--glow-text);
+    width: min(560px, 82vw);
+    white-space: pre-wrap;
+    position: relative;
+    z-index: 1;
+  }
+  .emyr-boot .post .ok { color: var(--crt-phosphor-bright); }
+  .emyr-boot .post .amber { color: var(--crt-amber); }
+
+  @keyframes crtBlink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
+  .emyr-boot .crt-cursor::after {
+    content: '█';
+    animation: crtBlink 1s steps(1) infinite;
+  }
+
+  /* ECG stage */
+  .emyr-boot .ecg-stage { text-align: center; position: relative; z-index: 1; }
+  .emyr-boot .logo {
+    font-family: var(--font-crt);
+    font-size: clamp(40px, 7vmin, 64px);
+    color: var(--crt-phosphor-bright);
+    text-shadow: var(--glow-phosphor);
+    letter-spacing: 4px;
+    margin-bottom: 4px;
+  }
+  .emyr-boot .sub {
+    font-family: var(--font-crt);
+    font-size: clamp(15px, 2.4vmin, 20px);
+    color: var(--crt-phosphor-dim);
+    letter-spacing: 2px;
+    margin-bottom: 28px;
+  }
+  .emyr-boot .sub.bpm { margin-top: 24px; margin-bottom: 0; }
+  .emyr-boot .ecg-stage svg { display: block; margin: 0 auto; }
+  .emyr-boot .ecg-line {
+    stroke: var(--crt-phosphor);
+    stroke-width: 2;
+    fill: none;
+    stroke-linecap: round;
+  }
+  .emyr-boot .ecg-glow {
+    stroke: var(--crt-phosphor);
+    stroke-width: 4;
+    fill: none;
+    opacity: 0.4;
+    filter: blur(2px);
+    stroke-linecap: round;
+  }
+  @keyframes drawHeartbeat { to { stroke-dashoffset: 0; } }
+
+  /* Power button (off state / replay) */
+  @keyframes crtBtnBlink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0.35; } }
+  .emyr-boot .power-btn {
+    background: none;
+    border: 2px solid var(--crt-phosphor-dim);
+    color: var(--crt-phosphor);
+    font-family: var(--font-crt);
+    font-size: 1.6rem;
+    padding: 14px 34px;
+    cursor: pointer;
+    letter-spacing: 3px;
+    border-radius: 2px;
+    text-shadow: var(--glow-text);
+    transition: all 0.2s ease;
+    animation: crtBtnBlink 2s steps(1) infinite;
+    position: relative;
+    z-index: 2;
+  }
+  .emyr-boot .power-btn:hover {
+    background: rgba(0, 229, 184, 0.08);
+    border-color: var(--crt-phosphor);
+    animation: none;
+  }
+
+  /* Skip control */
+  .emyr-boot .skip {
+    position: absolute;
+    bottom: 18px;
+    right: 22px;
+    font-family: var(--font-crt);
+    font-size: 15px;
+    color: var(--crt-phosphor-dim);
+    background: none;
+    border: none;
+    cursor: pointer;
+    letter-spacing: 1px;
+    z-index: 2;
+  }
+  .emyr-boot .skip:hover { color: var(--crt-phosphor); }
+
+  /* Reduced motion: no animation frames at all */
+  @media (prefers-reduced-motion: reduce) {
+    .emyr-boot .tube.crt-power-on,
+    .emyr-boot .tube.crt-flicker,
+    .emyr-boot .crt-fizzle,
+    .emyr-boot .crt-cursor::after,
+    .emyr-boot .power-btn,
+    .emyr-boot .ecg-line,
+    .emyr-boot .ecg-glow {
+      animation: none !important;
+    }
+  }
+</style>
+
 <script>
   // v2 key: deliberately renamed so the old 'emr-intro-seen' value (written
   // by the previous Enter Chart handler) is ignored. Only "Don't show this
   // again" sets this key, so the intro plays on every visit by default.
   const SUPPRESS_KEY = 'emr-intro-suppress-v2';
 
-  const bootScreen  = document.getElementById('boot-screen');
-  const introModal  = document.getElementById('intro-modal');
+  const boot = document.getElementById('boot-screen');
+  const tube = document.getElementById('boot-tube');
+  const fizzle = document.getElementById('boot-fizzle');
+  const post = document.getElementById('boot-post');
+  const postLines = Array.from(document.querySelectorAll('#boot-post .post-line'));
+  const ecgStage = document.getElementById('boot-ecg');
+  const ecgPaths = Array.from(document.querySelectorAll('#boot-ecg path'));
+  const skipBtn = document.getElementById('boot-skip');
+  const powerBtn = document.getElementById('boot-power');
+  const introModal = document.getElementById('intro-modal');
   const enterButton = document.getElementById('enter-chart');
   const dontShowBtn = document.getElementById('dont-show-again');
 
-  function playIntro() {
-    bootScreen?.classList.remove('hidden');
-    setTimeout(() => {
-      bootScreen?.classList.add('hidden');
-      introModal?.classList.remove('hidden');
-    }, 2500);
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // phase: 'idle' | 'off' | 'poweron' | 'post' | 'ecg' | 'fading'
+  let phase = 'idle';
+  let timers: ReturnType<typeof setTimeout>[] = [];
+  let audio: HTMLAudioElement | null = null;
+  let audioAllowed = false; // only after a user gesture (⏻ POWER click)
+
+  function after(ms: number, fn: () => void) {
+    timers.push(setTimeout(fn, ms));
+  }
+
+  function clearTimers() {
+    timers.forEach(clearTimeout);
+    timers = [];
+  }
+
+  function resetBoot() {
+    clearTimers();
+    tube?.classList.remove('crt-power-on', 'crt-flicker');
+    tube?.classList.add('off');
+    fizzle?.classList.add('hidden');
+    post?.classList.add('hidden');
+    postLines.forEach((l) => l.classList.add('hidden'));
+    ecgStage?.classList.add('hidden');
+    skipBtn?.classList.add('hidden');
+    powerBtn?.classList.add('hidden');
+    boot?.classList.remove('fading');
+  }
+
+  function showModal() {
+    introModal?.classList.remove('hidden');
+  }
+
+  function finishBoot() {
+    if (phase === 'fading') return;
+    phase = 'fading';
+    clearTimers();
+    boot?.classList.add('fading');
+    after(600, () => {
+      boot?.classList.add('hidden');
+      showModal();
+    });
+  }
+
+  function startEcg() {
+    phase = 'ecg';
+    post?.classList.add('hidden');
+    ecgStage?.classList.remove('hidden');
+
+    // Stroke-draw the heartbeat (design: ~2.2s ease-out)
+    ecgPaths.forEach((p) => {
+      const path = p as unknown as SVGPathElement;
+      const len = path.getTotalLength();
+      path.style.strokeDasharray = String(len);
+      path.style.strokeDashoffset = String(len);
+      path.style.animation = 'drawHeartbeat 2.2s ease-out forwards';
+    });
+
+    if (audioAllowed && audio) {
+      try {
+        audio.currentTime = 0;
+        audio.play().catch(() => {});
+      } catch (e) { /* audio is best-effort */ }
+    }
+
+    after(2200, finishBoot);
+  }
+
+  function typePostLines(i: number) {
+    if (phase !== 'post') return;
+    if (i >= postLines.length) {
+      after(350, startEcg);
+      return;
+    }
+    postLines[i].classList.remove('hidden');
+    after(260, () => typePostLines(i + 1));
+  }
+
+  function powerOn() {
+    phase = 'poweron';
+    tube?.classList.remove('off');
+    tube?.classList.add('crt-power-on');
+    fizzle?.classList.remove('hidden');
+    skipBtn?.classList.remove('hidden');
+    after(850, () => {
+      tube?.classList.remove('crt-power-on');
+      tube?.classList.add('crt-flicker');
+      fizzle?.classList.add('hidden');
+      phase = 'post';
+      post?.classList.remove('hidden');
+      typePostLines(0);
+    });
+  }
+
+  function playIntro(opts?: { withPowerButton?: boolean }) {
+    if (reducedMotion) {
+      // Reduced motion: skip the CRT sequence entirely.
+      boot?.classList.add('hidden');
+      showModal();
+      return;
+    }
+    resetBoot();
+    boot?.classList.remove('hidden');
+    if (opts && opts.withPowerButton) {
+      // Deliberate replay via dock: show ⏻ POWER; the click is the audio gesture.
+      phase = 'off';
+      powerBtn?.classList.remove('hidden');
+    } else {
+      // Autoplay on page load: no gesture available, so no beep — jump to power-on.
+      powerOn();
+    }
   }
 
   function closeIntro() {
     introModal?.classList.add('hidden');
   }
+
+  powerBtn?.addEventListener('click', () => {
+    if (phase !== 'off') return;
+    audioAllowed = true;
+    if (!audio) {
+      try {
+        audio = new Audio('/assets/audio/ekg-beep.mp3');
+        audio.volume = 0.35;
+      } catch (e) { /* no audio support */ }
+    }
+    powerBtn.classList.add('hidden');
+    powerOn();
+  });
+
+  skipBtn?.addEventListener('click', finishBoot);
+
+  // ESC: skips the boot while it plays; dismisses the modal afterwards.
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Escape') return;
+    if (boot && !boot.classList.contains('hidden') && phase !== 'idle' && phase !== 'off' && phase !== 'fading') {
+      finishBoot();
+    } else {
+      closeIntro();
+    }
+  });
 
   // Play on every visit unless the user explicitly opted out.
   if (!localStorage.getItem(SUPPRESS_KEY)) {
@@ -63,14 +439,11 @@
     closeIntro();
   });
 
-  // ESC dismisses without suppressing.
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeIntro();
-  });
-
   // Dock "Restart Intro" button calls this; also clears suppress flag.
-  window.restartIntro = () => {
+  // Replay is gesture-initiated, so it gets the full ⏻ POWER + beep treatment.
+  (window as any).restartIntro = () => {
     localStorage.removeItem(SUPPRESS_KEY);
-    playIntro();
+    closeIntro();
+    playIntro({ withPowerButton: true });
   };
 </script>
