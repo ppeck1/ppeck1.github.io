@@ -255,9 +255,7 @@
     .emyr-boot .tube.crt-flicker,
     .emyr-boot .crt-fizzle,
     .emyr-boot .crt-cursor::after,
-    .emyr-boot .power-btn,
-    .emyr-boot .ecg-line,
-    .emyr-boot .ecg-glow {
+    .emyr-boot .power-btn {
       animation: none !important;
     }
   }
@@ -281,8 +279,6 @@
   const introModal = document.getElementById('intro-modal');
   const enterButton = document.getElementById('enter-chart');
   const dontShowBtn = document.getElementById('dont-show-again');
-
-  const reducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false;
 
   // phase: 'idle' | 'off' | 'poweron' | 'post' | 'ecg' | 'fading'
   let phase = 'idle';
@@ -327,6 +323,12 @@
     post?.classList.add('hidden');
     postLines.forEach((l) => l.classList.add('hidden'));
     ecgStage?.classList.add('hidden');
+    ecgPaths.forEach((p) => {
+      const path = p as unknown as SVGPathElement;
+      path.style.strokeDasharray = '';
+      path.style.strokeDashoffset = '';
+      path.style.animation = '';
+    });
     skipBtn?.classList.add('hidden');
     powerBtn?.classList.add('hidden');
     boot?.classList.remove('fading');
@@ -352,13 +354,15 @@
     post?.classList.add('hidden');
     ecgStage?.classList.remove('hidden');
 
-    // Stroke-draw the heartbeat unless the user prefers reduced motion.
+    // Stroke-draw the heartbeat. Resetting animation first makes Chrome replay it reliably.
     ecgPaths.forEach((p) => {
       const path = p as unknown as SVGPathElement;
       const len = path.getTotalLength();
       path.style.strokeDasharray = String(len);
-      path.style.strokeDashoffset = reducedMotion ? '0' : String(len);
-      path.style.animation = reducedMotion ? 'none' : 'drawHeartbeat 2.2s ease-out forwards';
+      path.style.strokeDashoffset = String(len);
+      path.style.animation = 'none';
+      path.getBoundingClientRect();
+      path.style.animation = 'drawHeartbeat 2.2s ease-out forwards';
     });
 
     if (audioAllowed && audio) {
