@@ -129,4 +129,10 @@ Right now, Coheronia has a playable world, a settlement pressure model, a public
 
 That is the part I want to carry forward.
 
-A small game is useful. A small game with an evidence trail is more useful.
+A polished pitch is useful.
+
+A small game with an evidence trail is more useful.
+
+That is what Coheronia is meant to show: not mastery of every game-development discipline, but the ability to define a system, constrain the work, preserve the trail, and keep iterating without losing the shape of the thing.
+
+View the public repo: [Coheronia on GitHub](https://github.com/ppeck1/coheronia).
