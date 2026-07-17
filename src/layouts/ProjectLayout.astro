@@ -10,13 +10,14 @@ interface Props {
   tags?: string[];
   github?: string;
   demo?: string;
+  demoLabel?: string;
   image?: string;
   imageAlt?: string;
   links?: { label: string; url: string }[];
   status?: string;
 }
 
-const { title, description, date, tags = [], github, demo, image, imageAlt, links = [], status = 'active' } = Astro.props;
+const { title, description, date, tags = [], github, demo, demoLabel, image, imageAlt, links = [], status = 'active' } = Astro.props;
 
 function formatDate(d: Date) {
   return new Intl.DateTimeFormat('en-US', {
@@ -99,7 +100,7 @@ if (programmingLanguage.length === 1) {
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="demo-cta-icon">
               <path d="M8 5v14l11-7z"/>
             </svg>
-            Launch Interactive Demo
+            {demoLabel || 'Launch Interactive Demo'}
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="demo-cta-arrow">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
             </svg>

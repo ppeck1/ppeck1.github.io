@@ -6,6 +6,7 @@ tags: ["godot", "gdscript", "game-dev", "survival", "sandbox", "simulation", "wo
 github: "https://github.com/ppeck1/coheronia"
 repo: "ppeck1/coheronia"
 demo: "/demo/coheronia-wiki/docs/wiki/index.html"
+demoLabel: "Go to the Wiki"
 image: "/assets/project-shots/coheronia/current-live-ui.png"
 imageAlt: "Coheronia live gameplay UI with settlement status, event panel, player dock, health vessel, and attunement vessel."
 status: active

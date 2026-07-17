@@ -29,6 +29,7 @@ const projects = defineCollection({
     // "Pinned – Chief Concerns" section of the Diagnosis tab.
     pinned: z.boolean().default(false),
     demo: z.string().optional(),
+    demoLabel: z.string().optional(),
     image: z.string().optional(),
     imageAlt: z.string().optional(),
     featured: z.boolean().default(false),
