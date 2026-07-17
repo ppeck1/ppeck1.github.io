@@ -1,10 +1,13 @@
 ---
 title: "Coheronia - Godot Survival Settlement Sandbox"
-description: "Terraria-inspired Godot survival sandbox where building, settlement pressure, and future civilization rule collide."
-date: 2026-07-02
-tags: ["godot", "gdscript", "game-dev", "survival", "sandbox", "simulation", "worldbuilding"]
+description: "Godot survival settlement sandbox with a live HUD, character-owned inventory, and a browsable project wiki."
+date: 2026-07-17
+tags: ["godot", "gdscript", "game-dev", "survival", "sandbox", "simulation", "worldbuilding", "interactive", "documentation"]
 github: "https://github.com/ppeck1/coheronia"
 repo: "ppeck1/coheronia"
+demo: "/demo/coheronia-wiki/docs/wiki/index.html"
+image: "/assets/project-shots/coheronia/current-live-ui.png"
+imageAlt: "Coheronia live gameplay UI with settlement status, event panel, player dock, health vessel, and attunement vessel."
 status: active
 ---
 
@@ -30,3 +33,23 @@ The long-term fantasy is bigger than solo survival: carve out a place in a hosti
 ## Architecture
 
 A shell scene manages profiles, characters, and worlds; the playable scene owns day/night, storms, threats, and population flow. JSON data authorities (`blocks`, `recipes`, `enemies`, `ancestries`, `settlement_rules`, progression tables) drive behavior, loaded through registry autoloads. Known limits are documented honestly: placeholder art, abstract population, finite single-biome terrain, and read-only inventory UI.
+
+## Interactive project wiki
+
+The live wiki below is packaged with the portfolio so it can be browsed without
+leaving this project page. It covers the actual game data, inventory and crafting
+routes, HUD architecture, image coverage, planned work, and known limitations.
+
+<div class="demo-embed">
+  <div class="demo-bar">
+    <span>Coheronia Wiki - live systems and implementation reference</span>
+    <a href="/demo/coheronia-wiki/docs/wiki/index.html" target="_blank" rel="noopener">Open full screen -&gt;</a>
+  </div>
+  <iframe
+    src="/demo/coheronia-wiki/docs/wiki/index.html"
+    width="100%"
+    height="760"
+    title="Coheronia interactive project wiki"
+    loading="lazy"
+  ></iframe>
+</div>
