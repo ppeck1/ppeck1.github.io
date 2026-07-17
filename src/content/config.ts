@@ -30,6 +30,7 @@ const projects = defineCollection({
     pinned: z.boolean().default(false),
     demo: z.string().optional(),
     demoLabel: z.string().optional(),
+    demoLinkLabel: z.string().optional(),
     image: z.string().optional(),
     imageAlt: z.string().optional(),
     featured: z.boolean().default(false),
