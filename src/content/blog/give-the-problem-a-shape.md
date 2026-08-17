@@ -1,148 +1,180 @@
 ---
 title: "Give the Problem a Shape"
-description: "What a Formula 1 handover, clinical nursing, and a garden taught me about seeing systems from another angle."
+description: "What a pediatric cardiac handover, a Formula 1 pit crew, and my garden taught me about seeing systems from another angle."
 date: 2026-08-16
-tags: ["systems", "healthcare", "nursing", "perspective", "gardening"]
+tags: ["systems", "human-factors", "problem-framing", "healthcare", "nursing", "gardening"]
 draft: false
 image: "/assets/blog/give-the-problem-a-shape.png"
 imageAlt: "A suspended cluster of fragmented geometric planes casting the shadow of a coherent polyhedral form."
 ---
 
-Some problems are difficult because they are complex.
+At the end of cardiac surgery, Great Ormond Street Hospital for Children had what looked like a communication problem.
 
-Others are difficult because we have not given them enough definition to see what they are.
+But communication was only one thing moving.
 
-We say we have a communication problem, a staffing problem, a workflow problem, or a garden that is not doing well. The label may be accurate, but it is also nearly dimensionless. It has no useful boundary. It does not tell us what belongs inside the problem, what sits outside it, what moves through it, or where we are standing in relation to it.
+The child, ventilation, monitoring, medications, equipment, accumulated knowledge, risk, and responsibility all had to move from the operating theatre to intensive care without the system losing stability.
 
-We are trying to solve a cloud.
+Calling it a communication problem was not exactly wrong.
 
-I have found it more useful to give the problem a shape.
+It was too flat.
 
-A shape has an edge. It has an inside and an outside. Its parts have positions relative to one another. It can be observed from more than one side.
+The label did not show where the transition began or ended. It did not reveal which tasks depended on one another, when authority changed hands, or how one failure could propagate into the next.
 
-Once a problem has shape, it can be rotated.
+The team was trying to solve a cloud.
 
-That matters because the first view of a problem is almost never the whole object. It is a projection produced by where we happen to be standing.
+It needed to give the problem a shape.
 
 ## A Hospital Looks at a Pit Stop
 
-One of the clearest examples comes from Great Ormond Street Hospital for Children in London.
+Physicians Martin Elliott and Allan Goldman recognized a similar underlying structure while watching a Formula 1 race.
 
-The transfer of a child from cardiac surgery to intensive care was a high-risk transition. The patient, ventilation, monitoring, medications, equipment, and responsibility for care all had to move from one team and technical environment to another. At the same time, knowledge accumulated during a long operation had to become usable knowledge for the receiving ICU team.
+A pit crew also had to bring multiple specialists into a constrained space, perform interdependent tasks under time pressure, anticipate failure, and move a complex system through a brief, high-risk transition without leaving anything unresolved.
 
-It was not merely a report. It was a coordinated transfer of a living system, its supports, its information, and its stewardship.
+The useful comparison was not child to car.
 
-Two physicians, Martin Elliott and Allan Goldman, recognized a similar underlying structure while watching a Formula 1 race. A pit crew also had to bring multiple specialists into a constrained space, perform interdependent tasks under time pressure, anticipate failure, and return a vulnerable system to operation without leaving anything unresolved.
+It was transition to transition.
 
-The hospital did not decide that a child was a race car or that the goal of a handover was raw speed.
+The Great Ormond Street team visited Ferrari and worked with human-factors specialists and aviation training captains. They filmed clinical handovers and invited Formula 1 observers to review the footage. A dance choreographer helped the team reconsider where people stood and how they moved around one another.
 
-It recognized the same geometry in a different domain.
+Each observer made a different part of the process visible.
 
-The Great Ormond Street team visited Ferrari, studied the pit crew's process, and worked with human-factors specialists and aviation training captains. They examined role clarity, task sequence, leadership, workspace, failure planning, and the separation of activities that interfered with one another. They filmed handovers. Formula 1 observers reviewed the footage. A dance choreographer even helped the clinical team reconsider where people stood and how they moved around one another.
+The resulting protocol separated the transfer into distinct phases: preparation before arrival, equipment and technology transfer, an uninterrupted information handover, and then group discussion and planning. The anesthetist coordinated the process until responsibility was explicitly transferred to the intensivist. Equipment stability was confirmed before the information briefing began.
 
-The resulting protocol divided the transfer into distinct phases: preparation before arrival, equipment and technology transfer, an uninterrupted information handover, and then group discussion and planning. The anesthetist coordinated the process until responsibility was explicitly transferred to the intensivist. Equipment stability was checked before the information briefing began.
+This separation mattered. The receiving team no longer had to absorb the operative story while simultaneously connecting equipment, resolving alarms, and determining who was directing the room.
 
-They did not copy racing.
+The intervention did not add another reminder to communicate better.
 
-They copied choreography, role definition, anticipatory planning, and the discipline of making a transition observable.
+It redesigned the conditions under which communication had to survive.
 
-In a prospective study of 50 surgical handovers—23 before the intervention and 27 after it—the mean number of technical errors fell from 5.42 to 3.15. Mean information omissions fell from 2.09 to 1.07. Average handover time also decreased, from 10.8 minutes to 9.4 minutes. Before the protocol, 39 percent of observed handovers had more than one error in both the technical and information categories; afterward, that figure was 11.5 percent.
+In a prospective study of 50 surgical handovers—23 before the intervention and 27 after it—the mean number of technical errors fell from 5.42 to 3.15. Mean information omissions fell from 2.09 to 1.07. Average handover time decreased from 10.8 minutes to 9.4 minutes.
 
-This was a small, single-center before-and-after study, not proof that a pit-crew model will improve every clinical process. “Revolutionized healthcare” would be too broad a claim.
+Before the new protocol, nine of 23 observed handovers had more than one technical error and more than one information omission. Afterward, three of 27 did. Regression analysis found a statistically significant reduction in technical errors.
 
-But it materially improved one dangerous transition, and it became an enduring example in healthcare human factors for a reason: the useful idea did not come from looking harder at the handover from the same position. It came from walking around the problem and recognizing its shape somewhere else.
+This was a small, single-center before-and-after study. It did not prove that a pit-crew model would improve every clinical process.
 
-## When My Garden Became a Group of Patients
+The narrower conclusion is more useful.
 
-I experienced a smaller version of that change in perspective in my own garden.
+The handover became safer not because the team looked harder at the same description of the problem. It became safer because another system exposed relationships that the description had hidden.
 
-For a long time, I understood a garden primarily as an arrangement of plants. I thought about placement, color, sunlight, watering, and whether the whole thing looked healthy.
+The problem had not become simple.
 
-I became more successful when I stopped seeing only the arrangement and began looking at the plants more like patients.
-
-That did not mean pretending that plants and people are equivalent. It meant bringing a clinical structure of attention into another living system.
-
-A yellow leaf stopped being the problem itself. It became a finding. I began asking what had changed, whether the pattern was local or systemic, what the plant had been exposed to, how quickly the condition was progressing, and whether my last intervention had helped or created a new problem.
-
-The garden acquired histories, trajectories, risk factors, and responses to treatment.
-
-Pruning dead or diseased tissue began to make more sense when I understood it through the logic of debridement. The goal was not simply to remove something ugly. It was to remove tissue that could no longer contribute, reduce a source of decay or infection when appropriate, preserve viable structure, and create conditions in which the remaining organism could recover.
-
-Tool hygiene also stopped feeling like fussy gardening etiquette. Pruners can carry pathogens from infected tissue to another cut. Cleaning debris from a blade and disinfecting it between diseased plants—or, for some diseases, between cuts—is a form of transmission control.
-
-This is not sterile technique in the operating-room sense. A garden is not a sterile field. But the governing principle transfers: when a tool crosses a protective boundary, what is on that tool matters.
-
-Grafting became easier to understand for the same reason. A successful graft depends on clean, sharp cuts; close contact between the vascular cambium of the scion and rootstock; stabilization of the union; protection from drying; and observation over time to see whether the tissues join.
-
-That is not surgery. But it has a procedural shape that a nurse immediately recognizes: prepare, protect, align, secure, reassess.
-
-Nursing made me a better gardener because it gave me a different vantage point. It trained me to see an individual condition inside a larger environment, to distinguish a symptom from a cause, to intervene with purpose, and to reassess rather than assume that completing the task produced the intended result.
+It had become legible.
 
 ## The Observer Is Part of the Model
 
-The garden did not change when I changed how I described it.
+Why could a Formula 1 team and a choreographer contribute to a pediatric cardiac handover?
 
-What changed was the information I could see.
+Not because medicine lacked expertise.
 
-From an aesthetic vantage, the garden was composition: height, color, density, texture, and balance. That view was not wrong. It simply compressed the individual trajectories of the plants.
+Because expertise is also a vantage point.
 
-From a clinical vantage, each plant became a living system with a present state, history, environment, stressors, and tolerance for intervention. That view revealed problems the compositional view hid. It could also hide qualities that the aesthetic view made obvious.
+The sending team sees what occurred during surgery. The receiving team sees what must be stabilized and understood next. A Formula 1 observer is trained to notice task sequence, interference, role boundaries, and recovery from failure. A choreographer attends to position, movement, timing, and the use of shared space.
 
-Neither perspective was complete.
+Each view preserves some relationships and compresses others.
 
-That is the point.
+That is true of every representation. A clinical note, dashboard, map, workflow diagram, org chart, and garden plan are useful because they reduce reality. The danger begins when we forget that reduction occurred and mistake the projection for the object.
 
-Every description of a system preserves some relationships and discards others. A dashboard, a clinical note, a map, an org chart, and a garden plan are all projections. They are useful because they reduce reality. They become dangerous when we forget that reduction occurred.
+Giving a problem shape is therefore not the same as declaring its final form.
 
-Giving a problem shape is therefore not the same as declaring its final form. It is the act of making one model explicit enough that we can inspect it, turn it, and compare it with another.
+It means making one model explicit enough that we can inspect it, turn it, and compare it with another.
 
-## How to Rotate a Problem
+Once the model can be rotated, the observer becomes part of what is being examined.
+
+## When a Yellow Leaf Became a Finding
+
+The hospital changed its model by looking outward.
+
+I made a smaller version of the same change in my garden.
+
+For a long time, I understood a garden primarily as an arrangement of plants. I thought about placement, color, sunlight, watering, and whether the whole composition looked healthy.
+
+I became a better gardener when a yellow leaf stopped being a visual defect and became a finding.
+
+Was the pattern isolated or systemic? Sudden or gradual? What had changed before it appeared? Was it spreading? Had the last intervention improved the condition or created another one?
+
+The leaf was no longer an answer.
+
+It was evidence inside a trajectory.
+
+The plant had not changed.
+
+My model had.
+
+Tool hygiene changed in the same way. Cleaning pruners had once felt like fussy gardening etiquette. Once I understood that a blade could carry pathogens from infected tissue to another cut, the practice acquired a clearer structure.
+
+The garden was not a sterile field, and cleaning a pruning tool was not operating-room technique. But a useful relationship survived the transfer between domains: when a tool crosses a protective boundary, what is on that tool matters.
+
+Grafting also became easier to understand. A successful graft depends on complementary cuts, contact between the vascular cambium of the scion and rootstock, stabilization of the union, protection from moisture loss, and enough time for the tissues to heal into a functioning vascular system.
+
+It is not surgery.
+
+But it has a procedural shape that clinical training makes easy to recognize:
+
+Prepare. Align. Secure. Protect. Reassess.
+
+Nursing made me a better gardener not because it supplied horticultural answers, but because it changed what counted as information. It trained me to see an individual condition inside an environment, distinguish a symptom from a cause, intervene with purpose, and reassess rather than assume that completing a task produced the intended result.
+
+## How to Give a Problem Shape
 
 When a problem remains stubbornly abstract, I now try to define five things.
 
-### 1. The boundary
+1. **The boundary.** Where does the problem begin and end? What belongs inside the system, and what is merely adjacent to it? At Great Ormond Street, the relevant boundary extended from preparation before the patient arrived in intensive care through the explicit transfer of responsibility.
+2. **The moving parts.** What is actually being transferred or transformed? In the handover, the moving parts included the child, physiological support, equipment, medications, information, risk, attention, and authority.
+3. **The relationships.** Which parts depend on one another? What must occur in sequence, what can happen in parallel, and where can one failure propagate into another? Equipment needed to be stable before the briefing could receive undivided attention. Discussion needed to follow the structured transfer rather than interrupt it.
+4. **The observer.** Where am I standing, and what does that position make easy to see or ignore? The operating team, ICU team, Formula 1 observers, and choreographer did not see competing realities. They saw different projections of the same one.
+5. **The analogous system.** Where else does the same structure appear? The useful match is not shared vocabulary or surface appearance. It is a shared pattern of boundaries, dependencies, transitions, constraints, or failure modes.
 
-Where does the problem begin and end? What is part of the system, and what is merely adjacent to it?
+The contents changed in my garden, but the structure of the method did not.
 
-### 2. The moving parts
+The boundary became an individual plant and its environment. The moving parts became water, nutrients, pathogens, tissue, and time. The relationships became exposure, response, recovery, and recurrence. The observer shifted from someone arranging a composition to someone following a living trajectory.
 
-What is actually being transferred or transformed—information, responsibility, material, attention, energy, trust, or risk?
+Once those elements are visible, generic labels begin turning into actionable descriptions.
 
-### 3. The relationships
+“Better communication” becomes: protect the briefing from competing technical tasks and name the moment responsibility changes hands.
 
-Which parts depend on one another? What must occur in sequence? What can happen in parallel? Where can one failure propagate into another?
+“A plant that is not doing well” becomes: a progressing pattern that appeared after a specific environmental change and did not improve after the last intervention.
 
-### 4. The observer
+Definition does not solve the problem.
 
-Where am I standing? What does my role make easy to see? What does it encourage me to ignore?
+It determines what kind of solution could belong.
 
-### 5. The analogous system
+## Return Before the Analogy Becomes an Identity
 
-Where else does this same structure appear? Not the same vocabulary or surface features, but the same relationships, constraints, transitions, or failure modes.
+Analogy can reveal structure.
 
-Then comes the important restraint: return from the analogy before it becomes an identity.
+It can also smuggle assumptions across a boundary where they do not belong.
 
-A hospital is not a racetrack. A patient is not a machine. A plant is not a person. The value lies in transferring a relationship that holds—not forcing every feature of one domain onto another.
+A hospital is not a racetrack. A child is not a machine. A garden is not a clinical unit. A plant is not a person.
 
-The Great Ormond Street team could borrow role clarity, choreography, sequencing, and anticipatory planning from Formula 1. It could not borrow unlimited rehearsal time, interchangeable equipment, or the assumption that every contingency could be enumerated. The clinical system was more variable because its subject was alive.
+The value lies in transferring a relationship that holds, not forcing every feature of one domain onto another.
 
-The analogy worked because the team knew both what to carry across the boundary and what to leave behind.
+The Great Ormond Street team could borrow role clarity, choreography, sequencing, workspace design, and anticipatory planning from Formula 1. It could not borrow unlimited rehearsal, interchangeable equipment, or the assumption that every contingency could be enumerated.
+
+The clinical system contained irreducible biological variability and far fewer opportunities for repetition.
+
+The same restraint applies in the garden. Clinical attention can sharpen questions about trajectory, contamination, intervention, and reassessment. It does not turn horticulture into medicine.
+
+A good analogy produces a question that can be tested.
+
+It does not produce a conclusion that must be obeyed.
 
 ## Definition Before Solution
 
-We often rush from naming a problem to proposing an intervention.
+We often rush from naming a problem to prescribing an intervention.
 
-More staffing. Better communication. More training. More water. Less water. A new tool. Another policy.
+More staffing. Better communication. More training. A new tool. Another policy. More water. Less water.
 
 Those may be answers, but they arrive before we have established what kind of object we are trying to change.
 
 Sometimes the most productive first intervention is definition.
 
-Give the problem an edge. Identify what moves through it. Place the parts in relation to one another. State where you are standing. Then move.
+Draw the boundary. Name what moves through it. Map the dependencies. Locate the observer. Then look for another system in which the same relationships are easier to see.
 
-Look from the receiving team's side instead of the sending team's. Look at the handover as choreography instead of conversation. Look at the garden as a collection of individual trajectories instead of a single arrangement. Look for another domain where the same geometry is already visible.
+Look from the receiving side instead of the sending side. Look at the handover as choreography instead of conversation. Look at the garden as a collection of individual trajectories instead of a single arrangement.
 
-Nursing made me a better gardener. Formula 1 helped a hospital make a dangerous handover safer. In both cases, the original domain had not exhausted its answers. The observer needed another angle.
+Formula 1 did not make a pediatric handover less complex. Nursing did not make a garden less biological.
+
+Each supplied an angle from which consequential relationships became visible.
 
 A change in perspective does not change reality.
 
@@ -150,11 +182,13 @@ It changes which parts of reality become actionable.
 
 ---
 
+Related: [Technology Doesn't Replace the Work. It Moves the Bottleneck.](/blog/technology-doesnt-replace-the-work/) — on what must survive when work crosses a boundary.
+
 ### Sources and further reading
 
 - Catchpole KR, de Leval MR, McEwan A, et al. [Patient handover from surgery to intensive care: using Formula 1 pit-stop and aviation models to improve safety and quality](https://pubmed.ncbi.nlm.nih.gov/17474955/). *Paediatric Anaesthesia*. 2007;17(5):470–478. [DOI](https://doi.org/10.1111/j.1460-9592.2006.02239.x)
-- American Society for Quality. [Great Ormond Street Hospital for Children: Ferrari's Formula One Handovers and Handovers from Surgery to Intensive Care](https://asq.org/quality-resources/articles/case-studies/great-ormond-street-hospital-for-children-ferraris-formula-one-handovers-and-handovers-from-surgery-to-intensive-care?id=fbc699af11d04980ade06f409a5d6f98). 2008.
+- Sower VE, Duffy JA, Kohers G. [Great Ormond Street Hospital for Children: Ferrari's Formula One Handovers and Handovers from Surgery to Intensive Care](https://asq.org/quality-resources/articles/case-studies/great-ormond-street-hospital-for-children-ferraris-formula-one-handovers-and-handovers-from-surgery-to-intensive-care?id=fbc699af11d04980ade06f409a5d6f98). American Society for Quality. 2008.
 - Iowa State University Extension and Outreach. [How do I sanitize my pruning shears?](https://yardandgarden.extension.iastate.edu/faq/how-do-i-sanitize-my-pruning-shears)
-- Oregon State University Extension Service. [Vegetative plant parts](https://extension.oregonstate.edu/catalog/em-9904-vegetative-plant-parts)
+- Olsen JL, Smith D. [Growing Hazelnuts in the Pacific Northwest: Plant Propagation](https://extension.oregonstate.edu/catalog/em-9075-growing-hazelnuts-pacific-northwest-plant-propagation). Oregon State University Extension Service.
 
-*Paul Tobin Peck*
+*Paul Peck*
