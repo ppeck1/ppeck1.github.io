@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Create, edit, and share an interactive map with reusable pins.">
+  <title>Map Marker Studio</title>
+  <link rel="stylesheet" href="vendor/leaflet.css"><link rel="stylesheet" href="app-v2.css">
+</head>
+<body>
+  <header class="topbar"><div><p class="eyebrow">MAP MAKER</p><h1>Map Marker Studio</h1></div><a class="header-link" href="viewer.html">Open view-only</a></header>
+  <main class="editor-main"><div class="editor-shell">
+    <section class="map-panel">
+      <div class="map-toolbar"><div><h2>Live preview</h2><p><span id="pin-count">0</span> pins · Hover over a marker to see details</p></div><label class="search-field"><span class="sr-only">Search pins</span><input id="search" type="search" placeholder="Search name or location"></label></div>
+      <div class="map-stage"><div id="map"></div><div class="inset-stack"><div class="inset-frame alaska"><span>Alaska</span><div id="alaska-map"></div></div><div class="inset-frame hawaii"><span>Hawaii</span><div id="hawaii-map"></div></div></div><div id="empty-state" class="empty-state" hidden><strong>No markers yet</strong></div></div>
+    </section>
+    <aside class="editor-panel">
+      <section><h2>Edit markers</h2><p class="panel-intro">Use a ZIP code, city and state, or state. Exact addresses are not needed.</p>
+        <form id="pin-form" class="form-card"><label><span>Label</span><input id="name" required maxlength="80" placeholder="Austin meetup"></label><label><span>Location</span><input id="location" required maxlength="100" placeholder="43085, Columbus, OH, or Ohio"></label><label><span>Group <small>(optional)</small></span><input id="team" maxlength="80" placeholder="Meetups"></label><button id="add-button" class="button button-primary" type="submit">Add pin</button><button id="cancel-edit" class="button button-secondary" type="button" hidden>Cancel edit</button><p id="form-status" class="form-status" aria-live="polite"></p></form>
+      </section>
+      <section><h3>Import and backup</h3><div class="action-grid"><label class="button button-secondary file-button">Import CSV<input id="csv-input" type="file" accept=".csv,text/csv" hidden></label><button id="download-csv" class="button button-secondary" type="button">Export CSV</button><button id="backup-json" class="button button-secondary" type="button">Backup map</button><label class="button button-secondary file-button">Restore backup<input id="json-input" type="file" accept=".json,application/json" hidden></label></div><p id="import-status" class="form-status" aria-live="polite"></p></section>
+      <section><h3>Save the map</h3><p class="panel-intro">Create one shareable view-only file, or update the shared data used by both included pages.</p><div class="action-grid"><button id="create-viewer" class="button button-primary" type="button">Create view-only map</button><button id="save-shared" class="button button-secondary" type="button">Save shared data</button><button id="use-shared" class="button button-secondary" type="button">Reload shared data</button><button id="clear-all" class="button button-danger" type="button">Clear draft</button></div><p id="save-status" class="form-status" aria-live="polite"></p></section>
+      <section><div class="table-heading"><h3>Current pins</h3><span id="table-count">0 records</span></div><div class="table-wrap"><table><thead><tr><th>Label</th><th>Location</th><th>Group</th><th><span class="sr-only">Actions</span></th></tr></thead><tbody id="pin-rows"></tbody></table><p id="table-empty" class="table-empty">No pins have been added.</p></div></section>
+    </aside>
+  </div></main><footer>State boundaries: U.S. Census Bureau.</footer>
+  <script src="vendor/leaflet.js"></script><script src="states-data.js"></script><script src="map-data.js"></script><script src="data-utils.js"></script><script src="map-core.js"></script><script src="export-bundle.js"></script><script src="editor.js"></script>
+</body></html>
