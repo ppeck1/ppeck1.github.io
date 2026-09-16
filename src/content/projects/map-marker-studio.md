@@ -12,7 +12,7 @@ imageAlt: "Map Marker Studio editor showing example pins across the United State
 featured: false
 priority: 20
 status: active
-draft: true
+draft: false
 ---
 
 > **TL;DR:** Map Marker Studio turns a list of places into a clear, shareable map. Add pins one at a time or import a CSV, search the result, edit entries in place, and export a view-only map that works without an account.
