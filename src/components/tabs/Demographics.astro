@@ -8,25 +8,22 @@
 <div class="tab-panel" id="panel-demographics">
   <div class="header-row">
     <div class="patient-photo">
-      <div class="photo-frame" aria-label="Patient photo placeholder">
+      <div class="photo-frame" aria-label="Portrait of Paul Peck">
         <img
           src="/assets/patient-8bit.png"
-          alt="8-bit patient photo placeholder"
+          alt="Pixel-art portrait of Paul Peck"
           loading="lazy"
           onerror="this.style.display='none'; this.parentElement.classList.add('missing')"
         />
         <div class="photo-fallback">
-          <div class="fallback-title">Patient photo</div>
+          <div class="fallback-title">Portrait unavailable</div>
         </div>
-      </div>
-      <div class="photo-caption">
-        Add your 8-bit “patient photo” to <code>/public/assets/patient-8bit.png</code>.
       </div>
     </div>
 
     <div class="headline">
       <h2>Paul Peck, RN</h2>
-      <p class="role">Healthcare AI Solutions Analyst | Clinical Workflow & Governance Systems</p>
+      <p class="role">Registered Nurse &amp; Clinical Systems Builder | Clinical Informatics, Documentation Workflow &amp; Healthcare AI</p>
 
       <div class="value-block">
         <p class="value">
@@ -55,9 +52,9 @@
   <section class="impact card">
     <h3>Evidence of Impact</h3>
     <ul>
-      <li>Designed reusable Epic documentation components, including SmartPhrases, SmartLists, and signature workflows, adopted across a 30+ clinician team and estimated to reduce charting burden by about 1 hour per clinician per week</li>
+      <li>Designed reusable Epic documentation components, including SmartPhrases, SmartLists, and signature workflows, adopted across a 30+ clinician team</li>
       <li>Standardized high-volume triage documentation structures to reduce variability, rework, and downstream interpretation burden</li>
-      <li>Managed 80-100 patient encounters per shift while maintaining clinical documentation accuracy and safe escalation patterns</li>
+      <li>Managed high-volume patient encounters while maintaining clinical documentation accuracy and safe escalation patterns</li>
       <li>Built governed local-first prototypes for document intake, review-safe LLM assistance, operational memory, and workflow observability</li>
     </ul>
   </section>
@@ -103,7 +100,7 @@
   <section class="card advisory">
     <h3>Advisory</h3>
     <p>
-      I take a small number of workflow and documentation consults. I'm not an agency and I'm not selling a finished product — if your problem looks like the ones on this chart, write me.
+      Available for limited clinical workflow and documentation reviews: current-state mapping, handoff and responsibility analysis, requirements, prototypes, and implementation recommendations. Independent projects demonstrate methods and technical capability; they are not presented as completed client engagements or deployed production systems.
     </p>
     <a class="pill primary" href="mailto:paultpeck@gmail.com">Start a conversation</a>
   </section>
@@ -165,18 +162,6 @@
   .fallback-title {
     font-weight: 600;
     color: var(--text-primary);
-  }
-
-  /* Only show setup instructions if the image is missing */
-  .photo-caption {
-    display: none;
-    margin-top: 0.6rem;
-    font-size: 0.85rem;
-    color: var(--text-secondary);
-  }
-
-  .photo-frame.missing + .photo-caption {
-    display: block;
   }
 
   .headline h2 {
