@@ -48,7 +48,7 @@ That makes Metis useful as a portfolio artifact because it shows the boundary wo
 
 ## Current Signal
 
-The repository README reports Phase 0AY as the current phase, focused on voice trace dashboard visibility, public media, and hardware-parity analyzer presentation tuning. Verification in the repo is listed as 271 passing tests under Python 3.11.
+The repository README reports Phase 0AY as the current phase, focused on voice trace dashboard visibility, public media, and hardware-parity analyzer presentation tuning. Current verification status and test results remain authoritative in the repository and its continuous-integration history.
 
 ## What This Demonstrates
 

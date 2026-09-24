@@ -1,7 +1,7 @@
 ---
 // Diagnosis.astro - Projects and case studies
 // Pin + collapse + GitHub sync (handoff §2):
-//  - "Pinned – Chief Concerns": owner-pinned entries render as full cards.
+//  - "Selected Work": owner-selected entries render as full cards.
 //  - "Full Problem List — every public repo": one collapsible row per repo,
 //    merged at BUILD TIME with GitHub metadata. Public repos with no site
 //    entry render as orange "unfiled" rows; entries with no repo still render.
@@ -157,7 +157,7 @@ const rows: Row[] = [...entryRows, ...unfiledRows];
   <p class="intro">This section is where projects and case studies live. The common thread is not the category of the project. It is the pattern of the problem.</p>
 
   <section class="pinned-section" aria-labelledby="pinned-heading">
-    <h3 id="pinned-heading">Pinned – Chief Concerns</h3>
+    <h3 id="pinned-heading">Selected Work</h3>
 
     <div class="projects-grid">
       {pinnedProjects.map((project) => (
@@ -274,7 +274,7 @@ const rows: Row[] = [...entryRows, ...unfiledRows];
     font-size: 1.15rem;
   }
 
-  /* ---- Pinned – Chief Concerns ---- */
+  /* ---- Selected Work ---- */
 
   .projects-grid {
     margin: 1rem 0 2rem 0;
