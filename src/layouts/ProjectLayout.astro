@@ -346,6 +346,14 @@ if (programmingLanguage.length === 1) {
     overflow: hidden;
   }
 
+  .project-content :global(.demo-embed-wide) {
+    width: min(1180px, calc(100vw - 2rem));
+    margin-left: 50%;
+    transform: translateX(-50%);
+    border-radius: 12px;
+    box-shadow: 0 18px 48px rgba(0, 0, 0, 0.14);
+  }
+
   .project-content :global(.demo-bar) {
     display: flex;
     justify-content: space-between;
@@ -382,6 +390,10 @@ if (programmingLanguage.length === 1) {
     }
     .project-header h1 {
       font-size: 1.9rem;
+    }
+    .project-content :global(.demo-embed-wide) {
+      width: calc(100vw - 2rem);
+      border-radius: 8px;
     }
   }
 </style>
