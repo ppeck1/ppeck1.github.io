@@ -8,7 +8,7 @@ github: https://github.com/ppeck1/mathcards
 repo: ppeck1/mathcards
 demo: https://ppeck.me/mathcards/
 demoLabel: Open the atlas
-pinned: false
+pinned: true
 featured: false
 priority: 100
 image: /images/projects/mathcards-sample.jpg
