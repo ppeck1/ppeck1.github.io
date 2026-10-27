@@ -6,7 +6,7 @@ status: active
 draft: false
 github: https://github.com/ppeck1/mathcards
 repo: ppeck1/mathcards
-demo: https://ppeck.me/mathcards/?v=0.24.0
+demo: https://ppeck.me/mathcards/?v=0.25.0
 demoLabel: Open the atlas
 pinned: true
 featured: false
@@ -32,10 +32,10 @@ The embedded atlas runs from the same repository-backed demo as the full-screen 
 <div class="demo-embed demo-embed-wide">
   <div class="demo-bar">
     <span>Mathematical Expression Atlas — interactive learning prototype</span>
-    <a href="/mathcards/?v=0.24.0" target="_blank" rel="noopener">Open full screen -&gt;</a>
+    <a href="/mathcards/?v=0.25.0" target="_blank" rel="noopener">Open full screen -&gt;</a>
   </div>
   <iframe
-    src="https://ppeck.me/mathcards/?v=0.24.0"
+    src="https://ppeck.me/mathcards/?v=0.25.0"
     width="100%"
     height="820"
     title="Mathematical Expression Atlas interactive demo"
@@ -71,9 +71,9 @@ The comparison uses the same large “Selected 4 / All 12” readout on phones a
 
 ## A map and a reference
 
-The atlas organizes the current collection into eight territories and twenty-four areas. A searchable index explains terms and notation and links them to cards that actually use them. A learner can move from a symbol to a definition, into a working example, and outward to related concepts.
+The atlas organizes the current collection into eight territories and twenty-four areas. A searchable index explains terms and notation and links them to cards that actually use them. Beneath the search, a collapsible visual catalog lets me browse the full collection of symbols and notation. A learner can move from a symbol to a definition, into a working example, and outward to related concepts.
 
-A flat overview opens with all eight territories visible, including on a phone. Select a territory, then an area, to reach its lessons. The separate Concept connections view explains the relationships between ideas.
+The topographic map opens with all eight territories visible, including on a phone. Each territory's summit height represents its available lesson count, with one lesson between contour levels. Elevation describes the collection's coverage; difficulty and prerequisites belong to the lessons and their connections. Select a territory, then an area, to reach its lessons. The separate Concept connections view explains the relationships between ideas.
 
 ## Structure that leaves room to grow
 
@@ -97,6 +97,6 @@ The purpose is personal and practical: make mathematics easier to explore as a l
 
 ## Explore
 
-- [Open the Mathematical Expression Atlas](https://ppeck.me/mathcards/?v=0.24.0)
+- [Open the Mathematical Expression Atlas](https://ppeck.me/mathcards/?v=0.25.0)
 - [Source code on GitHub](https://github.com/ppeck1/mathcards)
 - [Read why I started building it](/blog/math-as-description/)
