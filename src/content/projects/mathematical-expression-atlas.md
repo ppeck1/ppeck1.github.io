@@ -67,8 +67,6 @@ One lesson keeps twelve crate weights visible while highlighting a chosen group 
 
 Move the highlighted crate from 14 kg to 26 kg. The selected mean rises to 15.75 kg; the population mean rises to 11.75 kg. The same twelve-kilogram change is divided by four in one calculation and twelve in the other. Both mean lines move on the chart, at different rates.
 
-The example also keeps its selection method visible. This is a deliberately chosen group in a known population. The difference between its mean and the population mean does not supply a confidence interval.
-
 ## A map and a reference
 
 The atlas organizes the current collection into eight territories and twenty-four areas. A searchable index explains terms and notation and links them to cards that actually use them. A learner can move from a symbol to a definition, into a working example, and outward to related concepts.
@@ -87,7 +85,9 @@ The live demo is built directly from the public repository. Changes to the main 
 
 ## Current state
 
-Version 0.22.0 contains 38 draft cards, 194 worked examples, 409 searchable reference entries, and 83 declared views. It is a working learning prototype with an unfinished visual design. Lessons state the assumptions and limits of their executable models; independent mathematical and pedagogical review remains future work.
+This is a working learning prototype with an unfinished visual design. The lessons remain drafts; independent mathematical and pedagogical review is still ahead.
+
+The design follows a discipline that also matters in clinical informatics and healthcare AI: declare the inputs, state the model's limits, and validate its behavior before publishing.
 
 The purpose is personal and practical: make mathematics easier to explore as a language for describing what changes, what relates, and what can be inferred under stated conditions.
 
