@@ -6,7 +6,7 @@ status: active
 draft: false
 github: https://github.com/ppeck1/mathcards
 repo: ppeck1/mathcards
-demo: https://ppeck.me/mathcards/?v=0.25.0
+demo: https://ppeck.me/mathcards/?v=0.26.0
 demoLabel: Open the atlas
 pinned: true
 featured: false
@@ -32,10 +32,10 @@ The embedded atlas runs from the same repository-backed demo as the full-screen 
 <div class="demo-embed demo-embed-wide">
   <div class="demo-bar">
     <span>Mathematical Expression Atlas — interactive learning prototype</span>
-    <a href="/mathcards/?v=0.25.0" target="_blank" rel="noopener">Open full screen -&gt;</a>
+    <a href="/mathcards/?v=0.26.0" target="_blank" rel="noopener">Open full screen -&gt;</a>
   </div>
   <iframe
-    src="https://ppeck.me/mathcards/?v=0.25.0"
+    src="https://ppeck.me/mathcards/?v=0.26.0"
     width="100%"
     height="820"
     title="Mathematical Expression Atlas interactive demo"
@@ -79,6 +79,8 @@ The topographic map opens with all eight territories visible, including on a pho
 
 Concept records, models, stories, visuals, definitions, and map placement are separate parts. New lessons use the shared host's controls and animation clock. The application runs locally in a browser without an account, API key, or installation.
 
+Some lessons deepen the thinner parts of the map: conditional probability follows a changing inspection window, variance turns cut-length differences into squared areas, and recurrence repeats a retain-and-refill rule through whole-number rounds. Each uses the shared controls and links its notation back to the index.
+
 The reference index is built ahead of time, alongside the offline app. Opening the page uses those prepared links, which removed the long startup wait while keeping definitions and their card references together.
 
 That modularity matters because the front-end design is still developing. I want to improve how an idea feels without rebuilding the mathematics underneath it.
@@ -97,6 +99,6 @@ The purpose is personal and practical: make mathematics easier to explore as a l
 
 ## Explore
 
-- [Open the Mathematical Expression Atlas](https://ppeck.me/mathcards/?v=0.25.0)
+- [Open the Mathematical Expression Atlas](https://ppeck.me/mathcards/?v=0.26.0)
 - [Source code on GitHub](https://github.com/ppeck1/mathcards)
 - [Read why I started building it](/blog/math-as-description/)
