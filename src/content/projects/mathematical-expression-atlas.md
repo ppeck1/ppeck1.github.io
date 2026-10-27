@@ -6,13 +6,13 @@ status: active
 draft: false
 github: https://github.com/ppeck1/mathcards
 repo: ppeck1/mathcards
-demo: https://ppeck.me/mathcards/
+demo: https://ppeck.me/mathcards/?v=0.24.0
 demoLabel: Open the atlas
 pinned: true
 featured: false
 priority: 100
-image: /images/projects/mathcards-sample.jpg
-imageAlt: "A twelve-crate story connects highlighted weights to separate sample and population mean calculations."
+image: /images/projects/mathcards-sample-0-24.png
+imageAlt: "The crate lesson shows one mass slider and a shared large comparison of four selected crates with all twelve."
 tags:
   - math
   - learning
@@ -32,10 +32,10 @@ The embedded atlas runs from the same repository-backed demo as the full-screen 
 <div class="demo-embed demo-embed-wide">
   <div class="demo-bar">
     <span>Mathematical Expression Atlas — interactive learning prototype</span>
-    <a href="/mathcards/" target="_blank" rel="noopener">Open full screen -&gt;</a>
+    <a href="/mathcards/?v=0.24.0" target="_blank" rel="noopener">Open full screen -&gt;</a>
   </div>
   <iframe
-    src="https://ppeck.me/mathcards/"
+    src="https://ppeck.me/mathcards/?v=0.24.0"
     width="100%"
     height="820"
     title="Mathematical Expression Atlas interactive demo"
@@ -67,15 +67,19 @@ One lesson keeps twelve crate weights visible while highlighting a chosen group 
 
 Move the highlighted crate from 14 kg to 26 kg. The selected mean rises to 15.75 kg; the population mean rises to 11.75 kg. The same twelve-kilogram change is divided by four in one calculation and twelve in the other. Both mean lines move on the chart, at different rates.
 
+The comparison uses the same large “Selected 4 / All 12” readout on phones and desktop, with one mass control. The full playground opens when I want to try other inputs or views.
+
 ## A map and a reference
 
 The atlas organizes the current collection into eight territories and twenty-four areas. A searchable index explains terms and notation and links them to cards that actually use them. A learner can move from a symbol to a definition, into a working example, and outward to related concepts.
 
-The latest expansion filled three areas that previously had no playable lesson: Sets and proof, Statistics, and Linear-time algorithms. Each area now has an introduction; deeper coverage remains on the plan.
+A flat overview opens with all eight territories visible, including on a phone. Select a territory, then an area, to reach its lessons. The separate Concept connections view explains the relationships between ideas.
 
 ## Structure that leaves room to grow
 
 Concept records, models, stories, visuals, definitions, and map placement are separate parts. New lessons use the shared host's controls and animation clock. The application runs locally in a browser without an account, API key, or installation.
+
+The reference index is built ahead of time, alongside the offline app. Opening the page uses those prepared links, which removed the long startup wait while keeping definitions and their card references together.
 
 That modularity matters because the front-end design is still developing. I want to improve how an idea feels without rebuilding the mathematics underneath it.
 
@@ -93,6 +97,6 @@ The purpose is personal and practical: make mathematics easier to explore as a l
 
 ## Explore
 
-- [Open the Mathematical Expression Atlas](https://ppeck.me/mathcards/)
+- [Open the Mathematical Expression Atlas](https://ppeck.me/mathcards/?v=0.24.0)
 - [Source code on GitHub](https://github.com/ppeck1/mathcards)
 - [Read why I started building it](/blog/math-as-description/)
