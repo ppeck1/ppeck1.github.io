@@ -6,7 +6,7 @@ status: active
 draft: false
 github: https://github.com/ppeck1/mathcards
 repo: ppeck1/mathcards
-demo: https://ppeck.me/mathcards/?v=0.29.0&build=e2874d1
+demo: https://ppeck.me/mathcards/?v=0.30.0&build=8b43197
 demoLabel: Open the atlas
 pinned: true
 featured: false
@@ -32,10 +32,10 @@ The embedded atlas runs from the same repository-backed demo as the full-screen 
 <div class="demo-embed demo-embed-wide">
   <div class="demo-bar">
     <span>Mathematical Expression Atlas — interactive learning prototype</span>
-    <a href="/mathcards/?v=0.29.0&amp;build=e2874d1" target="_blank" rel="noopener">Open full screen -&gt;</a>
+    <a href="/mathcards/?v=0.30.0&amp;build=8b43197" target="_blank" rel="noopener">Open full screen -&gt;</a>
   </div>
   <iframe
-    src="https://ppeck.me/mathcards/?v=0.29.0&amp;build=e2874d1"
+    src="https://ppeck.me/mathcards/?v=0.30.0&amp;build=8b43197"
     width="100%"
     height="820"
     title="Mathematical Expression Atlas interactive demo"
@@ -81,7 +81,7 @@ Concept records, models, stories, visuals, definitions, and map placement are se
 
 Some lessons deepen the thinner parts of the map: conditional probability follows a changing inspection window, variance turns cut-length differences into squared areas, and recurrence repeats a retain-and-refill rule through whole-number rounds. Each uses the shared controls and links its notation back to the index.
 
-The book-guided sequence now reaches into countability, finite-state machines and open neighborhoods. I can follow a shelf label through a bijection, a scanned bead through a state transition, or a cursor through the clearance around it. Quantifier scope connects the claims: a station for every desk can differ from one station for all desks. The book matrix stays a roadmap, with each introduction and its limits kept explicit.
+The latest sequence follows a library return desk through probability distributions, expected value and entropy. Moving the chance of zero, one or two books changes the probability bars, the weighted balance point and the uncertainty measured in bits. The three lessons share one model, so their stories, formulas and visuals describe the same inputs. They prepare the book roadmap's broader entropy topics while keeping information entropy distinct from thermodynamic claims.
 
 The reference index is built ahead of time, alongside the offline app. Opening the page uses those prepared links, which removed the long startup wait while keeping definitions and their card references together.
 
@@ -101,6 +101,6 @@ The purpose is personal and practical: make mathematics easier to explore as a l
 
 ## Explore
 
-- [Open the Mathematical Expression Atlas](https://ppeck.me/mathcards/?v=0.29.0&build=e2874d1)
+- [Open the Mathematical Expression Atlas](https://ppeck.me/mathcards/?v=0.30.0&build=8b43197)
 - [Source code on GitHub](https://github.com/ppeck1/mathcards)
 - [Read why I started building it](/blog/math-as-description/)
