@@ -6,7 +6,7 @@ status: active
 draft: false
 github: https://github.com/ppeck1/mathcards
 repo: ppeck1/mathcards
-demo: https://ppeck.me/mathcards/?v=0.26.0
+demo: https://ppeck.me/mathcards/?v=0.26.0&build=acb494a
 demoLabel: Open the atlas
 pinned: true
 featured: false
@@ -32,10 +32,10 @@ The embedded atlas runs from the same repository-backed demo as the full-screen 
 <div class="demo-embed demo-embed-wide">
   <div class="demo-bar">
     <span>Mathematical Expression Atlas — interactive learning prototype</span>
-    <a href="/mathcards/?v=0.26.0" target="_blank" rel="noopener">Open full screen -&gt;</a>
+    <a href="/mathcards/?v=0.26.0&amp;build=acb494a" target="_blank" rel="noopener">Open full screen -&gt;</a>
   </div>
   <iframe
-    src="https://ppeck.me/mathcards/?v=0.26.0"
+    src="https://ppeck.me/mathcards/?v=0.26.0&amp;build=acb494a"
     width="100%"
     height="820"
     title="Mathematical Expression Atlas interactive demo"
@@ -99,6 +99,6 @@ The purpose is personal and practical: make mathematics easier to explore as a l
 
 ## Explore
 
-- [Open the Mathematical Expression Atlas](https://ppeck.me/mathcards/?v=0.26.0)
+- [Open the Mathematical Expression Atlas](https://ppeck.me/mathcards/?v=0.26.0&build=acb494a)
 - [Source code on GitHub](https://github.com/ppeck1/mathcards)
 - [Read why I started building it](/blog/math-as-description/)
