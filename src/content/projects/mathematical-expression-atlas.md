@@ -6,7 +6,7 @@ status: active
 draft: false
 github: https://github.com/ppeck1/mathcards
 repo: ppeck1/mathcards
-demo: https://ppeck.me/mathcards/?v=0.31.0&build=f8d0939
+demo: https://ppeck.me/mathcards/?v=0.32.0&build=0926266
 demoLabel: Open the atlas
 pinned: true
 featured: false
@@ -32,10 +32,10 @@ The embedded atlas runs from the same repository-backed demo as the full-screen 
 <div class="demo-embed demo-embed-wide">
   <div class="demo-bar">
     <span>Mathematical Expression Atlas — interactive learning prototype</span>
-    <a href="/mathcards/?v=0.31.0&amp;build=f8d0939" target="_blank" rel="noopener">Open full screen -&gt;</a>
+    <a href="/mathcards/?v=0.32.0&amp;build=0926266" target="_blank" rel="noopener">Open full screen -&gt;</a>
   </div>
   <iframe
-    src="https://ppeck.me/mathcards/?v=0.31.0&amp;build=f8d0939"
+    src="https://ppeck.me/mathcards/?v=0.32.0&amp;build=0926266"
     width="100%"
     height="820"
     title="Mathematical Expression Atlas interactive demo"
@@ -81,7 +81,7 @@ Concept records, models, stories, visuals, definitions, and map placement are se
 
 Some lessons deepen the thinner parts of the map: conditional probability follows a changing inspection window, variance turns cut-length differences into squared areas, and recurrence repeats a retain-and-refill rule through whole-number rounds. Each uses the shared controls and links its notation back to the index.
 
-The latest sequence connects a library return tray to a sensor lamp through joint distributions, conditional entropy and mutual information. Changing the lamp's error chance moves four joint probabilities, the uncertainty remaining after a reading and the information the lamp supplies. One surprising reading can increase uncertainty even while readings reduce it on average. A perfectly reversed lamp still tells us the tray's state when its labeling rule is known. The three lessons share one model and keep the book roadmap's broader entropy topics explicit.
+The latest lessons make computation and proof visible one step at a time. A library inventory counter scans a binary number, rewrites its carry and stops at the new count. A second lesson follows a return rule through a short formal derivation, with each new line linked to the earlier lines that justify it. Its truth panel stays separate: a true conclusion does not fix a broken proof, and using a valid derivation to describe the library still requires checking its premises. Both lessons use the same shared controls and link their terms and symbols to the index.
 
 The reference index is built ahead of time, alongside the offline app. Opening the page uses those prepared links, which removed the long startup wait while keeping definitions and their card references together.
 
@@ -101,6 +101,6 @@ The purpose is personal and practical: make mathematics easier to explore as a l
 
 ## Explore
 
-- [Open the Mathematical Expression Atlas](https://ppeck.me/mathcards/?v=0.31.0&build=f8d0939)
+- [Open the Mathematical Expression Atlas](https://ppeck.me/mathcards/?v=0.32.0&build=0926266)
 - [Source code on GitHub](https://github.com/ppeck1/mathcards)
 - [Read why I started building it](/blog/math-as-description/)
