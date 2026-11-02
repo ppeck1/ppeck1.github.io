@@ -387,7 +387,14 @@
   }
 
   function closeIntro() {
+    const wasVisible = (boot && !boot.classList.contains('hidden')) ||
+      (introModal && !introModal.classList.contains('hidden'));
+    clearTimers();
+    phase = 'idle';
+    boot?.classList.add('hidden');
     introModal?.classList.add('hidden');
+    audio?.pause();
+    if (wasVisible) document.getElementById('dock-restart')?.focus();
   }
 
   powerBtn?.addEventListener('click', () => {
@@ -403,16 +410,12 @@
     powerOn();
   });
 
-  skipBtn?.addEventListener('click', finishBoot);
+  skipBtn?.addEventListener('click', closeIntro);
 
-  // ESC: skips the boot while it plays; dismisses the modal afterwards.
+  // Escape cancels every replay state, including the waiting POWER screen.
   document.addEventListener('keydown', (e) => {
     if (e.key !== 'Escape') return;
-    if (boot && !boot.classList.contains('hidden') && phase !== 'idle' && phase !== 'off' && phase !== 'fading') {
-      finishBoot();
-    } else {
-      closeIntro();
-    }
+    closeIntro();
   });
 
   // Content is immediately available. The dock starts the optional replay.
