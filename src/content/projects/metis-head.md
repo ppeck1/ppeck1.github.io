@@ -1,58 +1,55 @@
 ---
-title: "Metis Head - Safe Prototype for a Voice Assistant"
-description: "A simulated assistant dashboard for testing voice commands, tool review, and memory access before any real microphone, camera, or hardware exists."
+title: "Metis Head - Local Voice Assistant with Bounded Tools"
+description: "A local assistant with browser push-to-talk, optional read-only Google connections, and allowlisted knowledge and project tools."
 date: 2026-06-11
-tags: ["systems", "agent-governance", "voice", "simulation", "tooling", "python", "safety"]
+tags: ["systems", "agent-governance", "voice", "local-first", "tooling", "python"]
 github: "https://github.com/ppeck1/metis-head"
 repo: "ppeck1/metis-head"
-pinned: true
+pinned: false
 status: active
 image: "/assets/project-shots/metis-head/dashboard-public.png"
-imageAlt: "Metis Head mock Brain dashboard showing simulated voice trace and governed tool review state."
+imageAlt: "Retained capture of the earlier Metis mock dashboard and tool review interface."
 featured: true
 priority: 2
 links:
   - label: "Visual concept"
     url: "/assets/project-shots/metis-head/visual-representation.png"
+portfolioGroup: research
+sourceVisibility: public
 ---
 
-> **TL;DR:** Metis Head is a safe test bench for a future voice assistant. It shows how voice commands, tool requests, and memory look in the interface while keeping all hardware and risky actions simulated.
+Metis Head explores a practical question: how can a local voice assistant retrieve useful information without gaining broad authority over the systems around it?
 
-## What it is
+## What I built
 
-Metis Head is a dashboard and mock assistant runtime for a radio-like device concept. The public repo does not contain a real microphone, camera, or hardware controller. That is intentional: the project tests the control model before the device exists.
+The current application supports typed conversations, browser push-to-talk, local speech processing, and bounded read-only tool routing. Google Calendar, Gmail, and Contacts are optional, account-specific integrations. Bag of Holding and Project Atlas reads use explicit tool allowlists.
 
-The dashboard makes the boundaries visible:
+Unavailable services report that they are unavailable. Mock providers remain available for deterministic tests; they are separate from configured live integrations.
 
-- no real microphone, camera, or hardware in the public repo
-- deterministic mock providers for external systems
-- tool actions routed through review states
-- a read-only BOH bridge that never mutates Bag of Holding
-- voice trace events that are redacted before dashboard display
+## Where the boundaries sit
 
-## What the screenshots show
+- Google access requires the relevant OAuth grant and stays read-only.
+- Each browser tab has a bounded conversation session.
+- BOH and Atlas tools remain behind server-side gates and allowlists.
+- Write requests remain proposals rather than direct changes.
+- Credentials, recordings, private commands, and local configuration stay outside the public source export.
 
-![Metis visual representation](/assets/project-shots/metis-head/visual-representation.png)
+The work is in those boundaries: resolving which account a request refers to, refusing ambiguous access, cancelling a voice turn cleanly, and making unavailable connections visible.
 
-The project is organized around a mock Brain and dashboard. The dashboard shows simulated state, tool review status, and safe voice-event metadata.
+## Demonstration and evidence
 
-The public media intentionally includes both a physical radio reference and a planned visual representation, because the form factor matters: this is not a general chatbot UI. It is a radio-first interface experiment.
+![Earlier mock dashboard capture](/assets/project-shots/metis-head/dashboard-public.png)
 
-![Metis radio reference](/assets/project-shots/metis-head/radio-reference.jpg)
+This retained screenshot shows an earlier mock dashboard. It illustrates the review interface; it is not a capture of the current Google connection or browser voice flow. The radio image below is a physical form-factor reference, and the visual representation is a design concept.
 
-## Why it matters
+![Radio form-factor reference](/assets/project-shots/metis-head/radio-reference.jpg)
 
-The central rule is that voice and tools remain mediated. Simulated voice commands can create safe events, request spoken responses, or surface review state, but they do not become standing approval. The dashboard shows redacted voice-command and confirmation events rather than raw transcript text.
+The [repository README](https://github.com/ppeck1/metis-head#readme) records current implementation and verification evidence. It separates local execution, deterministic fixtures, and operator-confirmed microphone/output checks. Live Google consent remains an operator step.
 
-That makes Metis useful as a portfolio artifact because it shows the boundary work around AI interaction, not just the prompt surface.
+## Current limits
 
-## Current Signal
+This is a local personal-assistant prototype. Optional integrations require setup and grants. The public project does not establish a production healthcare deployment or validated hardware safety. OpenAI production chat remains deferred in the current implementation.
 
-The repository README reports Phase 0AY as the current phase, focused on voice trace dashboard visibility, public media, and hardware-parity analyzer presentation tuning. Current verification status and test results remain authoritative in the repository and its continuous-integration history.
+## What this demonstrates
 
-## What This Demonstrates
-
-- Simulation-first architecture before hardware commitments
-- Redacted voice event handling
-- Tool review instead of tool auto-execution
-- Public media and dashboard proof for a prototype that is still honest about what is mocked
+Account-aware retrieval, explicit tool boundaries, cancellable voice workflows, and a clear distinction between a mocked test path and an enabled live service.

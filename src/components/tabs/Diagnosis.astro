@@ -1,264 +1,86 @@
 ---
-// Diagnosis.astro - Projects and case studies
-// Pin + collapse + GitHub sync (handoff §2):
-//  - "Selected Work": owner-selected entries render as full cards.
-//  - "Full Problem List — every public repo": one collapsible row per repo,
-//    merged at BUILD TIME with GitHub metadata. Public repos with no site
-//    entry render as orange "unfiled" rows; entries with no repo still render.
-//  - The GitHub fetch fails gracefully: on rate limit / offline the list is
-//    built from content collections alone and a build warning is logged.
-import { getCollection, type CollectionEntry } from 'astro:content';
+import { getCollection } from 'astro:content';
+import { projectGroups, projectRows } from '../../lib/project-publication.mjs';
+import type { RepositoryMetadata } from '../../lib/project-publication.mjs';
 
-const GITHUB_USER = 'ppeck1';
-
-const projects = await getCollection('projects', ({ data }) => data.draft !== true);
-const sortedProjects = projects.sort((a, b) =>
-  (a.data.priority ?? 100) - (b.data.priority ?? 100) ||
-  b.data.date.valueOf() - a.data.date.valueOf()
-);
-
-// Repo full name ("ppeck1/<name>") for an entry: explicit `repo:` frontmatter
-// wins; otherwise derive it from the `github:` URL. Lowercased for matching.
-function repoFor(entry: CollectionEntry<'projects'>): string | null {
-  if (entry.data.repo) return entry.data.repo.toLowerCase();
-  if (entry.data.github) {
-    const m = entry.data.github.match(/github\.com\/([^/]+\/[^/?#]+)/i);
-    if (m) return m[1].replace(/\.git$/, '').toLowerCase();
+// Only authored cases are published. GitHub enriches metadata, never inclusion.
+const projects = await getCollection('projects');
+let repositories: RepositoryMetadata[] = [];
+if (process.env.PORTFOLIO_OFFLINE !== '1') {
+  try {
+    const response = await fetch('https://api.github.com/users/ppeck1/repos?per_page=100', {
+      signal: AbortSignal.timeout(8000),
+    });
+    if (!response.ok) throw new Error(`GitHub metadata: ${response.status}`);
+    const result = await response.json();
+    repositories = Array.isArray(result) ? result : [];
+  } catch (error) {
+    console.warn('[Projects] Optional GitHub metadata unavailable; using authored cases.');
   }
-  return null;
 }
-
-interface RepoMeta {
-  full: string; // lowercased full_name, used for matching
-  name: string;
-  description: string;
-  url: string;
-  homepage: string;
-  language: string;
-  pushed: string; // YYYY-MM-DD
-  archived: boolean;
-}
-
-// Build-time GitHub sync. Never let the build fail because GitHub is
-// unreachable: on any error we render from content collections alone.
-let ghRepos: RepoMeta[] = [];
-let ghLive = false;
-try {
-  const res = await fetch(`https://api.github.com/users/${GITHUB_USER}/repos?per_page=100`);
-  if (!res.ok) throw new Error(`GitHub API responded ${res.status}`);
-  const list = await res.json();
-  ghRepos = (Array.isArray(list) ? list : [])
-    .filter((r) => !r.fork)
-    .map((r) => ({
-      full: String(r.full_name || '').toLowerCase(),
-      name: String(r.name || ''),
-      description: r.description || '',
-      url: r.html_url || `https://github.com/${r.full_name}`,
-      homepage: r.homepage || '',
-      language: r.language || '',
-      pushed: String(r.pushed_at || r.updated_at || '').slice(0, 10),
-      archived: !!r.archived,
-    }));
-  ghLive = true;
-} catch (err) {
-  console.warn(
-    '[Diagnosis] GitHub sync failed — rendering problem list from content collections only.',
-    err instanceof Error ? err.message : err
-  );
-}
-
-const repoByFull = new Map(ghRepos.map((r) => [r.full, r]));
-
-const pinnedProjects = sortedProjects.filter((p) => p.data.pinned);
-
-type Status = 'active' | 'completed' | 'archived' | 'unfiled';
-
-interface Row {
-  key: string;
-  title: string;
-  status: Status;
-  pinned: boolean;
-  description: string;
-  tags: string[];
-  language: string;
-  pushed: string;
-  metaFallback: string; // shown when GitHub metadata is unavailable
-  writeupUrl: string | null; // site write-up (/projects/[slug])
-  githubUrl: string | null;
-  demoUrl: string | null;
-  demoLinkLabel: string;
-  image: string | null; // owner shot, else GitHub social preview
-  imageAlt: string;
-}
-
-// Every expanded row shows a visual (design rule): owner screenshot from the
-// entry's frontmatter wins; otherwise fall back to the repo's GitHub
-// social-preview image.
-function socialPreview(full: string | null): string | null {
-  return full ? `https://opengraph.githubusercontent.com/1/${full}` : null;
-}
-
-// Entry-backed rows: every content entry renders, with GitHub metadata merged
-// in when the entry's repo matched a fetched repo. Entries with no repo at all
-// (e.g. demo-only projects) still render.
-const entryRows: Row[] = sortedProjects.map((entry) => {
-  const full = repoFor(entry);
-  const meta = full ? repoByFull.get(full) : undefined;
-  return {
-    key: entry.slug,
-    title: entry.data.title,
-    status: meta?.archived ? 'archived' : entry.data.status,
-    pinned: entry.data.pinned,
-    description: entry.data.description,
-    tags: entry.data.tags,
-    language: meta?.language ?? '',
-    pushed: meta?.pushed ?? '',
-    metaFallback: full ? full.split('/')[1] : 'demo',
-    writeupUrl: `/projects/${entry.slug}`,
-    githubUrl: entry.data.github ?? (full ? `https://github.com/${full}` : null),
-    demoUrl: entry.data.demo ?? null,
-    demoLinkLabel: entry.data.demoLinkLabel ?? 'Demo',
-    image: entry.data.image ?? socialPreview(full),
-    imageAlt: entry.data.imageAlt || `${entry.data.title} preview`,
-  };
-});
-
-// Unfiled rows: public repos with no site entry. Nothing public goes
-// unreflected — they surface automatically from the GitHub description.
-const claimed = new Set(
-  sortedProjects.map((entry) => repoFor(entry)).filter((full): full is string => full !== null)
-);
-const unfiledRows: Row[] = ghRepos
-  .filter((r) => !claimed.has(r.full))
-  .map((r) => ({
-    key: `gh-${r.name}`,
-    title: r.name,
-    status: 'unfiled' as Status,
-    pinned: false,
-    description: r.description,
-    tags: r.language ? [r.language.toLowerCase()] : [],
-    language: r.language,
-    pushed: r.pushed,
-    metaFallback: r.name,
-    writeupUrl: null,
-    githubUrl: r.url,
-    demoUrl: r.homepage || null,
-    demoLinkLabel: 'Demo',
-    image: socialPreview(r.full),
-    imageAlt: `${r.name} GitHub preview`,
-  }));
-
-const rows: Row[] = [...entryRows, ...unfiledRows];
+const rows = projectRows(projects, repositories);
+const selected = rows.filter((row) => row.group === 'selected');
+const supportingGroups = projectGroups.filter((group) => group.key !== 'selected');
 ---
 
 <div class="tab-panel" id="panel-diagnosis">
-  <h2>Diagnosis - Problems I Am Built to See</h2>
-
-  <p class="intro">This section is where projects and case studies live. The common thread is not the category of the project. It is the pattern of the problem.</p>
+  <h2>Diagnosis - Projects and Working Evidence</h2>
+  <p class="intro">Tools shaped by clinical workflow, local ownership, and human review. Start with the selected work, then explore the research and creative projects behind it.</p>
 
   <section class="pinned-section" aria-labelledby="pinned-heading">
     <h3 id="pinned-heading">Selected Work</h3>
-
     <div class="projects-grid">
-      {pinnedProjects.map((project) => (
+      {selected.map((row) => (
         <article class="project-card">
-          {project.data.image && (
-            <a href={`/projects/${project.slug}`} class="project-image-link" aria-label={`Open ${project.data.title}`}>
-              <img src={project.data.image} alt={project.data.imageAlt || `${project.data.title} screenshot`} loading="lazy" />
-            </a>
-          )}
+          {row.image && <a href={row.writeupUrl} class="project-image-link" aria-label={`Open ${row.title}`}>
+            <img src={row.image} alt={row.imageAlt} loading="lazy" />
+          </a>}
           <div class="project-card-body">
-            <h4><a href={`/projects/${project.slug}`}>{project.data.title}</a></h4>
-            <p>{project.data.description}</p>
-            {project.data.tags.length > 0 && (
-              <div class="tag-pills">
-                {project.data.tags.map((tag) => (
-                  <span class="tag-pill">{tag}</span>
-                ))}
-              </div>
-            )}
+            <h4><a href={row.writeupUrl}>{row.title}</a></h4>
+            <p>{row.description}</p>
+            <div class="tag-pills">{row.tags.map((tag) => <span class="tag-pill">{tag}</span>)}</div>
             <div class="project-actions">
-              <a href={`/projects/${project.slug}`} class="github-link">Open full case -&gt;</a>
-              {project.data.github && (
-                <a href={project.data.github} class="github-link" target="_blank" rel="noopener">
-                  GitHub -&gt;
-                </a>
-              )}
-              {project.data.demo && (
-                <a href={project.data.demo} class="github-link" target="_blank" rel="noopener">
-                  {project.data.demoLinkLabel || 'Demo'} -&gt;
-                </a>
-              )}
+              <a href={row.writeupUrl} class="github-link">Open full case -&gt;</a>
+              {row.githubUrl && <a href={row.githubUrl} class="github-link" target="_blank" rel="noopener">GitHub -&gt;</a>}
+              {row.demoUrl && <a href={row.demoUrl} class="github-link" target="_blank" rel="noopener">{row.demoLinkLabel} -&gt;</a>}
             </div>
           </div>
-          <span class={`status-badge status-${project.data.status}`}>{project.data.status}</span>
+          <span class={`status-badge status-${row.status}`}>{row.status}</span>
         </article>
       ))}
     </div>
   </section>
 
-  <section class="problem-list-section" aria-labelledby="problem-list-heading">
-    <div class="problem-list-head">
-      <h3 id="problem-list-heading">Full Problem List — every public repo</h3>
-      <span class="sync-note">
-        {ghLive
-          ? `⟳ synced from github.com/${GITHUB_USER} at build`
-          : '● snapshot — GitHub was unreachable at build time'}
-      </span>
-    </div>
-
-    <div class="repo-rows">
-      {rows.map((row) => (
-        <details class="repo-row">
-          <summary>
-            <span class="row-glyph" aria-hidden="true"></span>
-            <span class={`row-dot dot-${row.status}`} aria-hidden="true">●</span>
-            <span class="row-title">
-              {row.title}
-              {row.pinned && <span class="pin-chip">▲ PINNED</span>}
-            </span>
-            <span class="row-meta">
-              {row.language && `${row.language} · `}
-              {row.pushed ? `upd ${row.pushed}` : row.metaFallback}
-            </span>
-          </summary>
-          <div class="row-body">
-            {row.image && (
-              <a
-                href={row.writeupUrl ?? row.githubUrl ?? undefined}
-                class="row-shot"
-                aria-label={`Open ${row.title}`}
-              >
+  <p class="sync-note">A selected collection of working tools, research, and creative projects.</p>
+  {supportingGroups.map((group) => (
+    <section class="problem-list-section" aria-labelledby={`group-${group.key}`}>
+      <div class="problem-list-head"><h3 id={`group-${group.key}`}>{group.title}</h3></div>
+      <div class="repo-rows">
+        {rows.filter((row) => row.group === group.key).map((row) => (
+          <details class="repo-row">
+            <summary>
+              <span class="row-glyph" aria-hidden="true"></span>
+              <span class={`row-dot dot-${row.status}`} aria-hidden="true">●</span>
+              <span class="row-title">{row.title}</span>
+              <span class="row-meta">{row.language}{row.pushed && ` · upd ${row.pushed}`}</span>
+            </summary>
+            <div class="row-body">
+              {row.image && <a href={row.writeupUrl} class="row-shot" aria-label={`Open ${row.title}`}>
                 <img src={row.image} alt={row.imageAlt} loading="lazy" decoding="async" />
-              </a>
-            )}
-            {row.description && <p>{row.description}</p>}
-            {row.tags.length > 0 && (
-              <div class="tag-pills">
-                {row.tags.map((tag) => (
-                  <span class="tag-pill">{tag}</span>
-                ))}
+              </a>}
+              <p>{row.description}</p>
+              <div class="tag-pills">{row.tags.map((tag) => <span class="tag-pill">{tag}</span>)}</div>
+              <div class="row-links">
+                <a href={row.writeupUrl}>Open full case -&gt;</a>
+                {row.githubUrl && <a href={row.githubUrl} target="_blank" rel="noopener">GitHub -&gt;</a>}
+                {row.demoUrl && <a href={row.demoUrl} target="_blank" rel="noopener">{row.demoLinkLabel} -&gt;</a>}
               </div>
-            )}
-            <div class="row-links">
-              {row.writeupUrl && <a href={row.writeupUrl}>Open full case -&gt;</a>}
-              {row.githubUrl && (
-                <a href={row.githubUrl} target="_blank" rel="noopener">GitHub -&gt;</a>
-              )}
-              {row.demoUrl && (
-                <a href={row.demoUrl} target="_blank" rel="noopener">{row.demoLinkLabel} -&gt;</a>
-              )}
-              {row.status === 'unfiled' && <span class="unfiled-note">not yet filed on this chart</span>}
             </div>
-          </div>
-        </details>
-      ))}
-    </div>
-
-    {unfiledRows.length > 0 && (
-      <p class="unfiled-legend">● orange rows are public repos not yet filed on this chart — they surface here automatically.</p>
-    )}
-  </section>
+          </details>
+        ))}
+      </div>
+    </section>
+  ))}
 </div>
 
 <style>
@@ -315,7 +137,6 @@ const rows: Row[] = [...entryRows, ...unfiledRows];
 
   .project-card h4 {
     margin: 0 0 0.75rem 0;
-    padding-right: 5rem;
     font-size: 1.3rem;
   }
 
@@ -406,7 +227,7 @@ const rows: Row[] = [...entryRows, ...unfiledRows];
     font-family: monospace;
     font-size: 0.72rem;
     color: var(--text-secondary);
-    white-space: nowrap;
+    white-space: normal;
   }
 
   .repo-rows {

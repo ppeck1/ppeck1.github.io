@@ -9,6 +9,8 @@ image: "/assets/project-shots/philosophy-atlas/atlas-cockpit.png"
 imageAlt: "Philosophy Atlas Atlas Cockpit showing five entry modes: Terrain, Folds, Lineages, Timeline, Matrix"
 featured: true
 priority: 6
+portfolioGroup: tools
+sourceVisibility: none
 ---
 
 ## What it is

@@ -8,6 +8,8 @@ status: active
 image: "/assets/project-shots/html2md/codex-reanimator-workstation.jpg"
 imageAlt: "Codex Reanimator workstation interface for converting messy HTML artifacts into reviewable Markdown."
 priority: 9
+portfolioGroup: tools
+sourceVisibility: public
 ---
 
 > **TL;DR:** Codex Reanimator turns messy HTML exports into Markdown that can be reviewed, traced, and reused.

@@ -11,6 +11,8 @@ image: "/assets/project-shots/llm-robot-shell/governed-robot-shell-hero.jpg"
 imageAlt: "Governed Robot Shell architecture diagram showing Perception, Parse, Intent, Planner, Safety Gate, and Subsystem Dispatch, with labels for Authority Boundary, Audit Log, and E-stop override."
 featured: true
 priority: 5
+portfolioGroup: research
+sourceVisibility: public
 ---
 
 ## What it is

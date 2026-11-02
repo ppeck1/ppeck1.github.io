@@ -9,6 +9,8 @@ status: active
 demo: "/demo/trade-craft-card-library/"
 image: /assets/project-shots/trade-craft-card-library/globe-browser.png
 imageAlt: "Trade Craft Card Library interactive globe showing geographic distribution of crafts"
+portfolioGroup: creative
+sourceVisibility: none
 ---
 
 ## What it is

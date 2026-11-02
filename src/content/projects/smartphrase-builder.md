@@ -12,9 +12,11 @@ image: "/assets/project-shots/smartphrase-builder/desktop-builder.png"
 imageAlt: "SmartPhrase Builder showing a phrase editor, plain-text preview, and copy controls."
 pinned: true
 featured: true
-priority: 2
+priority: 1
 status: active
 draft: false
+portfolioGroup: selected
+sourceVisibility: public
 ---
 
 > **TL;DR:** SmartPhrase Builder turns a hard-to-read setup task into three steps: name the phrase, build it one block at a time, and copy plain text into Epic for testing.

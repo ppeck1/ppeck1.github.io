@@ -8,6 +8,8 @@ github: "https://github.com/ppeck1/pyportal-titano-weather-clock"
 image: "/assets/Images/projects/pyportal_titano_weather_clock_example.png"
 imageAlt: "PyPortal Titano portrait weather and clock display running on hardware."
 priority: 18
+portfolioGroup: creative
+sourceVisibility: public
 ---
 
 > **TL;DR:** A real, desk‑running firmware project (not a simulator) that integrates Wi‑Fi APIs, UI layout, and hardware constraints into a stable portrait display.

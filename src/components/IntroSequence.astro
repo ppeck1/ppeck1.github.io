@@ -1,8 +1,7 @@
 ---
 // IntroSequence.astro - CRT boot sequence (power-on → POST → ECG) + Welcome modal
 // Ported from the E-MyR Design System boot components (BootScreen/EcgTrace).
-// Behavioral contract preserved from v2: plays every visit unless suppressed
-// via 'emr-intro-suppress-v2'; window.restartIntro() replays (with ⏻ POWER).
+// Content opens immediately. window.restartIntro() starts an optional replay.
 ---
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -49,7 +48,6 @@
     <p>E-MyR is a clinical systems portfolio built like a chart: part professional record, part workflow lab, part evidence trail.</p>
     <div class="intro-modal-buttons">
       <button id="enter-chart">Enter Chart &rarr;</button>
-      <button id="dont-show-again">Don't show this again</button>
     </div>
   </div>
 </div>
@@ -262,11 +260,6 @@
 </style>
 
 <script>
-  // v2 key: deliberately renamed so the old 'emr-intro-seen' value (written
-  // by the previous Enter Chart handler) is ignored. Only "Don't show this
-  // again" sets this key, so the intro plays on every visit by default.
-  const SUPPRESS_KEY = 'emr-intro-suppress-v2';
-
   const boot = document.getElementById('boot-screen');
   const tube = document.getElementById('boot-tube');
   const fizzle = document.getElementById('boot-fizzle');
@@ -278,7 +271,6 @@
   const powerBtn = document.getElementById('boot-power');
   const introModal = document.getElementById('intro-modal');
   const enterButton = document.getElementById('enter-chart');
-  const dontShowBtn = document.getElementById('dont-show-again');
 
   // phase: 'idle' | 'off' | 'poweron' | 'post' | 'ecg' | 'fading'
   let phase = 'idle';
@@ -293,26 +285,6 @@
   function clearTimers() {
     timers.forEach(clearTimeout);
     timers = [];
-  }
-
-  function canSuppressIntro() {
-    try {
-      return localStorage.getItem(SUPPRESS_KEY) === 'true';
-    } catch (e) {
-      return false;
-    }
-  }
-
-  function suppressIntro() {
-    try {
-      localStorage.setItem(SUPPRESS_KEY, 'true');
-    } catch (e) { /* storage may be blocked by browser policy */ }
-  }
-
-  function clearIntroSuppress() {
-    try {
-      localStorage.removeItem(SUPPRESS_KEY);
-    } catch (e) { /* storage may be blocked by browser policy */ }
   }
 
   function resetBoot() {
@@ -415,7 +387,14 @@
   }
 
   function closeIntro() {
+    const wasVisible = (boot && !boot.classList.contains('hidden')) ||
+      (introModal && !introModal.classList.contains('hidden'));
+    clearTimers();
+    phase = 'idle';
+    boot?.classList.add('hidden');
     introModal?.classList.add('hidden');
+    audio?.pause();
+    if (wasVisible) document.getElementById('dock-restart')?.focus();
   }
 
   powerBtn?.addEventListener('click', () => {
@@ -431,36 +410,24 @@
     powerOn();
   });
 
-  skipBtn?.addEventListener('click', finishBoot);
+  skipBtn?.addEventListener('click', closeIntro);
 
-  // ESC: skips the boot while it plays; dismisses the modal afterwards.
+  // Escape cancels every replay state, including the waiting POWER screen.
   document.addEventListener('keydown', (e) => {
     if (e.key !== 'Escape') return;
-    if (boot && !boot.classList.contains('hidden') && phase !== 'idle' && phase !== 'off' && phase !== 'fading') {
-      finishBoot();
-    } else {
-      closeIntro();
-    }
-  });
-
-  // Play on every visit unless the user explicitly opted out.
-  if (!canSuppressIntro()) {
-    playIntro();
-  }
-
-  // "Enter Chart" just dismisses without suppressing future plays.
-  enterButton?.addEventListener('click', () => closeIntro());
-
-  // "Don't show this again" suppresses future plays.
-  dontShowBtn?.addEventListener('click', () => {
-    suppressIntro();
     closeIntro();
   });
 
-  // Dock "Restart Intro" button calls this; also clears suppress flag.
+  // Content is immediately available. The dock starts the optional replay.
+  resetBoot();
+  closeIntro();
+
+  // "Enter Chart" returns from the optional replay.
+  enterButton?.addEventListener('click', () => closeIntro());
+
+  // Dock "Play Intro" button calls this.
   // Replay is gesture-initiated, so it gets the full ⏻ POWER + beep treatment.
   (window as any).restartIntro = () => {
-    clearIntroSuppress();
     closeIntro();
     playIntro({ withPowerButton: true });
   };

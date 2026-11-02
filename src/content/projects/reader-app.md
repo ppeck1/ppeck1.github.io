@@ -8,6 +8,8 @@ status: active
 image: "/assets/project-shots/reader-app/editor.jpg"
 imageAlt: "Reader Android editor screen showing a local text document open for editing."
 priority: 7
+portfolioGroup: tools
+sourceVisibility: public
 ---
 
 > **TL;DR:** Reader is intentionally small: open a text file on Android, edit it locally, and save it without accounts, cloud services, ads, analytics, or broad storage access.

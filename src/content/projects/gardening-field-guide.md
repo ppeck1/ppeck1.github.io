@@ -9,6 +9,8 @@ imageAlt: "Practical Gardening Guide cover with earth-toned color palette and se
 featured: false
 priority: 15
 demo: "/demo/gardening-field-guide/"
+portfolioGroup: creative
+sourceVisibility: none
 ---
 
 ## What it is

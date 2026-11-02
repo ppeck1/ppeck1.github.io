@@ -13,6 +13,8 @@ priority: 8
 links:
   - label: "Standalone GitHub Pages demo"
     url: "https://ppeck.me/productivity-methods-atlas/"
+portfolioGroup: tools
+sourceVisibility: public
 ---
 
 ## What it is

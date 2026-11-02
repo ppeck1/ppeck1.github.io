@@ -8,6 +8,8 @@ status: active
 image: "/assets/project-shots/dev-launchpad/main.png"
 imageAlt: "Dev Launchpad Windows control panel for starting local workspaces, checking ports, and opening project URLs."
 priority: 8
+portfolioGroup: tools
+sourceVisibility: public
 ---
 
 > **TL;DR:** Dev Launchpad is a small Windows app for reopening development workspaces without reconstructing the same terminals, folders, ports, and browser URLs by hand.

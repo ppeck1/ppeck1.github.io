@@ -2,6 +2,7 @@
 // src/pages/projects/[slug].astro - Dynamic project case study page
 import { getCollection } from 'astro:content';
 import ProjectLayout from '../../layouts/ProjectLayout.astro';
+import { publicSourceUrl, publicProjectLinks } from '../../lib/project-publication.mjs';
 
 export async function getStaticPaths() {
   const projects = await getCollection('projects', ({ data }) => data.draft !== true);
@@ -21,12 +22,12 @@ const { Content } = await project.render();
   description={project.data.description}
   date={project.data.date}
   tags={project.data.tags}
-  github={project.data.github}
+  github={publicSourceUrl(project.data) ?? undefined}
   demo={project.data.demo}
   demoLabel={project.data.demoLabel}
   image={project.data.image}
   imageAlt={project.data.imageAlt}
-  links={project.data.links}
+  links={publicProjectLinks(project.data)}
   status={project.data.status}
 >
   <Content />
