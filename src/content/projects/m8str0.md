@@ -1,6 +1,6 @@
 ---
 title: "M8str0 - Browser-Native Audiovisual Workstation"
-description: "A modular node-graph instrument where the same CV signal drives Web Audio synthesis and WebGL2 visuals simultaneously. Runs offline in the browser."
+description: "A modular node-graph instrument where the same CV signal drives Web Audio synthesis and WebGL2 visuals simultaneously. Runs locally in the browser; optional face analysis downloads MediaPipe assets on first use."
 date: 2026-06-16
 tags: ["audiovisual", "synthesizer", "web-audio", "webgl", "local-first", "react", "typescript", "generative"]
 github: "https://github.com/ppeck1/m8str0"
@@ -9,6 +9,8 @@ image: /assets/project-shots/m8str0/screenshot.png
 imageAlt: "M8str0 node graph canvas with synthesizer controls and WebGL visual panels"
 featured: false
 priority: 14
+portfolioGroup: creative
+sourceVisibility: public
 ---
 
 ## What it is
@@ -35,3 +37,7 @@ Patches save as `.m8patch` JSON and auto-persist to IndexedDB. `GraphRuntime.ts`
 - Topological graph evaluation with cycle rejection at runtime
 - MediaPipe face tracking as a live modulation source, loaded on-demand
 - Local-first patch persistence without any server or account
+
+## Optional network dependency
+
+Audio and visual work run locally. The optional face-analysis path downloads MediaPipe assets on first use; that path needs its dependencies available before offline use.

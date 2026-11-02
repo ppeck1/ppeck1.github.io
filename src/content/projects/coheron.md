@@ -3,12 +3,15 @@ title: "Coheron - Personal Observability System"
 description: "A local-first Flutter app that models human state as a structured three-domain system with field-based visualization — not flat metrics."
 date: 2026-06-16
 tags: ["flutter", "dart", "local-first", "observability", "data-visualization", "systems", "android"]
-github: "https://github.com/ppeck1/Coheron"
 status: active
 image: /assets/project-shots/coheron/atlas.jpg
 imageAlt: "Coheron Atlas view showing aggregate system state across domains as a field-based visualization"
 featured: false
 priority: 13
+
+draft: true
+portfolioGroup: tools
+sourceVisibility: private
 ---
 
 ## What it is

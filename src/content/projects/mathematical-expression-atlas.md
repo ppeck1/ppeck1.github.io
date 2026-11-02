@@ -10,7 +10,7 @@ demo: https://ppeck.me/mathcards/?v=0.33.0&build=7204a01
 demoLabel: Open the atlas
 pinned: true
 featured: false
-priority: 100
+priority: 4
 image: /images/projects/mathcards-sample-0-24.png
 imageAlt: "The crate lesson shows one mass slider and a shared large comparison of four selected crates with all twelve."
 tags:
@@ -19,6 +19,8 @@ tags:
   - visualization
   - local-first
   - javascript
+portfolioGroup: selected
+sourceVisibility: public
 ---
 
 I made the Mathematical Expression Atlas because I really enjoy math. Thinking of it as a way to describe relationships precisely has changed how I see it. I wanted a place to follow those relationships, change something, and see what the expression was saying.

@@ -1,6 +1,6 @@
 ---
 title: "Project Atlas - Local-First Project Command Center"
-description: "A Flutter desktop command center for tracking what is active, blocked, due today, and ready for phone handoff without cloud sync or telemetry."
+description: "A local Windows command center for accepted project state, next actions, evidence, and human-reviewed AI proposals."
 date: 2026-06-11
 tags: ["flutter", "local-first", "sqlite", "project-management", "workflow", "desktop"]
 github: "https://github.com/ppeck1/project-atlas"
@@ -10,39 +10,40 @@ status: active
 image: "/assets/project-shots/project-atlas/today.png"
 imageAlt: "Project Atlas Today screen showing focus work, overdue items, phone queue, and blocked work."
 featured: true
-priority: 4
+priority: 2
+portfolioGroup: selected
+sourceVisibility: public
 ---
 
-> **TL;DR:** Project Atlas is a desktop app for keeping active work visible. It shows what is due, what is blocked, what needs attention today, and what should be sent to a phone handoff list.
+Project work scatters across notes, folders, terminals, and conversations. Project Atlas brings the accepted project state and the next justified action into one local Windows application.
 
-## What it is
+## What I built
 
-Personal project work often scatters across notes, terminals, chats, and half-remembered obligations. Project Atlas pulls that work into one local dashboard.
+The Flutter desktop app uses Drift and SQLite to keep a durable working record. Capsule holds accepted intent, decisions, risks, and evidence. Today and Workboard turn that record into an execution view. Projects, Sources & Health, and Library keep supporting material available without flattening it into one summary.
 
-Project Atlas is built around that visibility:
+Human edits to accepted project truth retain revision history and reject stale saves. Agent-originated changes enter a proposal queue; they cannot silently become accepted state.
 
-- Today: focus, overdue, due-today, phone queue, blocked, and high-priority work
-- Projects: active project tracking and lifecycle metadata
-- Library: documents, drafts, filters, and local file actions
-- Settings: integrations, logs, export tools, contacts, and admin controls
+## What the workflow makes visible
 
-## Why it matters
+- What is accepted, what is proposed, and what has changed since the current view loaded.
+- Which work is ready, blocked, stale, or waiting for a decision.
+- Which local sources support a project and when they were last observed.
+- Which optional integration is allowed to see or change which fields.
 
-The app stores data locally in SQLite through Drift. The README states there is no cloud sync and no telemetry. Optional integrations such as Ollama summaries and Telegram handoff remain user-reviewed.
+![Earlier Project Atlas project view](/assets/project-shots/project-atlas/projects.png)
 
-![Project Atlas Projects screen](/assets/project-shots/project-atlas/projects.png)
+This retained portfolio capture shows an earlier project view. The [current repository screenshots and capture manifest](https://github.com/ppeck1/project-atlas/tree/main/docs/screenshots) are the source for the latest interface and its public-safe demo evidence.
 
-## What the screenshots show
+## Data and integration boundaries
 
-The screenshots show an application built for repeated use rather than presentation:
+The database stays local. Explicitly enabled integrations can transmit selected data. The trusted local MCP surface is separate from a narrower remote projection with authentication, operator-approved aliases, and a small tool allowlist. Integration secrets use the Windows secret-storage boundary described in the repository.
 
-![Project Atlas Library screen](/assets/project-shots/project-atlas/library.png)
+## Verification and limits
 
-![Project Atlas Settings screen](/assets/project-shots/project-atlas/settings.png)
+The repository includes migration, policy, adapter, service, and UI checks, Windows release builds, and a repository/release privacy audit. [Current CI](https://github.com/ppeck1/project-atlas/actions) and the [security policy](https://github.com/ppeck1/project-atlas/blob/main/SECURITY.md) record those boundaries.
 
-## What This Demonstrates
+This is a local desktop tool. Remote connector operation requires operator-managed configuration and authentication. Local-first storage does not make every optional integration offline or remove the need to protect the database.
 
-- Local-first product design with practical workflow density
-- SQLite/Drift application structure
-- Human-reviewed AI and phone handoff integrations
-- A direct bridge between personal operations and visible software artifacts
+## What this demonstrates
+
+Desktop product design, versioned local data, explicit evidence and review state, stale-write protection, and constrained integration surfaces.

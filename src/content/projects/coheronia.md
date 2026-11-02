@@ -11,6 +11,8 @@ demoLinkLabel: "Wiki"
 image: "/assets/project-shots/coheronia/current-live-ui.png"
 imageAlt: "Coheronia live gameplay UI with settlement status, event panel, player dock, health vessel, and attunement vessel."
 status: active
+portfolioGroup: creative
+sourceVisibility: public
 ---
 
 > **TL;DR:** A Godot 4 side-view survival sandbox where digging, building, and feeding a settlement feed three real systemic pressures — **Coherence / Load / Resilience** — on the road to ruling a small civilization.

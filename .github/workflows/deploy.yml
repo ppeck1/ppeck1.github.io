@@ -3,19 +3,18 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [ main ]
+  pull_request:
+    branches: [ main ]
   workflow_dispatch:
-  # Weekly rebuild so build-time GitHub repo metadata (Diagnosis tab
-  # "Full Problem List") stays fresh without client-side JS.
+  # Weekly rebuild refreshes optional metadata for explicitly curated cases.
   schedule:
     - cron: '0 6 * * 1'  # Mondays 06:00 UTC
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
-  group: "pages"
+  group: "pages-${{ github.event.pull_request.number || github.ref }}"
   cancel-in-progress: false
 
 jobs:
@@ -34,15 +33,20 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build site
-        run: npm run build
+      - name: Check publication boundaries and build
+        run: npm run check
 
       - name: Upload artifact
+        if: github.event_name != 'pull_request'
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./dist
 
   deploy:
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    permissions:
+      pages: write
+      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}

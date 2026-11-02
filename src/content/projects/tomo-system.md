@@ -6,6 +6,8 @@ tags: ["circuitpython", "python", "embedded", "pyportal", "hardware", "generativ
 github: "https://github.com/ppeck1/tomo-system"
 repo: "ppeck1/tomo-system"
 status: active
+portfolioGroup: creative
+sourceVisibility: public
 ---
 
 > **TL;DR:** A persistent embodied creature on an Adafruit PyPortal Titano — no AI backend, no network, no score — whose posture and condition mirror the rhythm of your care over time.

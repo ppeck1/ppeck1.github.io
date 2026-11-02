@@ -1,17 +1,22 @@
 ---
 title: "CANON — Constraint-First Modeling for Systems Under Load"
-description: "A general latent-state framework for diagnosing whether a system remains viable under load, even when dashboards still appear stable."
+description: "An unvalidated research framework exploring hidden operational strain through constrained state models and constructed examples."
 date: 2026-04-13
 tags: ["systems", "math", "constraint", "observability", "diagnostics", "latent-state", "healthcare"]
 status: active
 github: "https://github.com/ppeck1/canon-system"
 repo: "ppeck1/canon-system"
-pinned: true
+pinned: false
 image: "/assets/Images/projects/canon_system_flow.svg"
 imageAlt: "CANON system flow diagram showing latent evolution, constraint boundary, and projected metrics."
 featured: true
 priority: 3
+portfolioGroup: research
+sourceVisibility: public
 ---
+
+> **Research prototype:** CANON has not been empirically validated as an early-warning or predictive model. The diagrams and numerical examples here are constructed illustrations. Hospital applications require calibrated mappings and independent retrospective evaluation before performance claims.
+
 
 > **TL;DR:** CANON is a constraint-first framework for modeling systems as evolving latent state rather than as a collection of visible metrics. It separates what the system **is** from what the dashboard **can see**, then asks the more important question: **is the system still viable?**
 
@@ -104,16 +109,16 @@ This image matters because it clarifies that failure is not just a scalar thresh
 A system can drift toward the edge of viability long before any visible metric looks dramatic. In CANON terms, collapse is geometric before it becomes obvious.
 
 ## Latent divergence vs visible metrics
-![Latent divergence vs KPI](/assets/Images/projects/delta_c_chart.svg)
+![Constructed illustration of latent divergence versus visible metrics](/assets/Images/projects/delta_c_chart.svg)
 
-This is the practical payoff.
+This is a constructed illustration of the proposed relationship.
 
 The chart shows the kind of pattern the framework is designed to identify:
 - KPI remains flat or near-flat
 - latent stability signal deteriorates earlier
 - visible failure appears only after the system has already crossed into a bad region
 
-This is the class of pattern that conventional dashboards tend to miss.
+Whether this representation adds useful information beyond existing indicators is a question for retrospective evaluation.
 
 ## Why this matters
 The framework is intended for systems where:

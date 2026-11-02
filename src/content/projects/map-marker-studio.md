@@ -13,6 +13,8 @@ featured: false
 priority: 20
 status: active
 draft: false
+portfolioGroup: tools
+sourceVisibility: public
 ---
 
 > **TL;DR:** Map Marker Studio turns a list of places into a map. You can add pins one at a time or import a CSV, search and edit the list, and export a map that other people can view without needing an account.

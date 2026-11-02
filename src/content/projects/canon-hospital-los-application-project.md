@@ -1,6 +1,6 @@
 ---
 title: "Hospital LOS / Bed Flow as a CANON Application"
-description: "A hospital operations case study showing how a latent-state framework can model throughput stress, projection loss, and early deterioration before KPI-visible failure."
+description: "A research application proposing how hospital flow signals could map into a constrained state model for retrospective evaluation."
 date: 2026-04-13
 tags: ["healthcare", "hospital-operations", "LOS", "bed-flow", "systems", "diagnostics", "clinical-informatics"]
 status: active
@@ -8,7 +8,12 @@ github: "https://github.com/ppeck1/canon-system"
 image: "/assets/Images/projects/delta_c_chart.svg"
 imageAlt: "CANON chart showing latent deterioration before visible KPI failure."
 priority: 11
+portfolioGroup: research
+sourceVisibility: public
 ---
+
+> **Research prototype:** CANON has not been empirically validated as an early-warning or predictive model. The diagrams and numerical examples here are constructed illustrations. Hospital applications require calibrated mappings and independent retrospective evaluation before performance claims.
+
 
 > **TL;DR:** This project applies the broader CANON framework to hospital length-of-stay and bed-flow dynamics. The point is not to build another dashboard. The point is to model whether the unit is still structurally viable before visible throughput failure fully shows up in reported metrics.
 
@@ -79,12 +84,12 @@ A unit can still be technically moving patients while already experiencing:
 - carryover burden from earlier shifts
 - growing informational compression between what happened and what leadership can see
 
-That is exactly the kind of environment where a latent-state model has a better chance of being useful than another flat dashboard.
+Whether the proposed state representation adds useful information beyond existing indicators is a question for evaluation.
 
 ## Latent deterioration vs KPI-visible deterioration
-![Latent divergence vs KPI](/assets/Images/projects/delta_c_chart.svg)
+![Constructed illustration of latent divergence versus visible metrics](/assets/Images/projects/delta_c_chart.svg)
 
-**latent deterioration should become visible in the model before conventional KPI-visible deterioration becomes obvious in dashboards.**
+**Hypothesis to test:** the proposed signal may identify operational deterioration earlier than selected KPI baselines. This illustration is not evidence that it does so in real hospital data.
 
 ## What the repository currently includes for the hospital application
 The hospital-specific layer already includes:

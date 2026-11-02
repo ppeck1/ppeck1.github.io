@@ -59,6 +59,7 @@
 /* Tab Panels */
 .tab-panels {
   flex: 1;
+  padding-bottom: 7rem;
 }
 
 .tab-panel {
@@ -215,6 +216,9 @@
 
 /* Responsive Design */
 @media (max-width: 768px) {
+  .tab-panels {
+    padding-bottom: 9rem;
+  }
   .tab-navigation {
     padding: 0 1rem;
   }

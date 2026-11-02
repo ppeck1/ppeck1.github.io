@@ -9,6 +9,8 @@ demo: "https://ppeck.me"
 image: "/assets/preview.png"
 imageAlt: "E-MyR portfolio preview showing an EMR-style portfolio interface."
 priority: 20
+portfolioGroup: tools
+sourceVisibility: public
 ---
 
 > **TL;DR:** Rebuilt a single-file EMR-style resume into a structured Astro application with real routing, modular components, and deployable infrastructure… while preserving the clinical interface as a functional system, not just a visual theme.
@@ -23,7 +25,7 @@ The original site was a **single HTML application** with embedded data, UI, and 
 
 It worked… but it did not scale:
 
-- All content (resume, experience, documents, blog) lived inside one file :contentReference[oaicite:1]{index=1}  
+- All content (resume, experience, documents, blog) lived inside one file
 - UI rendering, data structure, and interaction logic were tightly coupled  
 - No real routing → nothing was linkable or indexable  
 - Any change risked breaking unrelated parts of the system  

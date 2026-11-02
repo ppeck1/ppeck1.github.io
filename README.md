@@ -13,7 +13,7 @@ Interactive EMR-style portfolio and blog for Paul Peck, RN.
 
 ### Prerequisites
 
-- Node.js 18+ installed
+- Node.js 20+ installed (the CI version)
 - npm or yarn package manager
 
 ### Installation
@@ -136,13 +136,14 @@ Place PDFs, images, and other static files in `public/assets/`
 
 - Theme preference saved in `localStorage` as `emr-theme`
 - Last active tab saved as `emr-last-tab`
-- Intro sequence flag saved as `emr-intro-seen`
+- The chart opens immediately; Play Intro in the dock starts an optional replay.
 
 ## 🔧 Development Tips
 
 - Use `npm run dev` for hot-reloading during development
 - Blog posts auto-appear in the Notes tab
-- Projects auto-appear in the Diagnosis tab
+- Authored project records appear in the Diagnosis tab according to their publication settings.
+- [Publication settings and verification](docs/publication.md) explain groups, source visibility, and draft routes.
 - All content is type-checked via TypeScript
 
 ## 🤝 Support

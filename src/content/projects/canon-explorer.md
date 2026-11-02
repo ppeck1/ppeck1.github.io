@@ -9,6 +9,8 @@ image: "/assets/project-shots/ca-explorer/binary-rule-110.png"
 imageAlt: "CA Explorer Binary mode showing Rule 110 cellular automata and CANON viability panels."
 featured: true
 priority: 6
+portfolioGroup: research
+sourceVisibility: public
 ---
 
 > **TL;DR:** Canon Explorer is a visual systems lab. It uses cellular automata to make persistence, collapse, and changing system state easy to see.
